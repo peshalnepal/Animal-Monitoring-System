@@ -1,0 +1,412 @@
+
+USART.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000222  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000000  00800060  00800060  00000296  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000020  00800060  00800060  00000296  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  00000296  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  000002c8  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 00000030  00000000  00000000  00000304  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   0000068b  00000000  00000000  00000334  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 0000056a  00000000  00000000  000009bf  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   0000035c  00000000  00000000  00000f29  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  00000044  00000000  00000000  00001288  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    000002dc  00000000  00000000  000012cc  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_ranges 00000020  00000000  00000000  000015a8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+   8:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+   c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  10:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  14:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  18:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  1c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  20:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  24:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  28:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  2c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  30:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  34:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  38:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  3c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  40:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  44:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  48:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  4c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  50:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_clear_bss>:
+  60:	20 e0       	ldi	r18, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	01 c0       	rjmp	.+2      	; 0x6a <.do_clear_bss_start>
+
+00000068 <.do_clear_bss_loop>:
+  68:	1d 92       	st	X+, r1
+
+0000006a <.do_clear_bss_start>:
+  6a:	a0 38       	cpi	r26, 0x80	; 128
+  6c:	b2 07       	cpc	r27, r18
+  6e:	e1 f7       	brne	.-8      	; 0x68 <.do_clear_bss_loop>
+  70:	0e 94 7d 00 	call	0xfa	; 0xfa <main>
+  74:	0c 94 0f 01 	jmp	0x21e	; 0x21e <_exit>
+
+00000078 <__bad_interrupt>:
+  78:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+0000007c <return_char>:
+	}
+	}
+}
+unsigned char return_char()
+{
+	while (!(UCSRA&(1<<RXC)));
+  7c:	5f 9b       	sbis	0x0b, 7	; 11
+  7e:	fe cf       	rjmp	.-4      	; 0x7c <return_char>
+	return UDR;
+  80:	8c b1       	in	r24, 0x0c	; 12
+}
+  82:	08 95       	ret
+
+00000084 <transfer_char>:
+void transfer_char()
+{
+			for (j=0;j<15;j++)
+  84:	10 92 60 00 	sts	0x0060, r1	; 0x800060 <_edata>
+  88:	e0 e0       	ldi	r30, 0x00	; 0
+			{
+				while(!(UCSRA&(1<<UDRE)));
+  8a:	5d 9b       	sbis	0x0b, 5	; 11
+  8c:	fe cf       	rjmp	.-4      	; 0x8a <transfer_char+0x6>
+			
+				
+					UDR=latitude[j];
+  8e:	f0 e0       	ldi	r31, 0x00	; 0
+  90:	ef 58       	subi	r30, 0x8F	; 143
+  92:	ff 4f       	sbci	r31, 0xFF	; 255
+  94:	80 81       	ld	r24, Z
+  96:	8c b9       	out	0x0c, r24	; 12
+					if (latitude[j]==0x4E)
+  98:	e0 91 60 00 	lds	r30, 0x0060	; 0x800060 <_edata>
+  9c:	ae 2f       	mov	r26, r30
+  9e:	b0 e0       	ldi	r27, 0x00	; 0
+  a0:	af 58       	subi	r26, 0x8F	; 143
+  a2:	bf 4f       	sbci	r27, 0xFF	; 255
+  a4:	8c 91       	ld	r24, X
+  a6:	8e 34       	cpi	r24, 0x4E	; 78
+  a8:	29 f4       	brne	.+10     	; 0xb4 <transfer_char+0x30>
+				{
+					while(!(UCSRA&(1<<UDRE)));
+  aa:	5d 9b       	sbis	0x0b, 5	; 11
+  ac:	fe cf       	rjmp	.-4      	; 0xaa <transfer_char+0x26>
+					UDR=0X0A;
+  ae:	8a e0       	ldi	r24, 0x0A	; 10
+  b0:	8c b9       	out	0x0c, r24	; 12
+					break;
+  b2:	05 c0       	rjmp	.+10     	; 0xbe <transfer_char+0x3a>
+	while (!(UCSRA&(1<<RXC)));
+	return UDR;
+}
+void transfer_char()
+{
+			for (j=0;j<15;j++)
+  b4:	ef 5f       	subi	r30, 0xFF	; 255
+  b6:	e0 93 60 00 	sts	0x0060, r30	; 0x800060 <_edata>
+  ba:	ef 30       	cpi	r30, 0x0F	; 15
+  bc:	30 f3       	brcs	.-52     	; 0x8a <transfer_char+0x6>
+					while(!(UCSRA&(1<<UDRE)));
+					UDR=0X0A;
+					break;
+				}
+			}
+			for (j=0;j<15;j++)
+  be:	10 92 60 00 	sts	0x0060, r1	; 0x800060 <_edata>
+  c2:	e0 e0       	ldi	r30, 0x00	; 0
+			{
+				while(!(UCSRA&(1<<UDRE)));
+  c4:	5d 9b       	sbis	0x0b, 5	; 11
+  c6:	fe cf       	rjmp	.-4      	; 0xc4 <transfer_char+0x40>
+			
+				
+					UDR=longitude[j];
+  c8:	f0 e0       	ldi	r31, 0x00	; 0
+  ca:	ee 59       	subi	r30, 0x9E	; 158
+  cc:	ff 4f       	sbci	r31, 0xFF	; 255
+  ce:	80 81       	ld	r24, Z
+  d0:	8c b9       	out	0x0c, r24	; 12
+					if (longitude[j]==0x45)
+  d2:	e0 91 60 00 	lds	r30, 0x0060	; 0x800060 <_edata>
+  d6:	ae 2f       	mov	r26, r30
+  d8:	b0 e0       	ldi	r27, 0x00	; 0
+  da:	ae 59       	subi	r26, 0x9E	; 158
+  dc:	bf 4f       	sbci	r27, 0xFF	; 255
+  de:	8c 91       	ld	r24, X
+  e0:	85 34       	cpi	r24, 0x45	; 69
+  e2:	29 f4       	brne	.+10     	; 0xee <transfer_char+0x6a>
+				{
+					while(!(UCSRA&(1<<UDRE)));
+  e4:	5d 9b       	sbis	0x0b, 5	; 11
+  e6:	fe cf       	rjmp	.-4      	; 0xe4 <transfer_char+0x60>
+					UDR=0X0A;
+  e8:	8a e0       	ldi	r24, 0x0A	; 10
+  ea:	8c b9       	out	0x0c, r24	; 12
+					break;
+  ec:	08 95       	ret
+					while(!(UCSRA&(1<<UDRE)));
+					UDR=0X0A;
+					break;
+				}
+			}
+			for (j=0;j<15;j++)
+  ee:	ef 5f       	subi	r30, 0xFF	; 255
+  f0:	e0 93 60 00 	sts	0x0060, r30	; 0x800060 <_edata>
+  f4:	ef 30       	cpi	r30, 0x0F	; 15
+  f6:	30 f3       	brcs	.-52     	; 0xc4 <transfer_char+0x40>
+  f8:	08 95       	ret
+
+000000fa <main>:
+char i,j;
+unsigned char return_char(void);
+void transfer_char();
+int main(void)
+{
+   UBRRL= (unsigned char)BAUD_PRESCALE;
+  fa:	8c e0       	ldi	r24, 0x0C	; 12
+  fc:	89 b9       	out	0x09, r24	; 9
+   UBRRH= (unsigned char)(BAUD_PRESCALE >> 8);
+  fe:	10 bc       	out	0x20, r1	; 32
+   UCSRB|=(1<<TXEN)|(1<<RXEN);
+ 100:	8a b1       	in	r24, 0x0a	; 10
+ 102:	88 61       	ori	r24, 0x18	; 24
+ 104:	8a b9       	out	0x0a, r24	; 10
+   UCSRC|=(1<<URSEL)|(3 << UCSZ0);
+ 106:	80 b5       	in	r24, 0x20	; 32
+ 108:	86 68       	ori	r24, 0x86	; 134
+ 10a:	80 bd       	out	0x20, r24	; 32
+    while (1) 
+    {
+		j=0;
+ 10c:	10 92 60 00 	sts	0x0060, r1	; 0x800060 <_edata>
+	i=return_char();
+ 110:	0e 94 3e 00 	call	0x7c	; 0x7c <return_char>
+ 114:	80 93 61 00 	sts	0x0061, r24	; 0x800061 <i>
+	if (i==0x24)
+ 118:	84 32       	cpi	r24, 0x24	; 36
+ 11a:	c1 f7       	brne	.-16     	; 0x10c <main+0x12>
+	{
+		i=return_char();
+ 11c:	0e 94 3e 00 	call	0x7c	; 0x7c <return_char>
+ 120:	80 93 61 00 	sts	0x0061, r24	; 0x800061 <i>
+		if (i==0x47)
+ 124:	87 34       	cpi	r24, 0x47	; 71
+ 126:	91 f7       	brne	.-28     	; 0x10c <main+0x12>
+	{
+		i=return_char();
+ 128:	0e 94 3e 00 	call	0x7c	; 0x7c <return_char>
+ 12c:	80 93 61 00 	sts	0x0061, r24	; 0x800061 <i>
+		if (i==0x50)
+ 130:	80 35       	cpi	r24, 0x50	; 80
+ 132:	61 f7       	brne	.-40     	; 0x10c <main+0x12>
+	{
+		i=return_char();
+ 134:	0e 94 3e 00 	call	0x7c	; 0x7c <return_char>
+ 138:	80 93 61 00 	sts	0x0061, r24	; 0x800061 <i>
+		if (i==0x47)
+ 13c:	87 34       	cpi	r24, 0x47	; 71
+ 13e:	31 f7       	brne	.-52     	; 0x10c <main+0x12>
+	{
+		i=return_char();
+ 140:	0e 94 3e 00 	call	0x7c	; 0x7c <return_char>
+ 144:	80 93 61 00 	sts	0x0061, r24	; 0x800061 <i>
+		if (i==0x47)
+ 148:	87 34       	cpi	r24, 0x47	; 71
+ 14a:	01 f7       	brne	.-64     	; 0x10c <main+0x12>
+	{
+		i=return_char();
+ 14c:	0e 94 3e 00 	call	0x7c	; 0x7c <return_char>
+ 150:	80 93 61 00 	sts	0x0061, r24	; 0x800061 <i>
+		if (i==0x41)
+ 154:	81 34       	cpi	r24, 0x41	; 65
+ 156:	d1 f6       	brne	.-76     	; 0x10c <main+0x12>
+	{
+		i=return_char();
+ 158:	0e 94 3e 00 	call	0x7c	; 0x7c <return_char>
+ 15c:	80 93 61 00 	sts	0x0061, r24	; 0x800061 <i>
+		if (i==0x2C)
+ 160:	8c 32       	cpi	r24, 0x2C	; 44
+ 162:	a1 f6       	brne	.-88     	; 0x10c <main+0x12>
+	{
+		i=return_char();
+ 164:	0e 94 3e 00 	call	0x7c	; 0x7c <return_char>
+ 168:	80 93 61 00 	sts	0x0061, r24	; 0x800061 <i>
+		while(i!=0x2C)
+ 16c:	8c 32       	cpi	r24, 0x2C	; 44
+ 16e:	31 f0       	breq	.+12     	; 0x17c <main+0x82>
+		{
+			i=return_char();
+ 170:	0e 94 3e 00 	call	0x7c	; 0x7c <return_char>
+ 174:	80 93 61 00 	sts	0x0061, r24	; 0x800061 <i>
+	{
+		i=return_char();
+		if (i==0x2C)
+	{
+		i=return_char();
+		while(i!=0x2C)
+ 178:	8c 32       	cpi	r24, 0x2C	; 44
+ 17a:	d1 f7       	brne	.-12     	; 0x170 <main+0x76>
+		{
+			i=return_char();
+		}
+		while (j<15)
+ 17c:	80 91 60 00 	lds	r24, 0x0060	; 0x800060 <_edata>
+ 180:	8f 30       	cpi	r24, 0x0F	; 15
+ 182:	c8 f4       	brcc	.+50     	; 0x1b6 <main+0xbc>
+		{
+			i=return_char();
+ 184:	0e 94 3e 00 	call	0x7c	; 0x7c <return_char>
+ 188:	80 93 61 00 	sts	0x0061, r24	; 0x800061 <i>
+			if(i!=0x2C)
+ 18c:	8c 32       	cpi	r24, 0x2C	; 44
+ 18e:	71 f0       	breq	.+28     	; 0x1ac <main+0xb2>
+			{
+				latitude[j]=i;
+ 190:	90 91 60 00 	lds	r25, 0x0060	; 0x800060 <_edata>
+ 194:	e9 2f       	mov	r30, r25
+ 196:	f0 e0       	ldi	r31, 0x00	; 0
+ 198:	ef 58       	subi	r30, 0x8F	; 143
+ 19a:	ff 4f       	sbci	r31, 0xFF	; 255
+ 19c:	80 83       	st	Z, r24
+			else
+			{
+				j++;
+				break;
+			}
+			j++;
+ 19e:	81 e0       	ldi	r24, 0x01	; 1
+ 1a0:	89 0f       	add	r24, r25
+ 1a2:	80 93 60 00 	sts	0x0060, r24	; 0x800060 <_edata>
+		i=return_char();
+		while(i!=0x2C)
+		{
+			i=return_char();
+		}
+		while (j<15)
+ 1a6:	8f 30       	cpi	r24, 0x0F	; 15
+ 1a8:	68 f3       	brcs	.-38     	; 0x184 <main+0x8a>
+ 1aa:	05 c0       	rjmp	.+10     	; 0x1b6 <main+0xbc>
+			{
+				latitude[j]=i;
+			}
+			else
+			{
+				j++;
+ 1ac:	80 91 60 00 	lds	r24, 0x0060	; 0x800060 <_edata>
+ 1b0:	8f 5f       	subi	r24, 0xFF	; 255
+ 1b2:	80 93 60 00 	sts	0x0060, r24	; 0x800060 <_edata>
+				break;
+			}
+			j++;
+		}
+		latitude[j]=return_char();
+ 1b6:	c0 91 60 00 	lds	r28, 0x0060	; 0x800060 <_edata>
+ 1ba:	d0 e0       	ldi	r29, 0x00	; 0
+ 1bc:	0e 94 3e 00 	call	0x7c	; 0x7c <return_char>
+ 1c0:	cf 58       	subi	r28, 0x8F	; 143
+ 1c2:	df 4f       	sbci	r29, 0xFF	; 255
+ 1c4:	88 83       	st	Y, r24
+		j=0;
+ 1c6:	10 92 60 00 	sts	0x0060, r1	; 0x800060 <_edata>
+		return_char();
+ 1ca:	0e 94 3e 00 	call	0x7c	; 0x7c <return_char>
+		while (j<15)
+ 1ce:	80 91 60 00 	lds	r24, 0x0060	; 0x800060 <_edata>
+ 1d2:	8f 30       	cpi	r24, 0x0F	; 15
+ 1d4:	c8 f4       	brcc	.+50     	; 0x208 <main+0x10e>
+		{
+			i=return_char();
+ 1d6:	0e 94 3e 00 	call	0x7c	; 0x7c <return_char>
+ 1da:	80 93 61 00 	sts	0x0061, r24	; 0x800061 <i>
+			if(i!=0x2C)
+ 1de:	8c 32       	cpi	r24, 0x2C	; 44
+ 1e0:	71 f0       	breq	.+28     	; 0x1fe <main+0x104>
+			{
+				longitude[j]=i;
+ 1e2:	90 91 60 00 	lds	r25, 0x0060	; 0x800060 <_edata>
+ 1e6:	e9 2f       	mov	r30, r25
+ 1e8:	f0 e0       	ldi	r31, 0x00	; 0
+ 1ea:	ee 59       	subi	r30, 0x9E	; 158
+ 1ec:	ff 4f       	sbci	r31, 0xFF	; 255
+ 1ee:	80 83       	st	Z, r24
+			else
+			{
+				j++;
+				break;
+			}
+			j++;
+ 1f0:	81 e0       	ldi	r24, 0x01	; 1
+ 1f2:	89 0f       	add	r24, r25
+ 1f4:	80 93 60 00 	sts	0x0060, r24	; 0x800060 <_edata>
+			j++;
+		}
+		latitude[j]=return_char();
+		j=0;
+		return_char();
+		while (j<15)
+ 1f8:	8f 30       	cpi	r24, 0x0F	; 15
+ 1fa:	68 f3       	brcs	.-38     	; 0x1d6 <main+0xdc>
+ 1fc:	05 c0       	rjmp	.+10     	; 0x208 <main+0x10e>
+			{
+				longitude[j]=i;
+			}
+			else
+			{
+				j++;
+ 1fe:	80 91 60 00 	lds	r24, 0x0060	; 0x800060 <_edata>
+ 202:	8f 5f       	subi	r24, 0xFF	; 255
+ 204:	80 93 60 00 	sts	0x0060, r24	; 0x800060 <_edata>
+				break;
+			}
+			j++;
+		}
+		longitude[j]=return_char();
+ 208:	c0 91 60 00 	lds	r28, 0x0060	; 0x800060 <_edata>
+ 20c:	d0 e0       	ldi	r29, 0x00	; 0
+ 20e:	0e 94 3e 00 	call	0x7c	; 0x7c <return_char>
+ 212:	ce 59       	subi	r28, 0x9E	; 158
+ 214:	df 4f       	sbci	r29, 0xFF	; 255
+ 216:	88 83       	st	Y, r24
+		transfer_char();
+ 218:	0e 94 42 00 	call	0x84	; 0x84 <transfer_char>
+ 21c:	77 cf       	rjmp	.-274    	; 0x10c <main+0x12>
+
+0000021e <_exit>:
+ 21e:	f8 94       	cli
+
+00000220 <__stop_program>:
+ 220:	ff cf       	rjmp	.-2      	; 0x220 <__stop_program>
