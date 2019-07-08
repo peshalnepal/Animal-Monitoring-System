@@ -1,0 +1,653 @@
+
+project5.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000310  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000022  00800060  00000310  00000384  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .comment      00000030  00000000  00000000  000003a6  2**0
+                  CONTENTS, READONLY
+  3 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  000003d8  2**2
+                  CONTENTS, READONLY
+  4 .debug_aranges 00000080  00000000  00000000  00000414  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   00000f05  00000000  00000000  00000494  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 00000857  00000000  00000000  00001399  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   00000652  00000000  00000000  00001bf0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  000000f4  00000000  00000000  00002244  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    00000402  00000000  00000000  00002338  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    00000600  00000000  00000000  0000273a  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_ranges 00000060  00000000  00000000  00002d3a  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+   8:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+   c:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  10:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  14:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  18:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  1c:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  20:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  24:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  28:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  2c:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  30:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  34:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  38:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  3c:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  40:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  44:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  48:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  4c:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  50:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+  60:	10 e0       	ldi	r17, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	e0 e1       	ldi	r30, 0x10	; 16
+  68:	f3 e0       	ldi	r31, 0x03	; 3
+  6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
+  6c:	05 90       	lpm	r0, Z+
+  6e:	0d 92       	st	X+, r0
+  70:	a2 38       	cpi	r26, 0x82	; 130
+  72:	b1 07       	cpc	r27, r17
+  74:	d9 f7       	brne	.-10     	; 0x6c <__do_copy_data+0xc>
+  76:	0e 94 cb 00 	call	0x196	; 0x196 <main>
+  7a:	0c 94 86 01 	jmp	0x30c	; 0x30c <_exit>
+
+0000007e <__bad_interrupt>:
+  7e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000082 <checking>:
+	_delay_us(50);
+	
+}
+void checking(void)
+{
+	controllcd |=1<<enablelcd;
+  82:	95 9a       	sbi	0x12, 5	; 18
+	asm volatile("nop");
+  84:	00 00       	nop
+	asm volatile("nop");
+  86:	00 00       	nop
+	controllcd &=~(1<<enablelcd);
+  88:	95 98       	cbi	0x12, 5	; 18
+  8a:	08 95       	ret
+
+0000008c <check_if_busy>:
+	checking();
+	lcdlight=0;
+}
+void check_if_busy(void)
+{
+	DDRC=0;
+  8c:	14 ba       	out	0x14, r1	; 20
+	controllcd |=(1<<read_write);
+  8e:	97 9a       	sbi	0x12, 7	; 18
+	controllcd &=~(1<<registor_select);
+  90:	92 98       	cbi	0x12, 2	; 18
+	while( lcdlight >= 0x80)
+  92:	af 9b       	sbis	0x15, 7	; 21
+  94:	04 c0       	rjmp	.+8      	; 0x9e <check_if_busy+0x12>
+	{
+		checking();
+  96:	0e 94 41 00 	call	0x82	; 0x82 <checking>
+void check_if_busy(void)
+{
+	DDRC=0;
+	controllcd |=(1<<read_write);
+	controllcd &=~(1<<registor_select);
+	while( lcdlight >= 0x80)
+  9a:	af 99       	sbic	0x15, 7	; 21
+  9c:	fc cf       	rjmp	.-8      	; 0x96 <check_if_busy+0xa>
+	{
+		checking();
+	}
+	DDRC=0xff;
+  9e:	8f ef       	ldi	r24, 0xFF	; 255
+  a0:	84 bb       	out	0x14, r24	; 20
+  a2:	08 95       	ret
+
+000000a4 <send_command>:
+	asm volatile("nop");
+	asm volatile("nop");
+	controllcd &=~(1<<enablelcd);
+}
+void send_command(unsigned char command)
+{
+  a4:	cf 93       	push	r28
+  a6:	c8 2f       	mov	r28, r24
+	check_if_busy();
+  a8:	0e 94 46 00 	call	0x8c	; 0x8c <check_if_busy>
+	lcdlight=command;
+  ac:	c5 bb       	out	0x15, r28	; 21
+	controllcd &=~(1<<read_write|1<<registor_select);
+  ae:	82 b3       	in	r24, 0x12	; 18
+  b0:	8b 77       	andi	r24, 0x7B	; 123
+  b2:	82 bb       	out	0x12, r24	; 18
+	checking();
+  b4:	0e 94 41 00 	call	0x82	; 0x82 <checking>
+	lcdlight=0;
+  b8:	15 ba       	out	0x15, r1	; 21
+}
+  ba:	cf 91       	pop	r28
+  bc:	08 95       	ret
+
+000000be <initialize>:
+ *  Author: pesha
+ */ 
+#include "LCD.h"
+void initialize(void)
+{	
+	DDRD |=(1<<read_write)|(1<<registor_select)|(1<<enablelcd);
+  be:	81 b3       	in	r24, 0x11	; 17
+  c0:	84 6a       	ori	r24, 0xA4	; 164
+  c2:	81 bb       	out	0x11, r24	; 17
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+  c4:	85 ea       	ldi	r24, 0xA5	; 165
+  c6:	9e e0       	ldi	r25, 0x0E	; 14
+  c8:	01 97       	sbiw	r24, 0x01	; 1
+  ca:	f1 f7       	brne	.-4      	; 0xc8 <initialize+0xa>
+  cc:	00 c0       	rjmp	.+0      	; 0xce <initialize+0x10>
+  ce:	00 00       	nop
+	_delay_ms(15);
+	send_command(0x01);//clear screen command as command are in binary or hex format
+  d0:	81 e0       	ldi	r24, 0x01	; 1
+  d2:	0e 94 52 00 	call	0xa4	; 0xa4 <send_command>
+  d6:	83 ef       	ldi	r24, 0xF3	; 243
+  d8:	91 e0       	ldi	r25, 0x01	; 1
+  da:	01 97       	sbiw	r24, 0x01	; 1
+  dc:	f1 f7       	brne	.-4      	; 0xda <initialize+0x1c>
+  de:	00 c0       	rjmp	.+0      	; 0xe0 <initialize+0x22>
+  e0:	00 00       	nop
+	_delay_ms(2);
+	send_command(0x38);//for lcd on 8 bit mode
+  e2:	88 e3       	ldi	r24, 0x38	; 56
+  e4:	0e 94 52 00 	call	0xa4	; 0xa4 <send_command>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+  e8:	90 e1       	ldi	r25, 0x10	; 16
+  ea:	9a 95       	dec	r25
+  ec:	f1 f7       	brne	.-4      	; 0xea <initialize+0x2c>
+  ee:	00 c0       	rjmp	.+0      	; 0xf0 <initialize+0x32>
+	_delay_us(50);
+	send_command(0b00001110);//control display and cursor
+  f0:	8e e0       	ldi	r24, 0x0E	; 14
+  f2:	0e 94 52 00 	call	0xa4	; 0xa4 <send_command>
+  f6:	80 e1       	ldi	r24, 0x10	; 16
+  f8:	8a 95       	dec	r24
+  fa:	f1 f7       	brne	.-4      	; 0xf8 <initialize+0x3a>
+  fc:	00 c0       	rjmp	.+0      	; 0xfe <initialize+0x40>
+	3 bit to tell if display should be on or off
+	2 bit to display cursor
+	1 bit in order to blink cursor
+	*/
+	_delay_us(50);
+	send_command(0x80);
+  fe:	80 e8       	ldi	r24, 0x80	; 128
+ 100:	0e 94 52 00 	call	0xa4	; 0xa4 <send_command>
+ 104:	90 e1       	ldi	r25, 0x10	; 16
+ 106:	9a 95       	dec	r25
+ 108:	f1 f7       	brne	.-4      	; 0x106 <initialize+0x48>
+ 10a:	00 c0       	rjmp	.+0      	; 0x10c <initialize+0x4e>
+ 10c:	08 95       	ret
+
+0000010e <send_character>:
+	controllcd &=~(1<<read_write|1<<registor_select);
+	checking();
+	lcdlight=0;
+}
+void send_character(unsigned char character)
+{
+ 10e:	cf 93       	push	r28
+ 110:	c8 2f       	mov	r28, r24
+	check_if_busy();
+ 112:	0e 94 46 00 	call	0x8c	; 0x8c <check_if_busy>
+	lcdlight=character;
+ 116:	c5 bb       	out	0x15, r28	; 21
+	controllcd &=~(1<<read_write);
+ 118:	97 98       	cbi	0x12, 7	; 18
+	controllcd |=(1<<registor_select);
+ 11a:	92 9a       	sbi	0x12, 2	; 18
+	checking();
+ 11c:	0e 94 41 00 	call	0x82	; 0x82 <checking>
+	lcdlight=0;
+ 120:	15 ba       	out	0x15, r1	; 21
+}
+ 122:	cf 91       	pop	r28
+ 124:	08 95       	ret
+
+00000126 <printstring>:
+		checking();
+	}
+	DDRC=0xff;
+}
+void printstring(unsigned char *stringpointer)
+{
+ 126:	cf 93       	push	r28
+ 128:	df 93       	push	r29
+ 12a:	ec 01       	movw	r28, r24
+	while(*stringpointer>0)
+ 12c:	88 81       	ld	r24, Y
+ 12e:	88 23       	and	r24, r24
+ 130:	31 f0       	breq	.+12     	; 0x13e <printstring+0x18>
+ 132:	21 96       	adiw	r28, 0x01	; 1
+	{
+		send_character(*stringpointer);
+ 134:	0e 94 87 00 	call	0x10e	; 0x10e <send_character>
+	}
+	DDRC=0xff;
+}
+void printstring(unsigned char *stringpointer)
+{
+	while(*stringpointer>0)
+ 138:	89 91       	ld	r24, Y+
+ 13a:	81 11       	cpse	r24, r1
+ 13c:	fb cf       	rjmp	.-10     	; 0x134 <printstring+0xe>
+	{
+		send_character(*stringpointer);
+		stringpointer++;
+	}
+}
+ 13e:	df 91       	pop	r29
+ 140:	cf 91       	pop	r28
+ 142:	08 95       	ret
+
+00000144 <start_conversion>:
+	   }
+}
+
+void start_conversion()
+{
+	DDRA|=(1<<PINA0);//this will make pinA0 as output 
+ 144:	d0 9a       	sbi	0x1a, 0	; 26
+	inputport &=~(1<<PINA0);//this will make output low along with delay for than 18 ms 
+ 146:	d8 98       	cbi	0x1b, 0	; 27
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 148:	83 e9       	ldi	r24, 0x93	; 147
+ 14a:	91 e1       	ldi	r25, 0x11	; 17
+ 14c:	01 97       	sbiw	r24, 0x01	; 1
+ 14e:	f1 f7       	brne	.-4      	; 0x14c <start_conversion+0x8>
+ 150:	00 c0       	rjmp	.+0      	; 0x152 <start_conversion+0xe>
+ 152:	00 00       	nop
+	_delay_ms(18);
+	inputport |=(1<<PINA0);//this is responsible for making output of PINA0 high
+ 154:	d8 9a       	sbi	0x1b, 0	; 27
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 156:	96 e0       	ldi	r25, 0x06	; 6
+ 158:	9a 95       	dec	r25
+ 15a:	f1 f7       	brne	.-4      	; 0x158 <start_conversion+0x14>
+ 15c:	00 c0       	rjmp	.+0      	; 0x15e <start_conversion+0x1a>
+ 15e:	08 95       	ret
+
+00000160 <response>:
+	_delay_us(20);
+}
+void response()
+{
+	DDRA &=~(1<<PINA0);//this is responsible for making PinA0 input pin
+ 160:	d0 98       	cbi	0x1a, 0	; 26
+	PORTA|=(1<<PINA0);//this is making pinA0 internally high 
+ 162:	d8 9a       	sbi	0x1b, 0	; 27
+	while(PINA&0x01);//loop until pinA0 goes low
+ 164:	c8 99       	sbic	0x19, 0	; 25
+ 166:	fe cf       	rjmp	.-4      	; 0x164 <response+0x4>
+	while ( !(PINA&0X01));//loop until PinA0 goes high
+ 168:	c8 9b       	sbis	0x19, 0	; 25
+ 16a:	fe cf       	rjmp	.-4      	; 0x168 <response+0x8>
+	while(PINA&0x01);//loop until pinA0 goes low
+ 16c:	c8 99       	sbic	0x19, 0	; 25
+ 16e:	fe cf       	rjmp	.-4      	; 0x16c <response+0xc>
+}
+ 170:	08 95       	ret
+
+00000172 <receiving_data>:
+uint8_t receiving_data()
+{
+ 172:	98 e0       	ldi	r25, 0x08	; 8
+	char i;
+	uint8_t data=0x00;//responsible for storing 8 bit data
+ 174:	80 e0       	ldi	r24, 0x00	; 0
+	for (i=0;i<8;i++)
+	{
+			while (!(PINA&0x01));//wait until signal coming in pinA0 is low
+ 176:	c8 9b       	sbis	0x19, 0	; 25
+ 178:	fe cf       	rjmp	.-4      	; 0x176 <receiving_data+0x4>
+ 17a:	2b e0       	ldi	r18, 0x0B	; 11
+ 17c:	2a 95       	dec	r18
+ 17e:	f1 f7       	brne	.-4      	; 0x17c <receiving_data+0xa>
+			_delay_us(33);//wait for 33 us as for logical zero signal is high for around 28 us and for logical one it is high for around 70 us 
+			if(PINA&0x01)//if signal is still high after 33 us then set last bit of data high by left shifting it
+ 180:	c8 9b       	sbis	0x19, 0	; 25
+ 182:	03 c0       	rjmp	.+6      	; 0x18a <receiving_data+0x18>
+			{
+				data=(data<<1)|0x01;
+ 184:	88 0f       	add	r24, r24
+ 186:	81 60       	ori	r24, 0x01	; 1
+ 188:	01 c0       	rjmp	.+2      	; 0x18c <receiving_data+0x1a>
+			}
+			else
+			{
+				data=(data<<1)&0xfe;
+ 18a:	88 0f       	add	r24, r24
+			}
+			while(PINA&0x01);//wait until signal goes low
+ 18c:	c8 99       	sbic	0x19, 0	; 25
+ 18e:	fe cf       	rjmp	.-4      	; 0x18c <receiving_data+0x1a>
+ 190:	91 50       	subi	r25, 0x01	; 1
+}
+uint8_t receiving_data()
+{
+	char i;
+	uint8_t data=0x00;//responsible for storing 8 bit data
+	for (i=0;i<8;i++)
+ 192:	89 f7       	brne	.-30     	; 0x176 <receiving_data+0x4>
+				data=(data<<1)&0xfe;
+			}
+			while(PINA&0x01);//wait until signal goes low
+	}
+	return data;//return 8 bit data
+ 194:	08 95       	ret
+
+00000196 <main>:
+
+void start_conversion(void);
+void response(void);
+uint8_t receiving_data(void);
+int main(void)
+{
+ 196:	cf 93       	push	r28
+ 198:	df 93       	push	r29
+ 19a:	00 d0       	rcall	.+0      	; 0x19c <main+0x6>
+ 19c:	00 d0       	rcall	.+0      	; 0x19e <main+0x8>
+ 19e:	cd b7       	in	r28, 0x3d	; 61
+ 1a0:	de b7       	in	r29, 0x3e	; 62
+	initialize();
+ 1a2:	0e 94 5f 00 	call	0xbe	; 0xbe <initialize>
+	uint8_t sum=0;
+ 
+    while (1) 
+    {
+		char value_of_tempr[4];
+		DDRA|=(1<<PINA0);
+ 1a6:	d0 9a       	sbi	0x1a, 0	; 26
+        inputport|=(1<<PINA0);
+ 1a8:	d8 9a       	sbi	0x1b, 0	; 27
+		start_conversion();
+ 1aa:	0e 94 a2 00 	call	0x144	; 0x144 <start_conversion>
+		response();
+ 1ae:	0e 94 b0 00 	call	0x160	; 0x160 <response>
+		humidity=receiving_data();
+ 1b2:	0e 94 b9 00 	call	0x172	; 0x172 <receiving_data>
+ 1b6:	d8 2e       	mov	r13, r24
+		humidity1=receiving_data();
+ 1b8:	0e 94 b9 00 	call	0x172	; 0x172 <receiving_data>
+ 1bc:	f8 2e       	mov	r15, r24
+		temperature=receiving_data();
+ 1be:	0e 94 b9 00 	call	0x172	; 0x172 <receiving_data>
+ 1c2:	e8 2e       	mov	r14, r24
+		temperature1=receiving_data();
+ 1c4:	0e 94 b9 00 	call	0x172	; 0x172 <receiving_data>
+ 1c8:	08 2f       	mov	r16, r24
+		checksum=receiving_data();
+ 1ca:	0e 94 b9 00 	call	0x172	; 0x172 <receiving_data>
+		sum=humidity1+humidity+temperature1+temperature;
+ 1ce:	9d 2d       	mov	r25, r13
+ 1d0:	9f 0d       	add	r25, r15
+ 1d2:	9e 0d       	add	r25, r14
+ 1d4:	90 0f       	add	r25, r16
+		if(checksum>sum)
+ 1d6:	98 17       	cp	r25, r24
+ 1d8:	18 f4       	brcc	.+6      	; 0x1e0 <main+0x4a>
+		{
+			sum=checksum-sum;
+ 1da:	18 2f       	mov	r17, r24
+ 1dc:	19 1b       	sub	r17, r25
+ 1de:	02 c0       	rjmp	.+4      	; 0x1e4 <main+0x4e>
+		}
+		else
+		{
+			sum=sum-checksum;
+ 1e0:	19 2f       	mov	r17, r25
+ 1e2:	18 1b       	sub	r17, r24
+		}
+		send_command(0x01);
+ 1e4:	81 e0       	ldi	r24, 0x01	; 1
+ 1e6:	0e 94 52 00 	call	0xa4	; 0xa4 <send_command>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 1ea:	83 ef       	ldi	r24, 0xF3	; 243
+ 1ec:	91 e0       	ldi	r25, 0x01	; 1
+ 1ee:	01 97       	sbiw	r24, 0x01	; 1
+ 1f0:	f1 f7       	brne	.-4      	; 0x1ee <main+0x58>
+ 1f2:	00 c0       	rjmp	.+0      	; 0x1f4 <main+0x5e>
+ 1f4:	00 00       	nop
+		_delay_ms(2);
+				if(sum>=0 && sum<=5)
+ 1f6:	16 30       	cpi	r17, 0x06	; 6
+ 1f8:	08 f0       	brcs	.+2      	; 0x1fc <main+0x66>
+ 1fa:	45 c0       	rjmp	.+138    	; 0x286 <main+0xf0>
+		{
+			
+		send_command(0x80);
+ 1fc:	80 e8       	ldi	r24, 0x80	; 128
+ 1fe:	0e 94 52 00 	call	0xa4	; 0xa4 <send_command>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 202:	90 e1       	ldi	r25, 0x10	; 16
+ 204:	9a 95       	dec	r25
+ 206:	f1 f7       	brne	.-4      	; 0x204 <main+0x6e>
+ 208:	00 c0       	rjmp	.+0      	; 0x20a <main+0x74>
+		_delay_us(50);
+		printstring("humidity:");
+ 20a:	80 e6       	ldi	r24, 0x60	; 96
+ 20c:	90 e0       	ldi	r25, 0x00	; 0
+ 20e:	0e 94 93 00 	call	0x126	; 0x126 <printstring>
+		send_command(0x80+0x0C);
+ 212:	8c e8       	ldi	r24, 0x8C	; 140
+ 214:	0e 94 52 00 	call	0xa4	; 0xa4 <send_command>
+ 218:	20 e1       	ldi	r18, 0x10	; 16
+ 21a:	2a 95       	dec	r18
+ 21c:	f1 f7       	brne	.-4      	; 0x21a <main+0x84>
+ 21e:	00 c0       	rjmp	.+0      	; 0x220 <main+0x8a>
+    } else if (__radix < 2 || __radix > 36) {
+	*__s = 0;
+	return __s;
+    } else {
+	extern char *__itoa_ncheck (int, char *, unsigned char);
+	return __itoa_ncheck (__val, __s, __radix);
+ 220:	4a e0       	ldi	r20, 0x0A	; 10
+ 222:	be 01       	movw	r22, r28
+ 224:	6f 5f       	subi	r22, 0xFF	; 255
+ 226:	7f 4f       	sbci	r23, 0xFF	; 255
+ 228:	8d 2d       	mov	r24, r13
+ 22a:	90 e0       	ldi	r25, 0x00	; 0
+ 22c:	0e 94 51 01 	call	0x2a2	; 0x2a2 <__itoa_ncheck>
+		_delay_us(50);
+		itoa(humidity,value_of_tempr,10);
+		printstring(value_of_tempr);
+ 230:	ce 01       	movw	r24, r28
+ 232:	01 96       	adiw	r24, 0x01	; 1
+ 234:	0e 94 93 00 	call	0x126	; 0x126 <printstring>
+		printstring("RH");
+ 238:	8a e6       	ldi	r24, 0x6A	; 106
+ 23a:	90 e0       	ldi	r25, 0x00	; 0
+ 23c:	0e 94 93 00 	call	0x126	; 0x126 <printstring>
+		send_command(0x80+0x40);
+ 240:	80 ec       	ldi	r24, 0xC0	; 192
+ 242:	0e 94 52 00 	call	0xa4	; 0xa4 <send_command>
+ 246:	80 e1       	ldi	r24, 0x10	; 16
+ 248:	8a 95       	dec	r24
+ 24a:	f1 f7       	brne	.-4      	; 0x248 <main+0xb2>
+ 24c:	00 c0       	rjmp	.+0      	; 0x24e <main+0xb8>
+		_delay_us(50);
+		
+		printstring("temperature:");
+ 24e:	8d e6       	ldi	r24, 0x6D	; 109
+ 250:	90 e0       	ldi	r25, 0x00	; 0
+ 252:	0e 94 93 00 	call	0x126	; 0x126 <printstring>
+		send_command(0x80+0x4C);
+ 256:	8c ec       	ldi	r24, 0xCC	; 204
+ 258:	0e 94 52 00 	call	0xa4	; 0xa4 <send_command>
+ 25c:	90 e1       	ldi	r25, 0x10	; 16
+ 25e:	9a 95       	dec	r25
+ 260:	f1 f7       	brne	.-4      	; 0x25e <main+0xc8>
+ 262:	00 c0       	rjmp	.+0      	; 0x264 <main+0xce>
+ 264:	4a e0       	ldi	r20, 0x0A	; 10
+ 266:	be 01       	movw	r22, r28
+ 268:	6f 5f       	subi	r22, 0xFF	; 255
+ 26a:	7f 4f       	sbci	r23, 0xFF	; 255
+ 26c:	8e 2d       	mov	r24, r14
+ 26e:	90 e0       	ldi	r25, 0x00	; 0
+ 270:	0e 94 51 01 	call	0x2a2	; 0x2a2 <__itoa_ncheck>
+		_delay_us(50);
+		itoa(temperature,value_of_tempr,10);
+		printstring(value_of_tempr);
+ 274:	ce 01       	movw	r24, r28
+ 276:	01 96       	adiw	r24, 0x01	; 1
+ 278:	0e 94 93 00 	call	0x126	; 0x126 <printstring>
+		printstring("C");
+ 27c:	8a e7       	ldi	r24, 0x7A	; 122
+ 27e:	90 e0       	ldi	r25, 0x00	; 0
+ 280:	0e 94 93 00 	call	0x126	; 0x126 <printstring>
+ 284:	04 c0       	rjmp	.+8      	; 0x28e <main+0xf8>
+		}
+		else
+		{
+			printstring("error");
+ 286:	8c e7       	ldi	r24, 0x7C	; 124
+ 288:	90 e0       	ldi	r25, 0x00	; 0
+ 28a:	0e 94 93 00 	call	0x126	; 0x126 <printstring>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 28e:	2f ed       	ldi	r18, 0xDF	; 223
+ 290:	83 e9       	ldi	r24, 0x93	; 147
+ 292:	94 e0       	ldi	r25, 0x04	; 4
+ 294:	21 50       	subi	r18, 0x01	; 1
+ 296:	80 40       	sbci	r24, 0x00	; 0
+ 298:	90 40       	sbci	r25, 0x00	; 0
+ 29a:	e1 f7       	brne	.-8      	; 0x294 <main+0xfe>
+ 29c:	00 c0       	rjmp	.+0      	; 0x29e <main+0x108>
+ 29e:	00 00       	nop
+		}
+		
+		_delay_ms(1500);
+	   }
+ 2a0:	82 cf       	rjmp	.-252    	; 0x1a6 <main+0x10>
+
+000002a2 <__itoa_ncheck>:
+ 2a2:	bb 27       	eor	r27, r27
+ 2a4:	4a 30       	cpi	r20, 0x0A	; 10
+ 2a6:	31 f4       	brne	.+12     	; 0x2b4 <__itoa_ncheck+0x12>
+ 2a8:	99 23       	and	r25, r25
+ 2aa:	22 f4       	brpl	.+8      	; 0x2b4 <__itoa_ncheck+0x12>
+ 2ac:	bd e2       	ldi	r27, 0x2D	; 45
+ 2ae:	90 95       	com	r25
+ 2b0:	81 95       	neg	r24
+ 2b2:	9f 4f       	sbci	r25, 0xFF	; 255
+ 2b4:	0c 94 5d 01 	jmp	0x2ba	; 0x2ba <__utoa_common>
+
+000002b8 <__utoa_ncheck>:
+ 2b8:	bb 27       	eor	r27, r27
+
+000002ba <__utoa_common>:
+ 2ba:	fb 01       	movw	r30, r22
+ 2bc:	55 27       	eor	r21, r21
+ 2be:	aa 27       	eor	r26, r26
+ 2c0:	88 0f       	add	r24, r24
+ 2c2:	99 1f       	adc	r25, r25
+ 2c4:	aa 1f       	adc	r26, r26
+ 2c6:	a4 17       	cp	r26, r20
+ 2c8:	10 f0       	brcs	.+4      	; 0x2ce <__utoa_common+0x14>
+ 2ca:	a4 1b       	sub	r26, r20
+ 2cc:	83 95       	inc	r24
+ 2ce:	50 51       	subi	r21, 0x10	; 16
+ 2d0:	b9 f7       	brne	.-18     	; 0x2c0 <__utoa_common+0x6>
+ 2d2:	a0 5d       	subi	r26, 0xD0	; 208
+ 2d4:	aa 33       	cpi	r26, 0x3A	; 58
+ 2d6:	08 f0       	brcs	.+2      	; 0x2da <__utoa_common+0x20>
+ 2d8:	a9 5d       	subi	r26, 0xD9	; 217
+ 2da:	a1 93       	st	Z+, r26
+ 2dc:	00 97       	sbiw	r24, 0x00	; 0
+ 2de:	79 f7       	brne	.-34     	; 0x2be <__utoa_common+0x4>
+ 2e0:	b1 11       	cpse	r27, r1
+ 2e2:	b1 93       	st	Z+, r27
+ 2e4:	11 92       	st	Z+, r1
+ 2e6:	cb 01       	movw	r24, r22
+ 2e8:	0c 94 76 01 	jmp	0x2ec	; 0x2ec <strrev>
+
+000002ec <strrev>:
+ 2ec:	dc 01       	movw	r26, r24
+ 2ee:	fc 01       	movw	r30, r24
+ 2f0:	67 2f       	mov	r22, r23
+ 2f2:	71 91       	ld	r23, Z+
+ 2f4:	77 23       	and	r23, r23
+ 2f6:	e1 f7       	brne	.-8      	; 0x2f0 <strrev+0x4>
+ 2f8:	32 97       	sbiw	r30, 0x02	; 2
+ 2fa:	04 c0       	rjmp	.+8      	; 0x304 <strrev+0x18>
+ 2fc:	7c 91       	ld	r23, X
+ 2fe:	6d 93       	st	X+, r22
+ 300:	70 83       	st	Z, r23
+ 302:	62 91       	ld	r22, -Z
+ 304:	ae 17       	cp	r26, r30
+ 306:	bf 07       	cpc	r27, r31
+ 308:	c8 f3       	brcs	.-14     	; 0x2fc <strrev+0x10>
+ 30a:	08 95       	ret
+
+0000030c <_exit>:
+ 30c:	f8 94       	cli
+
+0000030e <__stop_program>:
+ 30e:	ff cf       	rjmp	.-2      	; 0x30e <__stop_program>

@@ -1,0 +1,240 @@
+
+project3.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000110  00000000  00000000  00000054  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000000  00800060  00800060  00000164  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .comment      00000030  00000000  00000000  00000164  2**0
+                  CONTENTS, READONLY
+  3 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000194  2**2
+                  CONTENTS, READONLY
+  4 .debug_aranges 00000070  00000000  00000000  000001d0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   00000acf  00000000  00000000  00000240  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 000007bd  00000000  00000000  00000d0f  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   000004ec  00000000  00000000  000014cc  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  0000011c  00000000  00000000  000019b8  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    000003a4  00000000  00000000  00001ad4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    000003b7  00000000  00000000  00001e78  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_ranges 00000050  00000000  00000000  0000222f  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+   8:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+   c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  10:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  14:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  18:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  1c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  20:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  24:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  28:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  2c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  30:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  34:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  38:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  3c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  40:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  44:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  48:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  4c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  50:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+  60:	0e 94 7c 00 	call	0xf8	; 0xf8 <main>
+  64:	0c 94 86 00 	jmp	0x10c	; 0x10c <_exit>
+
+00000068 <__bad_interrupt>:
+  68:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+0000006c <checking>:
+	_delay_us(50);
+	
+}
+void checking(void)
+{
+	controllcd |=1<<enablelcd;
+  6c:	95 9a       	sbi	0x12, 5	; 18
+	asm volatile("nop");
+  6e:	00 00       	nop
+	asm volatile("nop");
+  70:	00 00       	nop
+	controllcd &=~(1<<enablelcd);
+  72:	95 98       	cbi	0x12, 5	; 18
+  74:	08 95       	ret
+
+00000076 <check_if_busy>:
+	checking();
+	lcdlight=0;
+}
+void check_if_busy(void)
+{
+	DDRC=0;
+  76:	14 ba       	out	0x14, r1	; 20
+	controllcd |=(1<<read_write);
+  78:	97 9a       	sbi	0x12, 7	; 18
+	controllcd &=~(1<<registor_select);
+  7a:	92 98       	cbi	0x12, 2	; 18
+	while( lcdlight >= 0x80)
+  7c:	af 9b       	sbis	0x15, 7	; 21
+  7e:	04 c0       	rjmp	.+8      	; 0x88 <check_if_busy+0x12>
+	{
+		checking();
+  80:	0e 94 36 00 	call	0x6c	; 0x6c <checking>
+void check_if_busy(void)
+{
+	DDRC=0;
+	controllcd |=(1<<read_write);
+	controllcd &=~(1<<registor_select);
+	while( lcdlight >= 0x80)
+  84:	af 99       	sbic	0x15, 7	; 21
+  86:	fc cf       	rjmp	.-8      	; 0x80 <check_if_busy+0xa>
+	{
+		checking();
+	}
+	DDRC=0xff;
+  88:	8f ef       	ldi	r24, 0xFF	; 255
+  8a:	84 bb       	out	0x14, r24	; 20
+  8c:	08 95       	ret
+
+0000008e <send_command>:
+	asm volatile("nop");
+	asm volatile("nop");
+	controllcd &=~(1<<enablelcd);
+}
+void send_command(unsigned char command)
+{
+  8e:	cf 93       	push	r28
+  90:	c8 2f       	mov	r28, r24
+	check_if_busy();
+  92:	0e 94 3b 00 	call	0x76	; 0x76 <check_if_busy>
+	lcdlight=command;
+  96:	c5 bb       	out	0x15, r28	; 21
+	controllcd &=~(1<<read_write|1<<registor_select);
+  98:	82 b3       	in	r24, 0x12	; 18
+  9a:	8b 77       	andi	r24, 0x7B	; 123
+  9c:	82 bb       	out	0x12, r24	; 18
+	checking();
+  9e:	0e 94 36 00 	call	0x6c	; 0x6c <checking>
+	lcdlight=0;
+  a2:	15 ba       	out	0x15, r1	; 21
+}
+  a4:	cf 91       	pop	r28
+  a6:	08 95       	ret
+
+000000a8 <initialize>:
+ *  Author: pesha
+ */ 
+#include "LCD.h"
+void initialize(void)
+{	
+	DDRD |=(1<<read_write)|(1<<registor_select)|(1<<enablelcd);
+  a8:	81 b3       	in	r24, 0x11	; 17
+  aa:	84 6a       	ori	r24, 0xA4	; 164
+  ac:	81 bb       	out	0x11, r24	; 17
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+  ae:	85 ea       	ldi	r24, 0xA5	; 165
+  b0:	9e e0       	ldi	r25, 0x0E	; 14
+  b2:	01 97       	sbiw	r24, 0x01	; 1
+  b4:	f1 f7       	brne	.-4      	; 0xb2 <initialize+0xa>
+  b6:	00 c0       	rjmp	.+0      	; 0xb8 <initialize+0x10>
+  b8:	00 00       	nop
+	_delay_ms(15);
+	send_command(0x01);//clear screen command as command are in binary or hex format
+  ba:	81 e0       	ldi	r24, 0x01	; 1
+  bc:	0e 94 47 00 	call	0x8e	; 0x8e <send_command>
+  c0:	83 ef       	ldi	r24, 0xF3	; 243
+  c2:	91 e0       	ldi	r25, 0x01	; 1
+  c4:	01 97       	sbiw	r24, 0x01	; 1
+  c6:	f1 f7       	brne	.-4      	; 0xc4 <initialize+0x1c>
+  c8:	00 c0       	rjmp	.+0      	; 0xca <initialize+0x22>
+  ca:	00 00       	nop
+	_delay_ms(2);
+	send_command(0x38);//for lcd on 8 bit mode
+  cc:	88 e3       	ldi	r24, 0x38	; 56
+  ce:	0e 94 47 00 	call	0x8e	; 0x8e <send_command>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+  d2:	90 e1       	ldi	r25, 0x10	; 16
+  d4:	9a 95       	dec	r25
+  d6:	f1 f7       	brne	.-4      	; 0xd4 <initialize+0x2c>
+  d8:	00 c0       	rjmp	.+0      	; 0xda <initialize+0x32>
+	_delay_us(50);
+	send_command(0b00001110);//control display and cursor
+  da:	8e e0       	ldi	r24, 0x0E	; 14
+  dc:	0e 94 47 00 	call	0x8e	; 0x8e <send_command>
+  e0:	80 e1       	ldi	r24, 0x10	; 16
+  e2:	8a 95       	dec	r24
+  e4:	f1 f7       	brne	.-4      	; 0xe2 <initialize+0x3a>
+  e6:	00 c0       	rjmp	.+0      	; 0xe8 <initialize+0x40>
+	3 bit to tell if display should be on or off
+	2 bit to display cursor
+	1 bit in order to blink cursor
+	*/
+	_delay_us(50);
+	send_command(0x80);
+  e8:	80 e8       	ldi	r24, 0x80	; 128
+  ea:	0e 94 47 00 	call	0x8e	; 0x8e <send_command>
+  ee:	90 e1       	ldi	r25, 0x10	; 16
+  f0:	9a 95       	dec	r25
+  f2:	f1 f7       	brne	.-4      	; 0xf0 <initialize+0x48>
+  f4:	00 c0       	rjmp	.+0      	; 0xf6 <initialize+0x4e>
+  f6:	08 95       	ret
+
+000000f8 <main>:
+#include <avr/interrupt.h>
+#include "LCD.h"
+
+int main(void)
+{
+	initialize();
+  f8:	0e 94 54 00 	call	0xa8	; 0xa8 <initialize>
+	 sei();
+  fc:	78 94       	sei
+	 ADCSRA |=(1<<ADPS2);
+  fe:	32 9a       	sbi	0x06, 2	; 6
+	ADMUX |=(1<<REFS0);
+ 100:	3e 9a       	sbi	0x07, 6	; 7
+	ADMUX |=(1<<MUX0);
+ 102:	38 9a       	sbi	0x07, 0	; 7
+	ADCSRA |=(1<<ADIE);
+ 104:	33 9a       	sbi	0x06, 3	; 6
+	ADCSRA |=(1<<ADEN);
+ 106:	37 9a       	sbi	0x06, 7	; 6
+	ADCSRA |=(1<<ADSC);
+ 108:	36 9a       	sbi	0x06, 6	; 6
+ 10a:	ff cf       	rjmp	.-2      	; 0x10a <main+0x12>
+
+0000010c <_exit>:
+ 10c:	f8 94       	cli
+
+0000010e <__stop_program>:
+ 10e:	ff cf       	rjmp	.-2      	; 0x10e <__stop_program>
