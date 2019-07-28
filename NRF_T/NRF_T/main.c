@@ -13,20 +13,21 @@
 char RWdata(char value_send);
 void initialize(void);
 uint8_t add_value[5];
+void flush_every(void);
 void setnrf(uint8_t registers,uint8_t values_to_put);
 void transferstatusdata(uint8_t values);
-uint8_t *send_data(uint8_t RW,uint8_t reg,uint8_t *reg_value,uint8_t length);
 uint8_t getvalue(uint8_t read_status);
-void send_chunck_of_data(uint8_t ,uint8_t);
+void send_chunck_of_data(char *,uint8_t);
 void reset(void);
 int main(void)
 {
+	uint8_t hh=0;
 	 DDRA|=(1<<1)|(1<<2);
 	  UBRRH=baud_prescale>>8;
 	  UBRRL=baud_prescale;
 	  UCSRC |=(1<<URSEL)|(3<<UCSZ0);
 	  UCSRB |=(1<<TXEN)|(1<<RXEN);
-	uint8_t datas_to_go=0x41;
+	uint8_t datas_to_go[5]={0x41,0x42,0x43,0x44,0x45};
 	 DDRB|=(1<<SS)|(1<<CE)|(1<<MOSI)|(1<<SCK);
 	 DDRB&=~(1<<MISO);
     SPCR|=(1<<SPE)|(1<<MSTR);
@@ -43,20 +44,8 @@ int main(void)
 		    _delay_ms(10);
 		    transferstatusdata(getvalue(CONFIG));
 		    _delay_ms(10);
-		    send_chunck_of_data(datas_to_go,1);
-	    	_delay_ms(500);
-			PORTB&=~(1<<SS);
-			_delay_ms(10);
-			RWdata(FLUSH_TX);
-			_delay_ms(10);
-			PORTB|=(1<<SS);
-			_delay_ms(10);
-			PORTB&=~(1<<SS);
-			_delay_ms(10);
-			RWdata(FLUSH_RX);
-			_delay_ms(10);
-			PORTB|=(1<<SS);
-			datas_to_go++;
+		    send_chunck_of_data("madhu",5);
+	    	_delay_ms(150);
     }
 }
 void initialize()
@@ -68,13 +57,13 @@ void initialize()
 	_delay_ms(10);
 	setnrf(SETUP_AW,0x03);
 	_delay_ms(10);
-	setnrf(SETUP_RETR,0x3F);
+	setnrf(SETUP_RETR,0xFF);
 	_delay_ms(10);
 	setnrf(RF_SETUP,0x27);
 	_delay_ms(10);
 	setnrf(RF_CH,0X09);
 	_delay_ms(10);
-	setnrf(FEATURE,0x05);
+	setnrf(FEATURE,0x06);
 	_delay_ms(10);
 	setnrf(DYNPD,0x01);
 	_delay_ms(10);
@@ -113,39 +102,7 @@ char RWdata(char value_send)
 	while(!(SPSR&(1<<SPIF)));
 	return SPDR;
 }
-uint8_t *send_data(uint8_t RW,uint8_t reg,uint8_t *reg_value,uint8_t length)
-{
-	if (RW==1)
-	{
-		reg=(reg+W_REGISTER);
-	}
-	else
-	{
-		reg=(reg+R_REGISTER);
-	}
-	_delay_ms(10);
-	PORTB&=~(1<<SS);
-	_delay_ms(10);
-	RWdata(reg);
-	_delay_ms(10);
-	static uint8_t value_obtained[1];//static to be written to return 
-	for (char i=0;i<length;i++)
-	{
-		if(RW==0&reg!=W_TX_PAYLOAD)
-		{
-			value_obtained[i]=RWdata(NOP);//sending dummy value to obtain data from the register as we need to send address bit to obtain data
-	     	_delay_ms(10);
-		}
-		else
-		{
-			RWdata(reg_value[i]);
-			_delay_ms(10);
-		}
-	}
-	PORTB|=(1<<SS);
-	_delay_ms(10);
-	return value_obtained;
-}
+
 uint8_t getvalue(uint8_t read_reg)
 {
 	_delay_ms(10);
@@ -159,7 +116,7 @@ uint8_t getvalue(uint8_t read_reg)
 	_delay_ms(10);
 	return value_of_data_return;
 }
-void send_chunck_of_data(uint8_t data_to_send,uint8_t lengths)
+void send_chunck_of_data(char *data_to_send,uint8_t lengths)
 {
 	_delay_ms(10);
 	PORTB&=~(1<<SS);
@@ -172,17 +129,17 @@ void send_chunck_of_data(uint8_t data_to_send,uint8_t lengths)
 	_delay_ms(10);
 	RWdata(0xB0);
     _delay_ms(10);
-	for(uint8_t i=0;i<10;i++)
+	for(uint8_t i=0;i<lengths;i++)
 	{
-		RWdata(0x41+i);
+		RWdata(*data_to_send);
 		_delay_ms(10);
+		data_to_send++;
 	}
 	PORTB|=(1<<SS);
 	_delay_ms(10);
 	PORTB|=(1<<CE);
     _delay_ms(20);
 	PORTB&=~(1<<CE);
-	_delay_ms(10);
 }
 void reset()
 {
@@ -220,4 +177,17 @@ void setnrf(uint8_t registers,uint8_t values_to_put)
 	_delay_ms(10);
 	PORTB|=(1<<SS);
 	_delay_ms(10);
+}
+void flush_every()
+{
+	PORTB&=~(1<<SS);
+			_delay_ms(5);
+			RWdata(FLUSH_TX);
+			PORTB|=(1<<SS);
+			_delay_ms(5);
+			PORTB&=~(1<<SS);
+			_delay_ms(5);
+			RWdata(FLUSH_RX);
+			PORTB|=(1<<SS);
+	
 }

@@ -47,46 +47,38 @@ int main(void)
 		setnrf(STATUS,0x07);
 		_delay_ms(10);
 		PORTB|=(1<<CE);
-		_delay_ms(1000);
-		PORTB&=~(1<<CE);
-		if ((GetREG(STATUS)&(1<<6))!=0)
-		{
+		_delay_ms(5);
+		while ((GetREG(STATUS)&(1<<6))==0);
+		
 			setnrf(STATUS,0x07);
-			_delay_ms(10);
 			PORTB&=~(1<<SS);
-			_delay_ms(10);
+			_delay_ms(5);
 			send_to_nrf(R_RX_PL_WID);
-			_delay_ms(10);
+			_delay_ms(5);
 			uint8_t length_of_array=readdata();
-			_delay_ms(10);
+			_delay_ms(5);
 			PORTB|=(1<<SS);
-			_delay_ms(10);
+			_delay_ms(5);
 			PORTB&=~(1<<SS);
-			_delay_ms(10);
+			_delay_ms(5);
 			send_to_nrf(R_RX_PAYLOAD);
-			_delay_ms(10);
+			_delay_ms(5);
 			for (uint8_t i=0;i<length_of_array;i++)
 			{
 				 dataobtained=readdata();
 				 transferdata(dataobtained);
 			}
 	        PORTB|=(1<<SS);
-			_delay_ms(10);
-		_delay_ms(10);
+			_delay_ms(5);
 		 PORTB&=~(1<<SS);
-		_delay_ms(10);
-		}
-			
-	   
+		_delay_ms(5);
 		send_to_nrf(FLUSH_RX);
-		_delay_ms(10);
 		PORTB|=(1<<SS);
-		_delay_ms(10);
+		_delay_ms(5);
 		PORTB&=~(1<<SS);
 		send_to_nrf(FLUSH_TX);
-		_delay_ms(10);
 		PORTB|=(1<<SS);
-		_delay_ms(10);
+		sendackpackage();
     }
 }
 void initialize()
@@ -98,13 +90,13 @@ void initialize()
 	_delay_ms(10);
 	setnrf(SETUP_AW,0x03);
 	_delay_ms(10);
-	setnrf(SETUP_RETR,0x3F);
+	setnrf(SETUP_RETR,0xFF);
 	_delay_ms(10);
 	setnrf(RF_SETUP,0x27);
 	_delay_ms(10);
 	setnrf(RF_CH,0x09);
 	_delay_ms(10);
-	setnrf(FEATURE,0x04);
+	setnrf(FEATURE,0x06);
 	_delay_ms(10);
 	setnrf(DYNPD,0x01);
 	_delay_ms(10);
@@ -181,11 +173,10 @@ void setnrf(uint8_t registers,uint8_t values_to_put)
 {
 	_delay_ms(10);
 	PORTB&=~(1<<SS);
-	_delay_ms(10);
+	_delay_ms(5);
 	send_to_nrf((W_REGISTER+registers));
-	_delay_ms(10);
 	send_to_nrf(values_to_put);
-	_delay_ms(10);
+	_delay_ms(5);
 	PORTB|=(1<<SS);
 	_delay_ms(10);
 }
@@ -227,13 +218,9 @@ void sendackpackage()
 {
 	_delay_ms(10);
 	setnrf(STATUS,0x70);
-	_delay_ms(10);
-	_delay_ms(10);
 	PORTB|=(1<<CE);
 	PORTB&=~(1<<SS);
-	_delay_ms(10);
 	send_to_nrf(W_ACK_PAYLOAD+0x00);
-	_delay_ms(10);
 	send_to_nrf(0x11);
 	_delay_ms(10);
 	PORTB|=(1<<SS);
