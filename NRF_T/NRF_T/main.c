@@ -24,8 +24,6 @@ void send_chunck_of_data(char *,uint8_t);
 void reset(void);
 int main(void)
 {
-unsigned char value_of_tempr[2];
- unsigned char value_of_humidity[3];
 
 	uint8_t temperature=0;
 	uint8_t temperature1=0;
@@ -52,8 +50,9 @@ unsigned char value_of_tempr[2];
 	initialize();
     while (1) 
     {
-		 unsigned char *contain_both_humidity_tempr;
-              _delay_ms(10);
+		unsigned char value_of_tempr[2];
+        unsigned char value_of_humidity[3];
+		unsigned char *contain_both_humidity_tempr;
 		      reset();
 		      _delay_ms(10);
 		      send_chunck_of_data(animalId,sizeof(animalId));

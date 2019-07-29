@@ -3,29 +3,29 @@ NRF_T.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .text         000005fc  00000000  00000000  00000074  2**1
+  0 .text         000005f0  00000000  00000000  00000074  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .data         0000000a  00800060  000005fc  00000670  2**0
+  1 .data         0000000a  00800060  000005f0  00000664  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  2 .comment      00000030  00000000  00000000  0000067a  2**0
+  2 .comment      00000030  00000000  00000000  0000066e  2**0
                   CONTENTS, READONLY
-  3 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  000006ac  2**2
+  3 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  000006a0  2**2
                   CONTENTS, READONLY
-  4 .debug_aranges 00000090  00000000  00000000  000006e8  2**0
+  4 .debug_aranges 00000090  00000000  00000000  000006dc  2**0
                   CONTENTS, READONLY, DEBUGGING
-  5 .debug_info   00001c10  00000000  00000000  00000778  2**0
+  5 .debug_info   00001bd7  00000000  00000000  0000076c  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_abbrev 0000086c  00000000  00000000  00002388  2**0
+  6 .debug_abbrev 00000851  00000000  00000000  00002343  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_line   00000996  00000000  00000000  00002bf4  2**0
+  7 .debug_line   00000994  00000000  00000000  00002b94  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_frame  0000012c  00000000  00000000  0000358c  2**2
+  8 .debug_frame  0000012c  00000000  00000000  00003528  2**2
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_str    0000049b  00000000  00000000  000036b8  2**0
+  9 .debug_str    0000049b  00000000  00000000  00003654  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_loc    000015d9  00000000  00000000  00003b53  2**0
+ 10 .debug_loc    000015d9  00000000  00000000  00003aef  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_ranges 00000070  00000000  00000000  0000512c  2**0
+ 11 .debug_ranges 00000070  00000000  00000000  000050c8  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -65,7 +65,7 @@ Disassembly of section .text:
   60:	10 e0       	ldi	r17, 0x00	; 0
   62:	a0 e6       	ldi	r26, 0x60	; 96
   64:	b0 e0       	ldi	r27, 0x00	; 0
-  66:	ec ef       	ldi	r30, 0xFC	; 252
+  66:	e0 ef       	ldi	r30, 0xF0	; 240
   68:	f5 e0       	ldi	r31, 0x05	; 5
   6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
   6c:	05 90       	lpm	r0, Z+
@@ -88,7 +88,7 @@ Disassembly of section .text:
   82:	b2 07       	cpc	r27, r18
   84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
   86:	0e 94 f9 01 	call	0x3f2	; 0x3f2 <main>
-  8a:	0c 94 fc 02 	jmp	0x5f8	; 0x5f8 <_exit>
+  8a:	0c 94 f6 02 	jmp	0x5ec	; 0x5ec <_exit>
 
 0000008e <__bad_interrupt>:
   8e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
@@ -775,269 +775,265 @@ int main(void)
  450:	f5 e7       	ldi	r31, 0x75	; 117
  452:	df 2e       	mov	r13, r31
  454:	f0 2d       	mov	r31, r0
- 456:	87 e8       	ldi	r24, 0x87	; 135
- 458:	93 e1       	ldi	r25, 0x13	; 19
- 45a:	01 97       	sbiw	r24, 0x01	; 1
- 45c:	f1 f7       	brne	.-4      	; 0x45a <__LOCK_REGION_LENGTH__+0x5a>
- 45e:	00 c0       	rjmp	.+0      	; 0x460 <__LOCK_REGION_LENGTH__+0x60>
- 460:	00 00       	nop
-	initialize();
     while (1) 
     {
-		 unsigned char *contain_both_humidity_tempr;
-              _delay_ms(10);
+		unsigned char value_of_tempr[2];
+        unsigned char value_of_humidity[3];
+		unsigned char *contain_both_humidity_tempr;
 		      reset();
- 462:	0e 94 d2 00 	call	0x1a4	; 0x1a4 <reset>
- 466:	e7 e8       	ldi	r30, 0x87	; 135
- 468:	f3 e1       	ldi	r31, 0x13	; 19
- 46a:	31 97       	sbiw	r30, 0x01	; 1
- 46c:	f1 f7       	brne	.-4      	; 0x46a <__LOCK_REGION_LENGTH__+0x6a>
- 46e:	00 c0       	rjmp	.+0      	; 0x470 <__LOCK_REGION_LENGTH__+0x70>
- 470:	00 00       	nop
+ 456:	0e 94 d2 00 	call	0x1a4	; 0x1a4 <reset>
+ 45a:	87 e8       	ldi	r24, 0x87	; 135
+ 45c:	93 e1       	ldi	r25, 0x13	; 19
+ 45e:	01 97       	sbiw	r24, 0x01	; 1
+ 460:	f1 f7       	brne	.-4      	; 0x45e <__LOCK_REGION_LENGTH__+0x5e>
+ 462:	00 c0       	rjmp	.+0      	; 0x464 <__LOCK_REGION_LENGTH__+0x64>
+ 464:	00 00       	nop
 		      _delay_ms(10);
 		      send_chunck_of_data(animalId,sizeof(animalId));
- 472:	69 e0       	ldi	r22, 0x09	; 9
- 474:	80 e6       	ldi	r24, 0x60	; 96
- 476:	90 e0       	ldi	r25, 0x00	; 0
- 478:	0e 94 77 00 	call	0xee	; 0xee <send_chunck_of_data>
- 47c:	ff e5       	ldi	r31, 0x5F	; 95
- 47e:	2a ee       	ldi	r18, 0xEA	; 234
- 480:	80 e0       	ldi	r24, 0x00	; 0
- 482:	f1 50       	subi	r31, 0x01	; 1
- 484:	20 40       	sbci	r18, 0x00	; 0
- 486:	80 40       	sbci	r24, 0x00	; 0
- 488:	e1 f7       	brne	.-8      	; 0x482 <__LOCK_REGION_LENGTH__+0x82>
- 48a:	00 c0       	rjmp	.+0      	; 0x48c <__LOCK_REGION_LENGTH__+0x8c>
- 48c:	00 00       	nop
+ 466:	69 e0       	ldi	r22, 0x09	; 9
+ 468:	80 e6       	ldi	r24, 0x60	; 96
+ 46a:	90 e0       	ldi	r25, 0x00	; 0
+ 46c:	0e 94 77 00 	call	0xee	; 0xee <send_chunck_of_data>
+ 470:	9f e5       	ldi	r25, 0x5F	; 95
+ 472:	ea ee       	ldi	r30, 0xEA	; 234
+ 474:	f0 e0       	ldi	r31, 0x00	; 0
+ 476:	91 50       	subi	r25, 0x01	; 1
+ 478:	e0 40       	sbci	r30, 0x00	; 0
+ 47a:	f0 40       	sbci	r31, 0x00	; 0
+ 47c:	e1 f7       	brne	.-8      	; 0x476 <__LOCK_REGION_LENGTH__+0x76>
+ 47e:	00 c0       	rjmp	.+0      	; 0x480 <__LOCK_REGION_LENGTH__+0x80>
+ 480:	00 00       	nop
 		      _delay_ms(150);
 		      flush_every();
- 48e:	0e 94 dc 01 	call	0x3b8	; 0x3b8 <flush_every>
- 492:	e7 e8       	ldi	r30, 0x87	; 135
- 494:	f3 e1       	ldi	r31, 0x13	; 19
- 496:	31 97       	sbiw	r30, 0x01	; 1
- 498:	f1 f7       	brne	.-4      	; 0x496 <__LOCK_REGION_LENGTH__+0x96>
- 49a:	00 c0       	rjmp	.+0      	; 0x49c <__LOCK_REGION_LENGTH__+0x9c>
- 49c:	00 00       	nop
+ 482:	0e 94 dc 01 	call	0x3b8	; 0x3b8 <flush_every>
+ 486:	87 e8       	ldi	r24, 0x87	; 135
+ 488:	93 e1       	ldi	r25, 0x13	; 19
+ 48a:	01 97       	sbiw	r24, 0x01	; 1
+ 48c:	f1 f7       	brne	.-4      	; 0x48a <__LOCK_REGION_LENGTH__+0x8a>
+ 48e:	00 c0       	rjmp	.+0      	; 0x490 <__LOCK_REGION_LENGTH__+0x90>
+ 490:	00 00       	nop
 		      _delay_ms(10);
 		      DDRC|=(1<<PINC0);
- 49e:	a0 9a       	sbi	0x14, 0	; 20
+ 492:	a0 9a       	sbi	0x14, 0	; 20
 		      PORTC|=(1<<PINC0);
- 4a0:	a8 9a       	sbi	0x15, 0	; 21
+ 494:	a8 9a       	sbi	0x15, 0	; 21
 		      start_conversion();
- 4a2:	0e 94 49 00 	call	0x92	; 0x92 <start_conversion>
+ 496:	0e 94 49 00 	call	0x92	; 0x92 <start_conversion>
 		      response();
- 4a6:	0e 94 57 00 	call	0xae	; 0xae <response>
+ 49a:	0e 94 57 00 	call	0xae	; 0xae <response>
 		      humidity=receiving_data();
- 4aa:	0e 94 60 00 	call	0xc0	; 0xc0 <receiving_data>
- 4ae:	f8 2e       	mov	r15, r24
+ 49e:	0e 94 60 00 	call	0xc0	; 0xc0 <receiving_data>
+ 4a2:	f8 2e       	mov	r15, r24
 		      humidity1=receiving_data();
- 4b0:	0e 94 60 00 	call	0xc0	; 0xc0 <receiving_data>
- 4b4:	08 2f       	mov	r16, r24
+ 4a4:	0e 94 60 00 	call	0xc0	; 0xc0 <receiving_data>
+ 4a8:	08 2f       	mov	r16, r24
 		      temperature=receiving_data();
- 4b6:	0e 94 60 00 	call	0xc0	; 0xc0 <receiving_data>
- 4ba:	e8 2e       	mov	r14, r24
+ 4aa:	0e 94 60 00 	call	0xc0	; 0xc0 <receiving_data>
+ 4ae:	e8 2e       	mov	r14, r24
 		      temperature1=receiving_data();
- 4bc:	0e 94 60 00 	call	0xc0	; 0xc0 <receiving_data>
- 4c0:	18 2f       	mov	r17, r24
+ 4b0:	0e 94 60 00 	call	0xc0	; 0xc0 <receiving_data>
+ 4b4:	18 2f       	mov	r17, r24
 		      checksum=receiving_data();
- 4c2:	0e 94 60 00 	call	0xc0	; 0xc0 <receiving_data>
+ 4b6:	0e 94 60 00 	call	0xc0	; 0xc0 <receiving_data>
 		      sum=humidity1+humidity+temperature1+temperature;
- 4c6:	0f 0d       	add	r16, r15
- 4c8:	0e 0d       	add	r16, r14
- 4ca:	90 2f       	mov	r25, r16
- 4cc:	91 0f       	add	r25, r17
+ 4ba:	0f 0d       	add	r16, r15
+ 4bc:	0e 0d       	add	r16, r14
+ 4be:	90 2f       	mov	r25, r16
+ 4c0:	91 0f       	add	r25, r17
 		      if(checksum>sum)
- 4ce:	98 17       	cp	r25, r24
- 4d0:	18 f4       	brcc	.+6      	; 0x4d8 <__LOCK_REGION_LENGTH__+0xd8>
+ 4c2:	98 17       	cp	r25, r24
+ 4c4:	18 f4       	brcc	.+6      	; 0x4cc <__LOCK_REGION_LENGTH__+0xcc>
 		      {
 			      sum=checksum-sum;
- 4d2:	89 1b       	sub	r24, r25
- 4d4:	98 2f       	mov	r25, r24
- 4d6:	01 c0       	rjmp	.+2      	; 0x4da <__LOCK_REGION_LENGTH__+0xda>
+ 4c6:	89 1b       	sub	r24, r25
+ 4c8:	98 2f       	mov	r25, r24
+ 4ca:	01 c0       	rjmp	.+2      	; 0x4ce <__LOCK_REGION_LENGTH__+0xce>
 		      }
 		      else
 		      {
 			      sum=sum-checksum;
- 4d8:	98 1b       	sub	r25, r24
+ 4cc:	98 1b       	sub	r25, r24
 		      }
 		      if(sum>=0 && sum<=5)
- 4da:	96 30       	cpi	r25, 0x06	; 6
- 4dc:	80 f5       	brcc	.+96     	; 0x53e <__LOCK_REGION_LENGTH__+0x13e>
+ 4ce:	96 30       	cpi	r25, 0x06	; 6
+ 4d0:	80 f5       	brcc	.+96     	; 0x532 <__LOCK_REGION_LENGTH__+0x132>
     } else if (__radix < 2 || __radix > 36) {
 	*__s = 0;
 	return __s;
     } else {
 	extern char *__itoa_ncheck (int, char *, unsigned char);
 	return __itoa_ncheck (__val, __s, __radix);
- 4de:	4a e0       	ldi	r20, 0x0A	; 10
- 4e0:	be 01       	movw	r22, r28
- 4e2:	6f 5f       	subi	r22, 0xFF	; 255
- 4e4:	7f 4f       	sbci	r23, 0xFF	; 255
- 4e6:	8e 2d       	mov	r24, r14
- 4e8:	90 e0       	ldi	r25, 0x00	; 0
- 4ea:	0e 94 c7 02 	call	0x58e	; 0x58e <__itoa_ncheck>
- 4ee:	87 e8       	ldi	r24, 0x87	; 135
- 4f0:	93 e1       	ldi	r25, 0x13	; 19
- 4f2:	01 97       	sbiw	r24, 0x01	; 1
- 4f4:	f1 f7       	brne	.-4      	; 0x4f2 <__LOCK_REGION_LENGTH__+0xf2>
- 4f6:	00 c0       	rjmp	.+0      	; 0x4f8 <__LOCK_REGION_LENGTH__+0xf8>
- 4f8:	00 00       	nop
+ 4d2:	4a e0       	ldi	r20, 0x0A	; 10
+ 4d4:	be 01       	movw	r22, r28
+ 4d6:	6c 5f       	subi	r22, 0xFC	; 252
+ 4d8:	7f 4f       	sbci	r23, 0xFF	; 255
+ 4da:	8e 2d       	mov	r24, r14
+ 4dc:	90 e0       	ldi	r25, 0x00	; 0
+ 4de:	0e 94 c1 02 	call	0x582	; 0x582 <__itoa_ncheck>
+ 4e2:	e7 e8       	ldi	r30, 0x87	; 135
+ 4e4:	f3 e1       	ldi	r31, 0x13	; 19
+ 4e6:	31 97       	sbiw	r30, 0x01	; 1
+ 4e8:	f1 f7       	brne	.-4      	; 0x4e6 <__LOCK_REGION_LENGTH__+0xe6>
+ 4ea:	00 c0       	rjmp	.+0      	; 0x4ec <__LOCK_REGION_LENGTH__+0xec>
+ 4ec:	00 00       	nop
 		      {
 			      itoa(temperature,value_of_tempr,10);
 			      _delay_ms(10);
 			      contain_both_humidity_tempr[0]=0x74;
- 4fa:	00 e0       	ldi	r16, 0x00	; 0
- 4fc:	10 e0       	ldi	r17, 0x00	; 0
- 4fe:	f8 01       	movw	r30, r16
- 500:	a0 82       	st	Z, r10
+ 4ee:	00 e0       	ldi	r16, 0x00	; 0
+ 4f0:	10 e0       	ldi	r17, 0x00	; 0
+ 4f2:	f8 01       	movw	r30, r16
+ 4f4:	a0 82       	st	Z, r10
 			      contain_both_humidity_tempr[1]=0x65;
- 502:	b1 82       	std	Z+1, r11	; 0x01
+ 4f6:	b1 82       	std	Z+1, r11	; 0x01
 			      for(uint8_t i=0;i<2;i++)
 			      {
 				      contain_both_humidity_tempr[2+i]=value_of_tempr[i];
- 504:	89 81       	ldd	r24, Y+1	; 0x01
- 506:	82 83       	std	Z+2, r24	; 0x02
- 508:	8a 81       	ldd	r24, Y+2	; 0x02
- 50a:	83 83       	std	Z+3, r24	; 0x03
- 50c:	4a e0       	ldi	r20, 0x0A	; 10
- 50e:	be 01       	movw	r22, r28
- 510:	6d 5f       	subi	r22, 0xFD	; 253
- 512:	7f 4f       	sbci	r23, 0xFF	; 255
- 514:	8f 2d       	mov	r24, r15
- 516:	90 e0       	ldi	r25, 0x00	; 0
- 518:	0e 94 c7 02 	call	0x58e	; 0x58e <__itoa_ncheck>
- 51c:	87 e8       	ldi	r24, 0x87	; 135
- 51e:	93 e1       	ldi	r25, 0x13	; 19
- 520:	01 97       	sbiw	r24, 0x01	; 1
- 522:	f1 f7       	brne	.-4      	; 0x520 <__LOCK_REGION_LENGTH__+0x120>
- 524:	00 c0       	rjmp	.+0      	; 0x526 <__LOCK_REGION_LENGTH__+0x126>
- 526:	00 00       	nop
+ 4f8:	8c 81       	ldd	r24, Y+4	; 0x04
+ 4fa:	82 83       	std	Z+2, r24	; 0x02
+ 4fc:	8d 81       	ldd	r24, Y+5	; 0x05
+ 4fe:	83 83       	std	Z+3, r24	; 0x03
+ 500:	4a e0       	ldi	r20, 0x0A	; 10
+ 502:	be 01       	movw	r22, r28
+ 504:	6f 5f       	subi	r22, 0xFF	; 255
+ 506:	7f 4f       	sbci	r23, 0xFF	; 255
+ 508:	8f 2d       	mov	r24, r15
+ 50a:	90 e0       	ldi	r25, 0x00	; 0
+ 50c:	0e 94 c1 02 	call	0x582	; 0x582 <__itoa_ncheck>
+ 510:	87 e8       	ldi	r24, 0x87	; 135
+ 512:	93 e1       	ldi	r25, 0x13	; 19
+ 514:	01 97       	sbiw	r24, 0x01	; 1
+ 516:	f1 f7       	brne	.-4      	; 0x514 <__LOCK_REGION_LENGTH__+0x114>
+ 518:	00 c0       	rjmp	.+0      	; 0x51a <__LOCK_REGION_LENGTH__+0x11a>
+ 51a:	00 00       	nop
 			      }
 			      itoa(humidity,value_of_humidity,10);
 			      _delay_ms(10);
 			      contain_both_humidity_tempr[4]=0x68;
- 528:	f8 01       	movw	r30, r16
- 52a:	c4 82       	std	Z+4, r12	; 0x04
+ 51c:	f8 01       	movw	r30, r16
+ 51e:	c4 82       	std	Z+4, r12	; 0x04
 			      contain_both_humidity_tempr[5]=0x75;
- 52c:	d5 82       	std	Z+5, r13	; 0x05
+ 520:	d5 82       	std	Z+5, r13	; 0x05
 			      for(uint8_t i=1;i<5;i++)
 			      {
 				      contain_both_humidity_tempr[5+i]=value_of_humidity[i-1];
- 52e:	8b 81       	ldd	r24, Y+3	; 0x03
- 530:	86 83       	std	Z+6, r24	; 0x06
- 532:	8c 81       	ldd	r24, Y+4	; 0x04
- 534:	87 83       	std	Z+7, r24	; 0x07
- 536:	8d 81       	ldd	r24, Y+5	; 0x05
- 538:	80 87       	std	Z+8, r24	; 0x08
- 53a:	8e 81       	ldd	r24, Y+6	; 0x06
- 53c:	81 87       	std	Z+9, r24	; 0x09
- 53e:	ff e3       	ldi	r31, 0x3F	; 63
- 540:	2f ee       	ldi	r18, 0xEF	; 239
- 542:	87 e0       	ldi	r24, 0x07	; 7
- 544:	f1 50       	subi	r31, 0x01	; 1
- 546:	20 40       	sbci	r18, 0x00	; 0
- 548:	80 40       	sbci	r24, 0x00	; 0
- 54a:	e1 f7       	brne	.-8      	; 0x544 <__LOCK_REGION_LENGTH__+0x144>
- 54c:	00 c0       	rjmp	.+0      	; 0x54e <__LOCK_REGION_LENGTH__+0x14e>
- 54e:	00 00       	nop
+ 522:	89 81       	ldd	r24, Y+1	; 0x01
+ 524:	86 83       	std	Z+6, r24	; 0x06
+ 526:	8a 81       	ldd	r24, Y+2	; 0x02
+ 528:	87 83       	std	Z+7, r24	; 0x07
+ 52a:	8b 81       	ldd	r24, Y+3	; 0x03
+ 52c:	80 87       	std	Z+8, r24	; 0x08
+ 52e:	8c 81       	ldd	r24, Y+4	; 0x04
+ 530:	81 87       	std	Z+9, r24	; 0x09
+ 532:	ff e3       	ldi	r31, 0x3F	; 63
+ 534:	2f ee       	ldi	r18, 0xEF	; 239
+ 536:	87 e0       	ldi	r24, 0x07	; 7
+ 538:	f1 50       	subi	r31, 0x01	; 1
+ 53a:	20 40       	sbci	r18, 0x00	; 0
+ 53c:	80 40       	sbci	r24, 0x00	; 0
+ 53e:	e1 f7       	brne	.-8      	; 0x538 <__LOCK_REGION_LENGTH__+0x138>
+ 540:	00 c0       	rjmp	.+0      	; 0x542 <__LOCK_REGION_LENGTH__+0x142>
+ 542:	00 00       	nop
 			      }
 		      }
 		      _delay_ms(1300);
 		      reset();
- 550:	0e 94 d2 00 	call	0x1a4	; 0x1a4 <reset>
- 554:	e7 e8       	ldi	r30, 0x87	; 135
- 556:	f3 e1       	ldi	r31, 0x13	; 19
- 558:	31 97       	sbiw	r30, 0x01	; 1
- 55a:	f1 f7       	brne	.-4      	; 0x558 <__LOCK_REGION_LENGTH__+0x158>
- 55c:	00 c0       	rjmp	.+0      	; 0x55e <__LOCK_REGION_LENGTH__+0x15e>
- 55e:	00 00       	nop
+ 544:	0e 94 d2 00 	call	0x1a4	; 0x1a4 <reset>
+ 548:	e7 e8       	ldi	r30, 0x87	; 135
+ 54a:	f3 e1       	ldi	r31, 0x13	; 19
+ 54c:	31 97       	sbiw	r30, 0x01	; 1
+ 54e:	f1 f7       	brne	.-4      	; 0x54c <__LOCK_REGION_LENGTH__+0x14c>
+ 550:	00 c0       	rjmp	.+0      	; 0x552 <__LOCK_REGION_LENGTH__+0x152>
+ 552:	00 00       	nop
 		      _delay_ms(10);
 		      send_chunck_of_data(contain_both_humidity_tempr,9);
- 560:	69 e0       	ldi	r22, 0x09	; 9
+ 554:	69 e0       	ldi	r22, 0x09	; 9
+ 556:	80 e0       	ldi	r24, 0x00	; 0
+ 558:	90 e0       	ldi	r25, 0x00	; 0
+ 55a:	0e 94 77 00 	call	0xee	; 0xee <send_chunck_of_data>
+ 55e:	ff e5       	ldi	r31, 0x5F	; 95
+ 560:	2a ee       	ldi	r18, 0xEA	; 234
  562:	80 e0       	ldi	r24, 0x00	; 0
- 564:	90 e0       	ldi	r25, 0x00	; 0
- 566:	0e 94 77 00 	call	0xee	; 0xee <send_chunck_of_data>
- 56a:	ff e5       	ldi	r31, 0x5F	; 95
- 56c:	2a ee       	ldi	r18, 0xEA	; 234
- 56e:	80 e0       	ldi	r24, 0x00	; 0
- 570:	f1 50       	subi	r31, 0x01	; 1
- 572:	20 40       	sbci	r18, 0x00	; 0
- 574:	80 40       	sbci	r24, 0x00	; 0
- 576:	e1 f7       	brne	.-8      	; 0x570 <__LOCK_REGION_LENGTH__+0x170>
- 578:	00 c0       	rjmp	.+0      	; 0x57a <__LOCK_REGION_LENGTH__+0x17a>
- 57a:	00 00       	nop
+ 564:	f1 50       	subi	r31, 0x01	; 1
+ 566:	20 40       	sbci	r18, 0x00	; 0
+ 568:	80 40       	sbci	r24, 0x00	; 0
+ 56a:	e1 f7       	brne	.-8      	; 0x564 <__LOCK_REGION_LENGTH__+0x164>
+ 56c:	00 c0       	rjmp	.+0      	; 0x56e <__LOCK_REGION_LENGTH__+0x16e>
+ 56e:	00 00       	nop
 		      _delay_ms(150);
 		      flush_every();
- 57c:	0e 94 dc 01 	call	0x3b8	; 0x3b8 <flush_every>
- 580:	e7 e8       	ldi	r30, 0x87	; 135
- 582:	f3 e1       	ldi	r31, 0x13	; 19
- 584:	31 97       	sbiw	r30, 0x01	; 1
- 586:	f1 f7       	brne	.-4      	; 0x584 <__LOCK_REGION_LENGTH__+0x184>
- 588:	00 c0       	rjmp	.+0      	; 0x58a <__LOCK_REGION_LENGTH__+0x18a>
- 58a:	00 00       	nop
- 58c:	64 cf       	rjmp	.-312    	; 0x456 <__LOCK_REGION_LENGTH__+0x56>
+ 570:	0e 94 dc 01 	call	0x3b8	; 0x3b8 <flush_every>
+ 574:	e7 e8       	ldi	r30, 0x87	; 135
+ 576:	f3 e1       	ldi	r31, 0x13	; 19
+ 578:	31 97       	sbiw	r30, 0x01	; 1
+ 57a:	f1 f7       	brne	.-4      	; 0x578 <__LOCK_REGION_LENGTH__+0x178>
+ 57c:	00 c0       	rjmp	.+0      	; 0x57e <__LOCK_REGION_LENGTH__+0x17e>
+ 57e:	00 00       	nop
+		      _delay_ms(10);
+    }
+ 580:	6a cf       	rjmp	.-300    	; 0x456 <__LOCK_REGION_LENGTH__+0x56>
 
-0000058e <__itoa_ncheck>:
- 58e:	bb 27       	eor	r27, r27
- 590:	4a 30       	cpi	r20, 0x0A	; 10
- 592:	31 f4       	brne	.+12     	; 0x5a0 <__itoa_ncheck+0x12>
- 594:	99 23       	and	r25, r25
- 596:	22 f4       	brpl	.+8      	; 0x5a0 <__itoa_ncheck+0x12>
- 598:	bd e2       	ldi	r27, 0x2D	; 45
- 59a:	90 95       	com	r25
- 59c:	81 95       	neg	r24
- 59e:	9f 4f       	sbci	r25, 0xFF	; 255
- 5a0:	0c 94 d3 02 	jmp	0x5a6	; 0x5a6 <__utoa_common>
+00000582 <__itoa_ncheck>:
+ 582:	bb 27       	eor	r27, r27
+ 584:	4a 30       	cpi	r20, 0x0A	; 10
+ 586:	31 f4       	brne	.+12     	; 0x594 <__itoa_ncheck+0x12>
+ 588:	99 23       	and	r25, r25
+ 58a:	22 f4       	brpl	.+8      	; 0x594 <__itoa_ncheck+0x12>
+ 58c:	bd e2       	ldi	r27, 0x2D	; 45
+ 58e:	90 95       	com	r25
+ 590:	81 95       	neg	r24
+ 592:	9f 4f       	sbci	r25, 0xFF	; 255
+ 594:	0c 94 cd 02 	jmp	0x59a	; 0x59a <__utoa_common>
 
-000005a4 <__utoa_ncheck>:
- 5a4:	bb 27       	eor	r27, r27
+00000598 <__utoa_ncheck>:
+ 598:	bb 27       	eor	r27, r27
 
-000005a6 <__utoa_common>:
- 5a6:	fb 01       	movw	r30, r22
- 5a8:	55 27       	eor	r21, r21
- 5aa:	aa 27       	eor	r26, r26
- 5ac:	88 0f       	add	r24, r24
- 5ae:	99 1f       	adc	r25, r25
- 5b0:	aa 1f       	adc	r26, r26
- 5b2:	a4 17       	cp	r26, r20
- 5b4:	10 f0       	brcs	.+4      	; 0x5ba <__utoa_common+0x14>
- 5b6:	a4 1b       	sub	r26, r20
- 5b8:	83 95       	inc	r24
- 5ba:	50 51       	subi	r21, 0x10	; 16
- 5bc:	b9 f7       	brne	.-18     	; 0x5ac <__utoa_common+0x6>
- 5be:	a0 5d       	subi	r26, 0xD0	; 208
- 5c0:	aa 33       	cpi	r26, 0x3A	; 58
- 5c2:	08 f0       	brcs	.+2      	; 0x5c6 <__utoa_common+0x20>
- 5c4:	a9 5d       	subi	r26, 0xD9	; 217
- 5c6:	a1 93       	st	Z+, r26
- 5c8:	00 97       	sbiw	r24, 0x00	; 0
- 5ca:	79 f7       	brne	.-34     	; 0x5aa <__utoa_common+0x4>
- 5cc:	b1 11       	cpse	r27, r1
- 5ce:	b1 93       	st	Z+, r27
- 5d0:	11 92       	st	Z+, r1
- 5d2:	cb 01       	movw	r24, r22
- 5d4:	0c 94 ec 02 	jmp	0x5d8	; 0x5d8 <strrev>
+0000059a <__utoa_common>:
+ 59a:	fb 01       	movw	r30, r22
+ 59c:	55 27       	eor	r21, r21
+ 59e:	aa 27       	eor	r26, r26
+ 5a0:	88 0f       	add	r24, r24
+ 5a2:	99 1f       	adc	r25, r25
+ 5a4:	aa 1f       	adc	r26, r26
+ 5a6:	a4 17       	cp	r26, r20
+ 5a8:	10 f0       	brcs	.+4      	; 0x5ae <__utoa_common+0x14>
+ 5aa:	a4 1b       	sub	r26, r20
+ 5ac:	83 95       	inc	r24
+ 5ae:	50 51       	subi	r21, 0x10	; 16
+ 5b0:	b9 f7       	brne	.-18     	; 0x5a0 <__utoa_common+0x6>
+ 5b2:	a0 5d       	subi	r26, 0xD0	; 208
+ 5b4:	aa 33       	cpi	r26, 0x3A	; 58
+ 5b6:	08 f0       	brcs	.+2      	; 0x5ba <__utoa_common+0x20>
+ 5b8:	a9 5d       	subi	r26, 0xD9	; 217
+ 5ba:	a1 93       	st	Z+, r26
+ 5bc:	00 97       	sbiw	r24, 0x00	; 0
+ 5be:	79 f7       	brne	.-34     	; 0x59e <__utoa_common+0x4>
+ 5c0:	b1 11       	cpse	r27, r1
+ 5c2:	b1 93       	st	Z+, r27
+ 5c4:	11 92       	st	Z+, r1
+ 5c6:	cb 01       	movw	r24, r22
+ 5c8:	0c 94 e6 02 	jmp	0x5cc	; 0x5cc <strrev>
 
-000005d8 <strrev>:
- 5d8:	dc 01       	movw	r26, r24
- 5da:	fc 01       	movw	r30, r24
- 5dc:	67 2f       	mov	r22, r23
- 5de:	71 91       	ld	r23, Z+
- 5e0:	77 23       	and	r23, r23
- 5e2:	e1 f7       	brne	.-8      	; 0x5dc <strrev+0x4>
- 5e4:	32 97       	sbiw	r30, 0x02	; 2
- 5e6:	04 c0       	rjmp	.+8      	; 0x5f0 <strrev+0x18>
- 5e8:	7c 91       	ld	r23, X
- 5ea:	6d 93       	st	X+, r22
- 5ec:	70 83       	st	Z, r23
- 5ee:	62 91       	ld	r22, -Z
- 5f0:	ae 17       	cp	r26, r30
- 5f2:	bf 07       	cpc	r27, r31
- 5f4:	c8 f3       	brcs	.-14     	; 0x5e8 <strrev+0x10>
- 5f6:	08 95       	ret
+000005cc <strrev>:
+ 5cc:	dc 01       	movw	r26, r24
+ 5ce:	fc 01       	movw	r30, r24
+ 5d0:	67 2f       	mov	r22, r23
+ 5d2:	71 91       	ld	r23, Z+
+ 5d4:	77 23       	and	r23, r23
+ 5d6:	e1 f7       	brne	.-8      	; 0x5d0 <strrev+0x4>
+ 5d8:	32 97       	sbiw	r30, 0x02	; 2
+ 5da:	04 c0       	rjmp	.+8      	; 0x5e4 <strrev+0x18>
+ 5dc:	7c 91       	ld	r23, X
+ 5de:	6d 93       	st	X+, r22
+ 5e0:	70 83       	st	Z, r23
+ 5e2:	62 91       	ld	r22, -Z
+ 5e4:	ae 17       	cp	r26, r30
+ 5e6:	bf 07       	cpc	r27, r31
+ 5e8:	c8 f3       	brcs	.-14     	; 0x5dc <strrev+0x10>
+ 5ea:	08 95       	ret
 
-000005f8 <_exit>:
- 5f8:	f8 94       	cli
+000005ec <_exit>:
+ 5ec:	f8 94       	cli
 
-000005fa <__stop_program>:
- 5fa:	ff cf       	rjmp	.-2      	; 0x5fa <__stop_program>
+000005ee <__stop_program>:
+ 5ee:	ff cf       	rjmp	.-2      	; 0x5ee <__stop_program>
