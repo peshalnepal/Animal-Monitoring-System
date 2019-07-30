@@ -15,8 +15,8 @@ void transferdata(uint8_t value);
 void transferstatusdata(uint8_t valuesss);
 uint8_t readdata(void);
 void initialize(void);
-uint8_t dataobtained;
-uint8_t *dummy;
+static uint8_t dataobtained;
+uint8_t dummy;
 uint8_t *writedata(uint8_t RW,uint8_t reg,uint8_t *data_to_send,uint8_t length);
 void sendackpackage(void);
 uint8_t send_to_nrf(uint8_t values);
@@ -49,27 +49,24 @@ int main(void)
 		PORTB|=(1<<CE);
 		_delay_ms(5);
 		while ((GetREG(STATUS)&(1<<6))==0);
-		
 			setnrf(STATUS,0x07);
 			PORTB&=~(1<<SS);
 			_delay_ms(5);
 			send_to_nrf(R_RX_PL_WID);
-			_delay_ms(5);
-			uint8_t length_of_array=readdata();
+			 uint8_t length_of_array=readdata();
 			_delay_ms(5);
 			PORTB|=(1<<SS);
 			_delay_ms(5);
 			PORTB&=~(1<<SS);
 			_delay_ms(5);
 			send_to_nrf(R_RX_PAYLOAD);
-			_delay_ms(5);
 			for (uint8_t i=0;i<length_of_array;i++)
 			{
-				 dataobtained=readdata();
-				 transferdata(dataobtained);
+				dataobtained=readdata();
+				transferdata(dataobtained);
 			}
 	        PORTB|=(1<<SS);
-			_delay_ms(5);
+		_delay_ms(5);
 		 PORTB&=~(1<<SS);
 		_delay_ms(5);
 		send_to_nrf(FLUSH_RX);
@@ -134,12 +131,9 @@ uint8_t send_to_nrf(uint8_t values)
 }
 uint8_t readdata()
 {
-	_delay_ms(10);
-	uint8_t to_return;
-	to_return=send_to_nrf(NOP);
-	_delay_ms(10);
-	
-	return to_return;
+	 SPDR=NOP;
+	while(!(SPSR&(1<<SPIF)));
+	return SPDR;
 }
 uint8_t GetREG(uint8_t reg)
 {
@@ -183,10 +177,9 @@ void setnrf(uint8_t registers,uint8_t values_to_put)
 void transferdata(uint8_t value)
 {
 	
-			while(!(UCSRA&(1<<UDRE)));
-			UDR=value;
-		    _delay_ms(10);
-	
+		while(!(UCSRA&(1<<UDRE)));
+		UDR=value;
+		_delay_ms(10);
 }
 uint8_t *writedata(uint8_t RW,uint8_t reg,uint8_t *data_to_send,uint8_t length)
 {
