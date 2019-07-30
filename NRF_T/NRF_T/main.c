@@ -15,7 +15,12 @@ char RWdata(char value_send);
 void initialize(void);
 uint8_t add_value[5];
 void flush_every(void);
+<<<<<<< HEAD
 char animalId[]="iCAT00001";
+=======
+char animalId[]="CAT00001";
+
+>>>>>>> c4cac47a7eb1ecc349da7440e02a9c94c31050de
 void setnrf(uint8_t registers,uint8_t values_to_put);
 void transferstatusdata(uint8_t values);
 uint8_t getvalue(uint8_t read_status);
@@ -39,14 +44,29 @@ void reset(void);
 int main(void)
 {
 
+<<<<<<< HEAD
 	 DDRA&=~(1<<1);
 	 ADCSRA |=(1<<ADPS2)|(1<<ADPS2);//this bit is set when we want to divide CLK frequency by 8
 	 ADMUX |=(1<<REFS0)|(1<<ADLAR)|(1<<MUX0);//REFSO set ref voltage to VCC and ADLAR is use for left shifting values in ADCH and ADCL register
 	 ADCSRA |=(1<<ADEN); //this is use for enabling ADC
+=======
+	uint8_t temperature=0;
+	uint8_t temperature1=0;
+	uint8_t humidity=0;
+	uint8_t humidity1=0;
+	uint8_t checksum=0;
+	uint8_t sum=0;
+	uint8_t hh=0;
+	 DDRA|=(1<<1)|(1<<2);
+>>>>>>> c4cac47a7eb1ecc349da7440e02a9c94c31050de
 	  UBRRH=baud_prescale>>8;
 	  UBRRL=baud_prescale;
 	  UCSRC |=(1<<URSEL)|(3<<UCSZ0);
 	  UCSRB |=(1<<TXEN)|(1<<RXEN);
+<<<<<<< HEAD
+=======
+	
+>>>>>>> c4cac47a7eb1ecc349da7440e02a9c94c31050de
 	 DDRB|=(1<<SS)|(1<<CE)|(1<<MOSI)|(1<<SCK);
 	 DDRB&=~(1<<MISO);
     SPCR|=(1<<SPE)|(1<<MSTR);
@@ -59,12 +79,22 @@ int main(void)
 	initialize();
     while (1) 
     {
+<<<<<<< HEAD
 	          unsigned  char *contain_both_humidity_tempr;
 			  _delay_ms(10);
 		      reset();
 		      _delay_ms(10);
 		      send_chunck_of_data(animalId,sizeof(animalId));
 		      _delay_ms(100);
+=======
+		unsigned char value_of_tempr[2];
+        unsigned char value_of_humidity[3];
+		unsigned char *contain_both_humidity_tempr;
+		      reset();
+		      _delay_ms(10);
+		      send_chunck_of_data(animalId,sizeof(animalId));
+		      _delay_ms(150);
+>>>>>>> c4cac47a7eb1ecc349da7440e02a9c94c31050de
 		      flush_every();
 		      _delay_ms(10);
 		      DDRC|=(1<<PINC0);
@@ -88,6 +118,7 @@ int main(void)
 		      if(sum>=0 && sum<=5)
 		      {
 			      itoa(temperature,value_of_tempr,10);
+<<<<<<< HEAD
 				    _delay_ms(10);
 			      contain_both_humidity_tempr[arrange_array]=0x73;
 			      for(uint8_t i=0;i<2;i++)
@@ -128,6 +159,29 @@ int main(void)
 		      _delay_ms(10);
 		      send_chunck_of_data(contain_both_humidity_tempr,arrange_array);
 		      _delay_ms(100);
+=======
+			      _delay_ms(10);
+			      contain_both_humidity_tempr[0]=0x74;
+			      contain_both_humidity_tempr[1]=0x65;
+			      for(uint8_t i=0;i<2;i++)
+			      {
+				      contain_both_humidity_tempr[2+i]=value_of_tempr[i];
+			      }
+			      itoa(humidity,value_of_humidity,10);
+			      _delay_ms(10);
+			      contain_both_humidity_tempr[4]=0x68;
+			      contain_both_humidity_tempr[5]=0x75;
+			      for(uint8_t i=1;i<5;i++)
+			      {
+				      contain_both_humidity_tempr[5+i]=value_of_humidity[i-1];
+			      }
+		      }
+		      _delay_ms(1300);
+		      reset();
+		      _delay_ms(10);
+		      send_chunck_of_data(contain_both_humidity_tempr,9);
+		      _delay_ms(150);
+>>>>>>> c4cac47a7eb1ecc349da7440e02a9c94c31050de
 		      flush_every();
 		      _delay_ms(10);
     }
