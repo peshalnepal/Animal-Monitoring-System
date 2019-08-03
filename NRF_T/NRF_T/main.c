@@ -15,29 +15,11 @@ char RWdata(char value_send);
 void initialize(void);
 uint8_t add_value[5];
 void flush_every(void);
-<<<<<<< HEAD
  char tempr_animal[3];
  char value_of_tempr[2];
  char value_of_humidity[3];
  char location[28];
  uint8_t calculate_heartbeat=0;
-=======
-static char tempr_animal[3];
-static char value_of_tempr[2];
- static char value_of_humidity[2];
- char location[28];
- void getlocation(void);
-void setnrf(uint8_t registers,uint8_t values_to_put);
-void transferstatusdata(uint8_t values);
-uint8_t getvalue(uint8_t read_status);
-void send_chunck_of_data(char *,uint8_t);
-void reset(void);
-unsigned char return_char(void);
-int main(void)
-{
-	static char animalId[]="iCAT00001";
-        uint8_t calculate_heartbeat=0;
->>>>>>> 63a3e18c91f59d4c51d174674e8d9884c8cd7694
 	    uint16_t temperature_in_voltage_format;
 	 	uint8_t thelow;
 	 	uint8_t tempr_of_animal;
@@ -48,7 +30,6 @@ int main(void)
 	 	uint8_t checksum=0;
 	 	uint8_t sum=0;
 	 	uint8_t arrange_array=0;
-<<<<<<< HEAD
  void getlocation(void);
 void setnrf(uint8_t registers,uint8_t values_to_put);
 void transferstatusdata(uint8_t values);
@@ -60,8 +41,6 @@ int main(void)
 {
      char animalId[]="iCAT001";
 	char contain_both_humidity_tempr[32];
-=======
->>>>>>> 63a3e18c91f59d4c51d174674e8d9884c8cd7694
 	 DDRA&=~(1<<1);
 	 ADCSRA |=(1<<ADPS2);//this bit is set when we want to divide CLK frequency by 8
 	 ADMUX |=(1<<REFS0)|(1<<ADLAR);//REFSO set ref voltage to VCC and ADLAR is use for left shifting values in ADCH and ADCL register
@@ -82,19 +61,8 @@ int main(void)
 	initialize();
     while (1) 
     {
-<<<<<<< HEAD
 		
 			  arrange_array=0;
-=======
-	        	
-	          char *contain_both_humidity_tempr;
-		      reset();
-		      _delay_ms(10);
-		      send_chunck_of_data(animalId,sizeof(animalId));
-		      _delay_ms(50);
-		      flush_every();
-		      _delay_ms(10);
->>>>>>> 63a3e18c91f59d4c51d174674e8d9884c8cd7694
 		      DDRC|=(1<<PINC0);
 		      PORTC|=(1<<PINC0);
 		      start_conversion(); 
@@ -133,12 +101,8 @@ int main(void)
 			      itoa(humidity,value_of_humidity,10);
 			      _delay_ms(10);
 			      contain_both_humidity_tempr[arrange_array]=0x68;
-<<<<<<< HEAD
 				  arrange_array++;
 			      for(uint8_t i=0;i<3;i++)
-=======
-			      for(uint8_t i=0;i<2;i++)
->>>>>>> 63a3e18c91f59d4c51d174674e8d9884c8cd7694
 			      {
 					  
 				      contain_both_humidity_tempr[arrange_array]=value_of_humidity[i];
@@ -146,11 +110,8 @@ int main(void)
 			      }
 		      }
 		      _delay_ms(1350);
-<<<<<<< HEAD
-=======
-			  arrange_array++;
->>>>>>> 63a3e18c91f59d4c51d174674e8d9884c8cd7694
 			  ADMUX|=(1<<MUX0);
+			  ADMUX&=~(1<<MUX1);
 			  _delay_ms(10);
 			  ADCSRA|=(1<<ADSC);
 			 _delay_ms(20);
@@ -161,28 +122,17 @@ int main(void)
 			  itoa(temperature_in_voltage_format,tempr_animal,10);
 			  _delay_ms(10);
 			   contain_both_humidity_tempr[arrange_array]=0x74;
-<<<<<<< HEAD
 			    arrange_array++; 
-=======
->>>>>>> 63a3e18c91f59d4c51d174674e8d9884c8cd7694
 			  for (uint8_t i=0;i<3;i++)
 			  {
 				   contain_both_humidity_tempr[arrange_array]=tempr_animal[i];
 				    arrange_array++; 
 			  }
-<<<<<<< HEAD
-=======
-			    arrange_array++; 
->>>>>>> 63a3e18c91f59d4c51d174674e8d9884c8cd7694
 			   _delay_ms(10);
 		        reset();
 		      _delay_ms(10);
 		      send_chunck_of_data(contain_both_humidity_tempr,arrange_array);
-<<<<<<< HEAD
 		      _delay_ms(50);
-=======
-		      _delay_ms(120);
->>>>>>> 63a3e18c91f59d4c51d174674e8d9884c8cd7694
 			  flush_every();
 			   _delay_ms(10);
 			   getlocation();
@@ -190,17 +140,10 @@ int main(void)
 			   reset();
 			   _delay_ms(10);
 			   send_chunck_of_data(location,28);
-<<<<<<< HEAD
 			   _delay_ms(50);
 			   flush_every();
 			   _delay_ms(10);
 			   
-=======
-			   _delay_ms(120);
-			   flush_every();
-			   _delay_ms(10);
-			   arrange_array=0;
->>>>>>> 63a3e18c91f59d4c51d174674e8d9884c8cd7694
     }
 }
 void initialize()
@@ -348,11 +291,7 @@ void flush_every()
 void getlocation()
 {
 	char i=0;
-<<<<<<< HEAD
 	char j=1;
-=======
-	char j=2;
->>>>>>> 63a3e18c91f59d4c51d174674e8d9884c8cd7694
 	location[0]=0x67;
 		char takeallvalue=0;
 		while(takeallvalue<=3)

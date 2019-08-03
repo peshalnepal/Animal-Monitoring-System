@@ -3,59 +3,31 @@ NRF_T.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-<<<<<<< HEAD
-  0 .text         00000850  00000000  00000000  00000094  2**1
+  0 .text         00000852  00000000  00000000  00000094  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .data         00000008  00800060  00000850  000008e4  2**0
+  1 .data         00000008  00800060  00000852  000008e6  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  2 .bss          00000034  00800068  00800068  000008ec  2**0
+  2 .bss          00000034  00800068  00800068  000008ee  2**0
                   ALLOC
-  3 .comment      00000030  00000000  00000000  000008ec  2**0
+  3 .comment      00000030  00000000  00000000  000008ee  2**0
                   CONTENTS, READONLY
-  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  0000091c  2**2
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000920  2**2
                   CONTENTS, READONLY
-  5 .debug_aranges 000000a0  00000000  00000000  00000958  2**0
+  5 .debug_aranges 000000a0  00000000  00000000  0000095c  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   00001ec2  00000000  00000000  000009f8  2**0
+  6 .debug_info   00001ec3  00000000  00000000  000009fc  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 000008fb  00000000  00000000  000028ba  2**0
+  7 .debug_abbrev 000008fb  00000000  00000000  000028bf  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   00000b36  00000000  00000000  000031b5  2**0
+  8 .debug_line   00000b3c  00000000  00000000  000031ba  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  00000168  00000000  00000000  00003cec  2**2
-                  CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    00000546  00000000  00000000  00003e54  2**0
-                  CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    0000186c  00000000  00000000  0000439a  2**0
-                  CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 00000098  00000000  00000000  00005c06  2**0
-=======
-  0 .text         00000786  00000000  00000000  00000094  2**1
-                  CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .data         0000000a  00800060  00000786  0000081a  2**0
-                  CONTENTS, ALLOC, LOAD, DATA
-  2 .bss          00000028  0080006a  0080006a  00000824  2**0
-                  ALLOC
-  3 .comment      00000030  00000000  00000000  00000824  2**0
-                  CONTENTS, READONLY
-  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000854  2**2
-                  CONTENTS, READONLY
-  5 .debug_aranges 000000a0  00000000  00000000  00000890  2**0
-                  CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   00001f77  00000000  00000000  00000930  2**0
-                  CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 000008ed  00000000  00000000  000028a7  2**0
-                  CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   00000b74  00000000  00000000  00003194  2**0
-                  CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  00000158  00000000  00000000  00003d08  2**2
+  9 .debug_frame  00000168  00000000  00000000  00003cf8  2**2
                   CONTENTS, READONLY, DEBUGGING
  10 .debug_str    00000546  00000000  00000000  00003e60  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    00001b09  00000000  00000000  000043a6  2**0
+ 11 .debug_loc    0000186c  00000000  00000000  000043a6  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 000000a0  00000000  00000000  00005eaf  2**0
->>>>>>> 63a3e18c91f59d4c51d174674e8d9884c8cd7694
+ 12 .debug_ranges 00000098  00000000  00000000  00005c12  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -95,13 +67,8 @@ Disassembly of section .text:
   60:	10 e0       	ldi	r17, 0x00	; 0
   62:	a0 e6       	ldi	r26, 0x60	; 96
   64:	b0 e0       	ldi	r27, 0x00	; 0
-<<<<<<< HEAD
-  66:	e0 e5       	ldi	r30, 0x50	; 80
+  66:	e2 e5       	ldi	r30, 0x52	; 82
   68:	f8 e0       	ldi	r31, 0x08	; 8
-=======
-  66:	e6 e8       	ldi	r30, 0x86	; 134
-  68:	f7 e0       	ldi	r31, 0x07	; 7
->>>>>>> 63a3e18c91f59d4c51d174674e8d9884c8cd7694
   6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
   6c:	05 90       	lpm	r0, Z+
   6e:	0d 92       	st	X+, r0
@@ -119,19 +86,11 @@ Disassembly of section .text:
   7e:	1d 92       	st	X+, r1
 
 00000080 <.do_clear_bss_start>:
-<<<<<<< HEAD
   80:	ac 39       	cpi	r26, 0x9C	; 156
   82:	b2 07       	cpc	r27, r18
   84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
   86:	0e 94 76 02 	call	0x4ec	; 0x4ec <main>
-  8a:	0c 94 26 04 	jmp	0x84c	; 0x84c <_exit>
-=======
-  80:	a2 39       	cpi	r26, 0x92	; 146
-  82:	b2 07       	cpc	r27, r18
-  84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
-  86:	0e 94 76 02 	call	0x4ec	; 0x4ec <main>
-  8a:	0c 94 c1 03 	jmp	0x782	; 0x782 <_exit>
->>>>>>> 63a3e18c91f59d4c51d174674e8d9884c8cd7694
+  8a:	0c 94 27 04 	jmp	0x84e	; 0x84e <_exit>
 
 0000008e <__bad_interrupt>:
   8e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
@@ -452,11 +411,7 @@ void setnrf(uint8_t registers,uint8_t values_to_put)
 
 00000252 <initialize>:
 			   _delay_ms(10);
-<<<<<<< HEAD
 			   
-=======
-			   arrange_array=0;
->>>>>>> 63a3e18c91f59d4c51d174674e8d9884c8cd7694
     }
 }
 void initialize()
@@ -761,17 +716,10 @@ void getlocation()
  408:	cf 93       	push	r28
  40a:	df 93       	push	r29
 	char i=0;
-<<<<<<< HEAD
 	char j=1;
 	location[0]=0x67;
  40c:	87 e6       	ldi	r24, 0x67	; 103
  40e:	80 93 6f 00 	sts	0x006F, r24	; 0x80006f <location>
-=======
-	char j=2;
-	location[0]=0x67;
- 40c:	87 e6       	ldi	r24, 0x67	; 103
- 40e:	80 93 71 00 	sts	0x0071, r24	; 0x800071 <location>
->>>>>>> 63a3e18c91f59d4c51d174674e8d9884c8cd7694
 		char takeallvalue=0;
  412:	c0 e0       	ldi	r28, 0x00	; 0
 	
@@ -779,13 +727,8 @@ void getlocation()
 void getlocation()
 {
 	char i=0;
-<<<<<<< HEAD
 	char j=1;
  414:	d1 e0       	ldi	r29, 0x01	; 1
-=======
-	char j=2;
- 414:	d2 e0       	ldi	r29, 0x02	; 2
->>>>>>> 63a3e18c91f59d4c51d174674e8d9884c8cd7694
  416:	02 c0       	rjmp	.+4      	; 0x41c <getlocation+0x16>
 	location[0]=0x67;
 		char takeallvalue=0;
@@ -885,11 +828,7 @@ void getlocation()
 													location[j]=i;
  47a:	ed 2f       	mov	r30, r29
  47c:	f0 e0       	ldi	r31, 0x00	; 0
-<<<<<<< HEAD
  47e:	e1 59       	subi	r30, 0x91	; 145
-=======
- 47e:	ef 58       	subi	r30, 0x8F	; 143
->>>>>>> 63a3e18c91f59d4c51d174674e8d9884c8cd7694
  480:	ff 4f       	sbci	r31, 0xFF	; 255
  482:	10 83       	st	Z, r17
 													j++;
@@ -902,11 +841,7 @@ void getlocation()
 												location[j]=i;
  488:	ed 2f       	mov	r30, r29
  48a:	f0 e0       	ldi	r31, 0x00	; 0
-<<<<<<< HEAD
  48c:	e1 59       	subi	r30, 0x91	; 145
-=======
- 48c:	ef 58       	subi	r30, 0x8F	; 143
->>>>>>> 63a3e18c91f59d4c51d174674e8d9884c8cd7694
  48e:	ff 4f       	sbci	r31, 0xFF	; 255
  490:	80 83       	st	Z, r24
 												j++;
@@ -937,7 +872,6 @@ void getlocation()
  4b6:	02 c0       	rjmp	.+4      	; 0x4bc <getlocation+0xb6>
  4b8:	8c 2f       	mov	r24, r28
  4ba:	9d 2f       	mov	r25, r29
-<<<<<<< HEAD
 {
 	char i=0;
 	char j=1;
@@ -1053,105 +987,7 @@ int main(void)
  548:	c3 98       	cbi	0x18, 3	; 24
 	initialize();
  54a:	0e 94 29 01 	call	0x252	; 0x252 <initialize>
-		      if(sum>=0 && sum<=5)
-=======
-{
-	char i=0;
-	char j=2;
-	location[0]=0x67;
-		char takeallvalue=0;
-		while(takeallvalue<=3)
- 4bc:	c4 30       	cpi	r28, 0x04	; 4
- 4be:	08 f4       	brcc	.+2      	; 0x4c2 <getlocation+0xbc>
- 4c0:	ab cf       	rjmp	.-170    	; 0x418 <getlocation+0x12>
- 4c2:	03 c0       	rjmp	.+6      	; 0x4ca <getlocation+0xc4>
- 4c4:	c4 30       	cpi	r28, 0x04	; 4
- 4c6:	08 f4       	brcc	.+2      	; 0x4ca <getlocation+0xc4>
- 4c8:	a9 cf       	rjmp	.-174    	; 0x41c <getlocation+0x16>
-						}
-					}
-				}
-			}
-		}
-		location[j]=0x0D;
- 4ca:	ed 2f       	mov	r30, r29
- 4cc:	f0 e0       	ldi	r31, 0x00	; 0
- 4ce:	ef 58       	subi	r30, 0x8F	; 143
- 4d0:	ff 4f       	sbci	r31, 0xFF	; 255
- 4d2:	8d e0       	ldi	r24, 0x0D	; 13
- 4d4:	80 83       	st	Z, r24
-		j++;
-		location[j]=0x0A;
- 4d6:	df 5f       	subi	r29, 0xFF	; 255
- 4d8:	ed 2f       	mov	r30, r29
- 4da:	f0 e0       	ldi	r31, 0x00	; 0
- 4dc:	ef 58       	subi	r30, 0x8F	; 143
- 4de:	ff 4f       	sbci	r31, 0xFF	; 255
- 4e0:	8a e0       	ldi	r24, 0x0A	; 10
- 4e2:	80 83       	st	Z, r24
-}
- 4e4:	df 91       	pop	r29
- 4e6:	cf 91       	pop	r28
- 4e8:	1f 91       	pop	r17
- 4ea:	08 95       	ret
-
-000004ec <main>:
-	 	uint8_t humidity=0;
-	 	uint8_t humidity1=0;
-	 	uint8_t checksum=0;
-	 	uint8_t sum=0;
-	 	uint8_t arrange_array=0;
-	 DDRA&=~(1<<1);
- 4ec:	d1 98       	cbi	0x1a, 1	; 26
-	 ADCSRA |=(1<<ADPS2);//this bit is set when we want to divide CLK frequency by 8
- 4ee:	32 9a       	sbi	0x06, 2	; 6
-	 ADMUX |=(1<<REFS0)|(1<<ADLAR);//REFSO set ref voltage to VCC and ADLAR is use for left shifting values in ADCH and ADCL register
- 4f0:	87 b1       	in	r24, 0x07	; 7
- 4f2:	80 66       	ori	r24, 0x60	; 96
- 4f4:	87 b9       	out	0x07, r24	; 7
-	 ADCSRA |=(1<<ADEN); //this is use for enabling ADC
- 4f6:	37 9a       	sbi	0x06, 7	; 6
-	  UBRRH=baud_prescale>>8;
- 4f8:	10 bc       	out	0x20, r1	; 32
-	  UBRRL=baud_prescale;
- 4fa:	8c e0       	ldi	r24, 0x0C	; 12
- 4fc:	89 b9       	out	0x09, r24	; 9
-	  UCSRC |=(1<<URSEL)|(3<<UCSZ0);
- 4fe:	80 b5       	in	r24, 0x20	; 32
- 500:	86 68       	ori	r24, 0x86	; 134
- 502:	80 bd       	out	0x20, r24	; 32
-	  UCSRB |=(1<<TXEN)|(1<<RXEN);
- 504:	8a b1       	in	r24, 0x0a	; 10
- 506:	88 61       	ori	r24, 0x18	; 24
- 508:	8a b9       	out	0x0a, r24	; 10
-	 DDRB|=(1<<SS)|(1<<CE)|(1<<MOSI)|(1<<SCK);
- 50a:	87 b3       	in	r24, 0x17	; 23
- 50c:	88 6b       	ori	r24, 0xB8	; 184
- 50e:	87 bb       	out	0x17, r24	; 23
-	 DDRB&=~(1<<MISO);
- 510:	be 98       	cbi	0x17, 6	; 23
-    SPCR|=(1<<SPE)|(1<<MSTR);
- 512:	8d b1       	in	r24, 0x0d	; 13
- 514:	80 65       	ori	r24, 0x50	; 80
- 516:	8d b9       	out	0x0d, r24	; 13
-	SPCR&=~(1<<SPIE);
- 518:	6f 98       	cbi	0x0d, 7	; 13
-	SPCR&=~(1<<DORD);
- 51a:	6d 98       	cbi	0x0d, 5	; 13
-	SPCR&=~(1<<CPOL);
- 51c:	6b 98       	cbi	0x0d, 3	; 13
-	SPCR&=~(1<<SPR1);
- 51e:	69 98       	cbi	0x0d, 1	; 13
-	PORTB|=(1<<SS);
- 520:	c4 9a       	sbi	0x18, 4	; 24
-	PORTB&=~(1<<CE);
- 522:	c3 98       	cbi	0x18, 3	; 24
-	initialize();
- 524:	0e 94 29 01 	call	0x252	; 0x252 <initialize>
- 528:	d1 2c       	mov	r13, r1
-		      }
 		      if(sum>=0 && sum<=3)
->>>>>>> 63a3e18c91f59d4c51d174674e8d9884c8cd7694
 		      {
 				     for(uint8_t i=0;i<sizeof(animalId);i++)
 			      {
@@ -1167,45 +1003,26 @@ int main(void)
 			      itoa(temperature,value_of_tempr,10);
 				    _delay_ms(10);
 			      contain_both_humidity_tempr[arrange_array]=0x73;
-<<<<<<< HEAD
  558:	0f 2e       	mov	r0, r31
  55a:	f3 e7       	ldi	r31, 0x73	; 115
  55c:	bf 2e       	mov	r11, r31
  55e:	f0 2d       	mov	r31, r0
-=======
- 52a:	0f 2e       	mov	r0, r31
- 52c:	f3 e7       	ldi	r31, 0x73	; 115
- 52e:	ef 2e       	mov	r14, r31
- 530:	f0 2d       	mov	r31, r0
->>>>>>> 63a3e18c91f59d4c51d174674e8d9884c8cd7694
 				      contain_both_humidity_tempr[arrange_array]=value_of_tempr[i];
 					  arrange_array++;
 			      }
 			      itoa(humidity,value_of_humidity,10);
 			      _delay_ms(10);
 			      contain_both_humidity_tempr[arrange_array]=0x68;
-<<<<<<< HEAD
  560:	0f 2e       	mov	r0, r31
  562:	f8 e6       	ldi	r31, 0x68	; 104
  564:	cf 2e       	mov	r12, r31
  566:	f0 2d       	mov	r31, r0
-=======
- 532:	0f 2e       	mov	r0, r31
- 534:	f8 e6       	ldi	r31, 0x68	; 104
- 536:	ff 2e       	mov	r15, r31
- 538:	f0 2d       	mov	r31, r0
-			      for(uint8_t i=0;i<2;i++)
-			      {
-					  arrange_array++;
- 53a:	05 e0       	ldi	r16, 0x05	; 5
->>>>>>> 63a3e18c91f59d4c51d174674e8d9884c8cd7694
 			  thelow=ADCL;// done so that lag doesn't occur while running as we need to access ADCH and ADCL at same time
 			  temperature_in_voltage_format= (ADCH<<2)|(thelow>>6);//this is use to get 10 bit data from ADC
 			  tempr_of_animal=temperature_in_voltage_format/2;
 			  itoa(temperature_in_voltage_format,tempr_animal,10);
 			  _delay_ms(10);
 			   contain_both_humidity_tempr[arrange_array]=0x74;
-<<<<<<< HEAD
  568:	0f 2e       	mov	r0, r31
  56a:	f4 e7       	ldi	r31, 0x74	; 116
  56c:	ff 2e       	mov	r15, r31
@@ -1217,59 +1034,16 @@ int main(void)
 		
 			  arrange_array=0;
  570:	10 92 68 00 	sts	0x0068, r1	; 0x800068 <__data_end>
-=======
- 53c:	14 e7       	ldi	r17, 0x74	; 116
-	initialize();
-    while (1) 
-    {
-	        	
-	          char *contain_both_humidity_tempr;
-		      reset();
- 53e:	0e 94 d8 00 	call	0x1b0	; 0x1b0 <reset>
- 542:	87 e8       	ldi	r24, 0x87	; 135
- 544:	93 e1       	ldi	r25, 0x13	; 19
- 546:	01 97       	sbiw	r24, 0x01	; 1
- 548:	f1 f7       	brne	.-4      	; 0x546 <main+0x5a>
- 54a:	00 c0       	rjmp	.+0      	; 0x54c <main+0x60>
- 54c:	00 00       	nop
-		      _delay_ms(10);
-		      send_chunck_of_data(animalId,sizeof(animalId));
- 54e:	6a e0       	ldi	r22, 0x0A	; 10
- 550:	80 e6       	ldi	r24, 0x60	; 96
- 552:	90 e0       	ldi	r25, 0x00	; 0
- 554:	0e 94 77 00 	call	0xee	; 0xee <send_chunck_of_data>
- 558:	87 ea       	ldi	r24, 0xA7	; 167
- 55a:	91 e6       	ldi	r25, 0x61	; 97
- 55c:	01 97       	sbiw	r24, 0x01	; 1
- 55e:	f1 f7       	brne	.-4      	; 0x55c <main+0x70>
- 560:	00 c0       	rjmp	.+0      	; 0x562 <main+0x76>
- 562:	00 00       	nop
-		      _delay_ms(50);
-		      flush_every();
- 564:	0e 94 e2 01 	call	0x3c4	; 0x3c4 <flush_every>
- 568:	87 e8       	ldi	r24, 0x87	; 135
- 56a:	93 e1       	ldi	r25, 0x13	; 19
- 56c:	01 97       	sbiw	r24, 0x01	; 1
- 56e:	f1 f7       	brne	.-4      	; 0x56c <main+0x80>
- 570:	00 c0       	rjmp	.+0      	; 0x572 <main+0x86>
- 572:	00 00       	nop
-		      _delay_ms(10);
->>>>>>> 63a3e18c91f59d4c51d174674e8d9884c8cd7694
 		      DDRC|=(1<<PINC0);
  574:	a0 9a       	sbi	0x14, 0	; 20
 		      PORTC|=(1<<PINC0);
  576:	a8 9a       	sbi	0x15, 0	; 21
-<<<<<<< HEAD
 		      start_conversion(); 
-=======
-		      start_conversion();
->>>>>>> 63a3e18c91f59d4c51d174674e8d9884c8cd7694
  578:	0e 94 49 00 	call	0x92	; 0x92 <start_conversion>
 		      response();
  57c:	0e 94 57 00 	call	0xae	; 0xae <response>
 		      humidity=receiving_data();
  580:	0e 94 60 00 	call	0xc0	; 0xc0 <receiving_data>
-<<<<<<< HEAD
  584:	80 93 6c 00 	sts	0x006C, r24	; 0x80006c <humidity>
 		      humidity1=receiving_data();
  588:	0e 94 60 00 	call	0xc0	; 0xc0 <receiving_data>
@@ -1299,44 +1073,16 @@ int main(void)
  5c2:	89 1b       	sub	r24, r25
  5c4:	80 93 69 00 	sts	0x0069, r24	; 0x800069 <sum>
  5c8:	03 c0       	rjmp	.+6      	; 0x5d0 <main+0xe4>
-=======
- 584:	c8 2e       	mov	r12, r24
-		      humidity1=receiving_data();
- 586:	0e 94 60 00 	call	0xc0	; 0xc0 <receiving_data>
- 58a:	d8 2f       	mov	r29, r24
-		      temperature=receiving_data();
- 58c:	0e 94 60 00 	call	0xc0	; 0xc0 <receiving_data>
- 590:	b8 2e       	mov	r11, r24
-		      temperature1=receiving_data();
- 592:	0e 94 60 00 	call	0xc0	; 0xc0 <receiving_data>
- 596:	c8 2f       	mov	r28, r24
-		      checksum=receiving_data();
- 598:	0e 94 60 00 	call	0xc0	; 0xc0 <receiving_data>
-		      sum=humidity1+humidity+temperature1+temperature;
- 59c:	dc 0d       	add	r29, r12
- 59e:	db 0d       	add	r29, r11
- 5a0:	9d 2f       	mov	r25, r29
- 5a2:	9c 0f       	add	r25, r28
-		      if(checksum>sum)
- 5a4:	98 17       	cp	r25, r24
- 5a6:	18 f4       	brcc	.+6      	; 0x5ae <main+0xc2>
-		      {
-			      sum=checksum-sum;
- 5a8:	89 1b       	sub	r24, r25
- 5aa:	98 2f       	mov	r25, r24
- 5ac:	01 c0       	rjmp	.+2      	; 0x5b0 <main+0xc4>
->>>>>>> 63a3e18c91f59d4c51d174674e8d9884c8cd7694
 		      }
 		      else
 		      {
 			      sum=sum-checksum;
-<<<<<<< HEAD
  5ca:	98 1b       	sub	r25, r24
  5cc:	90 93 69 00 	sts	0x0069, r25	; 0x800069 <sum>
 		      }
-		      if(sum>=0 && sum<=5)
+		      if(sum>=0 && sum<=3)
  5d0:	80 91 69 00 	lds	r24, 0x0069	; 0x800069 <sum>
- 5d4:	86 30       	cpi	r24, 0x06	; 6
+ 5d4:	84 30       	cpi	r24, 0x04	; 4
  5d6:	08 f0       	brcs	.+2      	; 0x5da <main+0xee>
  5d8:	64 c0       	rjmp	.+200    	; 0x6a2 <main+0x1b6>
  5da:	90 91 68 00 	lds	r25, 0x0068	; 0x800068 <__data_end>
@@ -1358,32 +1104,24 @@ int main(void)
 		      {
 			      sum=sum-checksum;
 		      }
-		      if(sum>=0 && sum<=5)
+		      if(sum>=0 && sum<=3)
 		      {
 				     for(uint8_t i=0;i<sizeof(animalId);i++)
  5f2:	93 13       	cpse	r25, r19
  5f4:	f8 cf       	rjmp	.-16     	; 0x5e6 <main+0xfa>
  5f6:	30 93 68 00 	sts	0x0068, r19	; 0x800068 <__data_end>
-=======
- 5ae:	98 1b       	sub	r25, r24
-		      }
-		      if(sum>=0 && sum<=3)
- 5b0:	94 30       	cpi	r25, 0x04	; 4
- 5b2:	60 f5       	brcc	.+88     	; 0x60c <main+0x120>
->>>>>>> 63a3e18c91f59d4c51d174674e8d9884c8cd7694
     } else if (__radix < 2 || __radix > 36) {
 	*__s = 0;
 	return __s;
     } else {
 	extern char *__itoa_ncheck (int, char *, unsigned char);
 	return __itoa_ncheck (__val, __s, __radix);
-<<<<<<< HEAD
  5fa:	4a e0       	ldi	r20, 0x0A	; 10
  5fc:	67 e9       	ldi	r22, 0x97	; 151
  5fe:	70 e0       	ldi	r23, 0x00	; 0
  600:	85 2f       	mov	r24, r21
  602:	90 e0       	ldi	r25, 0x00	; 0
- 604:	0e 94 f1 03 	call	0x7e2	; 0x7e2 <__itoa_ncheck>
+ 604:	0e 94 f2 03 	call	0x7e4	; 0x7e4 <__itoa_ncheck>
  608:	87 e8       	ldi	r24, 0x87	; 135
  60a:	93 e1       	ldi	r25, 0x13	; 19
  60c:	01 97       	sbiw	r24, 0x01	; 1
@@ -1402,31 +1140,9 @@ int main(void)
  61c:	f1 1d       	adc	r31, r1
  61e:	b0 82       	st	Z, r11
 				  arrange_array++;
-=======
- 5b4:	4a e0       	ldi	r20, 0x0A	; 10
- 5b6:	6c e6       	ldi	r22, 0x6C	; 108
- 5b8:	70 e0       	ldi	r23, 0x00	; 0
- 5ba:	8b 2d       	mov	r24, r11
- 5bc:	90 e0       	ldi	r25, 0x00	; 0
- 5be:	0e 94 8c 03 	call	0x718	; 0x718 <__itoa_ncheck>
- 5c2:	87 e8       	ldi	r24, 0x87	; 135
- 5c4:	93 e1       	ldi	r25, 0x13	; 19
- 5c6:	01 97       	sbiw	r24, 0x01	; 1
- 5c8:	f1 f7       	brne	.-4      	; 0x5c6 <main+0xda>
- 5ca:	00 c0       	rjmp	.+0      	; 0x5cc <main+0xe0>
- 5cc:	00 00       	nop
-		      {
-			      itoa(temperature,value_of_tempr,10);
-				    _delay_ms(10);
-			      contain_both_humidity_tempr[arrange_array]=0x73;
- 5ce:	c0 e0       	ldi	r28, 0x00	; 0
- 5d0:	d0 e0       	ldi	r29, 0x00	; 0
- 5d2:	e8 82       	st	Y, r14
->>>>>>> 63a3e18c91f59d4c51d174674e8d9884c8cd7694
 			      for(uint8_t i=0;i<2;i++)
 			      {
 				      contain_both_humidity_tempr[arrange_array]=value_of_tempr[i];
-<<<<<<< HEAD
  620:	91 e0       	ldi	r25, 0x01	; 1
  622:	98 0f       	add	r25, r24
  624:	d8 01       	movw	r26, r16
@@ -1450,7 +1166,7 @@ int main(void)
  64c:	69 e9       	ldi	r22, 0x99	; 153
  64e:	70 e0       	ldi	r23, 0x00	; 0
  650:	90 e0       	ldi	r25, 0x00	; 0
- 652:	0e 94 f1 03 	call	0x7e2	; 0x7e2 <__itoa_ncheck>
+ 652:	0e 94 f2 03 	call	0x7e4	; 0x7e4 <__itoa_ncheck>
  656:	87 e8       	ldi	r24, 0x87	; 135
  658:	93 e1       	ldi	r25, 0x13	; 19
  65a:	01 97       	sbiw	r24, 0x01	; 1
@@ -1460,45 +1176,8 @@ int main(void)
 					  arrange_array++;
 			      }
 			      itoa(humidity,value_of_humidity,10);
-=======
- 5d4:	ec e6       	ldi	r30, 0x6C	; 108
- 5d6:	f0 e0       	ldi	r31, 0x00	; 0
- 5d8:	80 81       	ld	r24, Z
- 5da:	89 83       	std	Y+1, r24	; 0x01
- 5dc:	81 81       	ldd	r24, Z+1	; 0x01
- 5de:	8a 83       	std	Y+2, r24	; 0x02
- 5e0:	4a e0       	ldi	r20, 0x0A	; 10
- 5e2:	6a e6       	ldi	r22, 0x6A	; 106
- 5e4:	70 e0       	ldi	r23, 0x00	; 0
- 5e6:	8c 2d       	mov	r24, r12
- 5e8:	90 e0       	ldi	r25, 0x00	; 0
- 5ea:	0e 94 8c 03 	call	0x718	; 0x718 <__itoa_ncheck>
- 5ee:	87 e8       	ldi	r24, 0x87	; 135
- 5f0:	93 e1       	ldi	r25, 0x13	; 19
- 5f2:	01 97       	sbiw	r24, 0x01	; 1
- 5f4:	f1 f7       	brne	.-4      	; 0x5f2 <main+0x106>
- 5f6:	00 c0       	rjmp	.+0      	; 0x5f8 <main+0x10c>
- 5f8:	00 00       	nop
-			      }
-			      itoa(humidity,value_of_humidity,10);
-			      _delay_ms(10);
-				  arrange_array++;
-			      contain_both_humidity_tempr[arrange_array]=0x68;
- 5fa:	fb 82       	std	Y+3, r15	; 0x03
-			      for(uint8_t i=0;i<2;i++)
-			      {
-					  arrange_array++;
-				      contain_both_humidity_tempr[arrange_array]=value_of_humidity[i];
- 5fc:	ea e6       	ldi	r30, 0x6A	; 106
- 5fe:	f0 e0       	ldi	r31, 0x00	; 0
- 600:	80 81       	ld	r24, Z
- 602:	8c 83       	std	Y+4, r24	; 0x04
- 604:	81 81       	ldd	r24, Z+1	; 0x01
- 606:	8d 83       	std	Y+5, r24	; 0x05
->>>>>>> 63a3e18c91f59d4c51d174674e8d9884c8cd7694
 			      _delay_ms(10);
 			      contain_both_humidity_tempr[arrange_array]=0x68;
-<<<<<<< HEAD
  662:	80 91 68 00 	lds	r24, 0x0068	; 0x800068 <__data_end>
  666:	f8 01       	movw	r30, r16
  668:	e8 0f       	add	r30, r24
@@ -1508,23 +1187,6 @@ int main(void)
 			      for(uint8_t i=0;i<3;i++)
 			      {
 					  
-=======
-			      for(uint8_t i=0;i<2;i++)
-			      {
-					  arrange_array++;
- 608:	d0 2f       	mov	r29, r16
- 60a:	01 c0       	rjmp	.+2      	; 0x60e <main+0x122>
- 60c:	dd 2d       	mov	r29, r13
- 60e:	9f e5       	ldi	r25, 0x5F	; 95
- 610:	2d e3       	ldi	r18, 0x3D	; 61
- 612:	88 e0       	ldi	r24, 0x08	; 8
- 614:	91 50       	subi	r25, 0x01	; 1
- 616:	20 40       	sbci	r18, 0x00	; 0
- 618:	80 40       	sbci	r24, 0x00	; 0
- 61a:	e1 f7       	brne	.-8      	; 0x614 <main+0x128>
- 61c:	00 c0       	rjmp	.+0      	; 0x61e <main+0x132>
- 61e:	00 00       	nop
->>>>>>> 63a3e18c91f59d4c51d174674e8d9884c8cd7694
 				      contain_both_humidity_tempr[arrange_array]=value_of_humidity[i];
  66e:	91 e0       	ldi	r25, 0x01	; 1
  670:	98 0f       	add	r25, r24
@@ -1564,463 +1226,237 @@ int main(void)
 			      }
 		      }
 		      _delay_ms(1350);
-<<<<<<< HEAD
 			  ADMUX|=(1<<MUX0);
  6b4:	38 9a       	sbi	0x07, 0	; 7
- 6b6:	87 e8       	ldi	r24, 0x87	; 135
- 6b8:	93 e1       	ldi	r25, 0x13	; 19
- 6ba:	01 97       	sbiw	r24, 0x01	; 1
- 6bc:	f1 f7       	brne	.-4      	; 0x6ba <main+0x1ce>
- 6be:	00 c0       	rjmp	.+0      	; 0x6c0 <main+0x1d4>
- 6c0:	00 00       	nop
+			  ADMUX&=~(1<<MUX1);
+ 6b6:	39 98       	cbi	0x07, 1	; 7
+ 6b8:	87 e8       	ldi	r24, 0x87	; 135
+ 6ba:	93 e1       	ldi	r25, 0x13	; 19
+ 6bc:	01 97       	sbiw	r24, 0x01	; 1
+ 6be:	f1 f7       	brne	.-4      	; 0x6bc <main+0x1d0>
+ 6c0:	00 c0       	rjmp	.+0      	; 0x6c2 <main+0x1d6>
+ 6c2:	00 00       	nop
 			  _delay_ms(10);
 			  ADCSRA|=(1<<ADSC);
- 6c2:	36 9a       	sbi	0x06, 6	; 6
- 6c4:	8f e0       	ldi	r24, 0x0F	; 15
- 6c6:	97 e2       	ldi	r25, 0x27	; 39
- 6c8:	01 97       	sbiw	r24, 0x01	; 1
- 6ca:	f1 f7       	brne	.-4      	; 0x6c8 <main+0x1dc>
- 6cc:	00 c0       	rjmp	.+0      	; 0x6ce <main+0x1e2>
- 6ce:	00 00       	nop
+ 6c4:	36 9a       	sbi	0x06, 6	; 6
+ 6c6:	8f e0       	ldi	r24, 0x0F	; 15
+ 6c8:	97 e2       	ldi	r25, 0x27	; 39
+ 6ca:	01 97       	sbiw	r24, 0x01	; 1
+ 6cc:	f1 f7       	brne	.-4      	; 0x6ca <main+0x1de>
+ 6ce:	00 c0       	rjmp	.+0      	; 0x6d0 <main+0x1e4>
+ 6d0:	00 00       	nop
 			 _delay_ms(20);
 			 ADCSRA&=~(1<<ADSC);
- 6d0:	36 98       	cbi	0x06, 6	; 6
+ 6d2:	36 98       	cbi	0x06, 6	; 6
 			  thelow=ADCL;// done so that lag doesn't occur while running as we need to access ADCH and ADCL at same time
- 6d2:	24 b1       	in	r18, 0x04	; 4
- 6d4:	20 93 91 00 	sts	0x0091, r18	; 0x800091 <thelow>
+ 6d4:	24 b1       	in	r18, 0x04	; 4
+ 6d6:	20 93 91 00 	sts	0x0091, r18	; 0x800091 <thelow>
 			  temperature_in_voltage_format= (ADCH<<2)|(thelow>>6);//this is use to get 10 bit data from ADC
- 6d8:	85 b1       	in	r24, 0x05	; 5
- 6da:	90 e0       	ldi	r25, 0x00	; 0
- 6dc:	88 0f       	add	r24, r24
- 6de:	99 1f       	adc	r25, r25
- 6e0:	88 0f       	add	r24, r24
- 6e2:	99 1f       	adc	r25, r25
- 6e4:	22 95       	swap	r18
- 6e6:	26 95       	lsr	r18
+ 6da:	85 b1       	in	r24, 0x05	; 5
+ 6dc:	90 e0       	ldi	r25, 0x00	; 0
+ 6de:	88 0f       	add	r24, r24
+ 6e0:	99 1f       	adc	r25, r25
+ 6e2:	88 0f       	add	r24, r24
+ 6e4:	99 1f       	adc	r25, r25
+ 6e6:	22 95       	swap	r18
  6e8:	26 95       	lsr	r18
- 6ea:	23 70       	andi	r18, 0x03	; 3
- 6ec:	82 2b       	or	r24, r18
- 6ee:	90 93 8c 00 	sts	0x008C, r25	; 0x80008c <temperature_in_voltage_format+0x1>
- 6f2:	80 93 8b 00 	sts	0x008B, r24	; 0x80008b <temperature_in_voltage_format>
+ 6ea:	26 95       	lsr	r18
+ 6ec:	23 70       	andi	r18, 0x03	; 3
+ 6ee:	82 2b       	or	r24, r18
+ 6f0:	90 93 8c 00 	sts	0x008C, r25	; 0x80008c <temperature_in_voltage_format+0x1>
+ 6f4:	80 93 8b 00 	sts	0x008B, r24	; 0x80008b <temperature_in_voltage_format>
 			  tempr_of_animal=temperature_in_voltage_format/2;
- 6f6:	9c 01       	movw	r18, r24
- 6f8:	36 95       	lsr	r19
- 6fa:	27 95       	ror	r18
- 6fc:	20 93 8d 00 	sts	0x008D, r18	; 0x80008d <tempr_of_animal>
- 700:	4a e0       	ldi	r20, 0x0A	; 10
- 702:	6e e8       	ldi	r22, 0x8E	; 142
- 704:	70 e0       	ldi	r23, 0x00	; 0
- 706:	0e 94 f1 03 	call	0x7e2	; 0x7e2 <__itoa_ncheck>
- 70a:	87 e8       	ldi	r24, 0x87	; 135
- 70c:	93 e1       	ldi	r25, 0x13	; 19
- 70e:	01 97       	sbiw	r24, 0x01	; 1
- 710:	f1 f7       	brne	.-4      	; 0x70e <main+0x222>
- 712:	00 c0       	rjmp	.+0      	; 0x714 <main+0x228>
- 714:	00 00       	nop
+ 6f8:	9c 01       	movw	r18, r24
+ 6fa:	36 95       	lsr	r19
+ 6fc:	27 95       	ror	r18
+ 6fe:	20 93 8d 00 	sts	0x008D, r18	; 0x80008d <tempr_of_animal>
+ 702:	4a e0       	ldi	r20, 0x0A	; 10
+ 704:	6e e8       	ldi	r22, 0x8E	; 142
+ 706:	70 e0       	ldi	r23, 0x00	; 0
+ 708:	0e 94 f2 03 	call	0x7e4	; 0x7e4 <__itoa_ncheck>
+ 70c:	87 e8       	ldi	r24, 0x87	; 135
+ 70e:	93 e1       	ldi	r25, 0x13	; 19
+ 710:	01 97       	sbiw	r24, 0x01	; 1
+ 712:	f1 f7       	brne	.-4      	; 0x710 <main+0x224>
+ 714:	00 c0       	rjmp	.+0      	; 0x716 <main+0x22a>
+ 716:	00 00       	nop
 			  itoa(temperature_in_voltage_format,tempr_animal,10);
 			  _delay_ms(10);
 			   contain_both_humidity_tempr[arrange_array]=0x74;
- 716:	80 91 68 00 	lds	r24, 0x0068	; 0x800068 <__data_end>
- 71a:	f8 01       	movw	r30, r16
- 71c:	e8 0f       	add	r30, r24
- 71e:	f1 1d       	adc	r31, r1
- 720:	f0 82       	st	Z, r15
+ 718:	80 91 68 00 	lds	r24, 0x0068	; 0x800068 <__data_end>
+ 71c:	f8 01       	movw	r30, r16
+ 71e:	e8 0f       	add	r30, r24
+ 720:	f1 1d       	adc	r31, r1
+ 722:	f0 82       	st	Z, r15
 			    arrange_array++; 
 			  for (uint8_t i=0;i<3;i++)
 			  {
-=======
-			  arrange_array++;
- 620:	c1 e0       	ldi	r28, 0x01	; 1
- 622:	cd 0f       	add	r28, r29
-			  ADMUX|=(1<<MUX0);
- 624:	38 9a       	sbi	0x07, 0	; 7
- 626:	87 e8       	ldi	r24, 0x87	; 135
- 628:	93 e1       	ldi	r25, 0x13	; 19
- 62a:	01 97       	sbiw	r24, 0x01	; 1
- 62c:	f1 f7       	brne	.-4      	; 0x62a <main+0x13e>
- 62e:	00 c0       	rjmp	.+0      	; 0x630 <main+0x144>
- 630:	00 00       	nop
-			  _delay_ms(10);
-			  ADCSRA|=(1<<ADSC);
- 632:	36 9a       	sbi	0x06, 6	; 6
- 634:	8f e0       	ldi	r24, 0x0F	; 15
- 636:	97 e2       	ldi	r25, 0x27	; 39
- 638:	01 97       	sbiw	r24, 0x01	; 1
- 63a:	f1 f7       	brne	.-4      	; 0x638 <main+0x14c>
- 63c:	00 c0       	rjmp	.+0      	; 0x63e <main+0x152>
- 63e:	00 00       	nop
-			 _delay_ms(20);
-			 ADCSRA&=~(1<<ADSC);
- 640:	36 98       	cbi	0x06, 6	; 6
-			  thelow=ADCL;// done so that lag doesn't occur while running as we need to access ADCH and ADCL at same time
- 642:	24 b1       	in	r18, 0x04	; 4
-			  temperature_in_voltage_format= (ADCH<<2)|(thelow>>6);//this is use to get 10 bit data from ADC
- 644:	85 b1       	in	r24, 0x05	; 5
- 646:	90 e0       	ldi	r25, 0x00	; 0
- 648:	88 0f       	add	r24, r24
- 64a:	99 1f       	adc	r25, r25
- 64c:	88 0f       	add	r24, r24
- 64e:	99 1f       	adc	r25, r25
- 650:	22 95       	swap	r18
- 652:	26 95       	lsr	r18
- 654:	26 95       	lsr	r18
- 656:	23 70       	andi	r18, 0x03	; 3
- 658:	4a e0       	ldi	r20, 0x0A	; 10
- 65a:	6e e6       	ldi	r22, 0x6E	; 110
- 65c:	70 e0       	ldi	r23, 0x00	; 0
- 65e:	82 2b       	or	r24, r18
- 660:	0e 94 8c 03 	call	0x718	; 0x718 <__itoa_ncheck>
- 664:	87 e8       	ldi	r24, 0x87	; 135
- 666:	93 e1       	ldi	r25, 0x13	; 19
- 668:	01 97       	sbiw	r24, 0x01	; 1
- 66a:	f1 f7       	brne	.-4      	; 0x668 <main+0x17c>
- 66c:	00 c0       	rjmp	.+0      	; 0x66e <main+0x182>
- 66e:	00 00       	nop
-			  tempr_of_animal=temperature_in_voltage_format/2;
-			  itoa(temperature_in_voltage_format,tempr_animal,10);
-			  _delay_ms(10);
-			   contain_both_humidity_tempr[arrange_array]=0x74;
- 670:	ec 2f       	mov	r30, r28
- 672:	f0 e0       	ldi	r31, 0x00	; 0
- 674:	10 83       	st	Z, r17
- 676:	ee e6       	ldi	r30, 0x6E	; 110
- 678:	f0 e0       	ldi	r31, 0x00	; 0
- 67a:	94 e0       	ldi	r25, 0x04	; 4
- 67c:	9d 0f       	add	r25, r29
-			  for (uint8_t i=0;i<3;i++)
-			  {
-				   arrange_array++;
- 67e:	cf 5f       	subi	r28, 0xFF	; 255
 				   contain_both_humidity_tempr[arrange_array]=tempr_animal[i];
- 680:	81 91       	ld	r24, Z+
- 682:	ac 2f       	mov	r26, r28
- 684:	b0 e0       	ldi	r27, 0x00	; 0
- 686:	8c 93       	st	X, r24
-			  temperature_in_voltage_format= (ADCH<<2)|(thelow>>6);//this is use to get 10 bit data from ADC
-			  tempr_of_animal=temperature_in_voltage_format/2;
-			  itoa(temperature_in_voltage_format,tempr_animal,10);
-			  _delay_ms(10);
-			   contain_both_humidity_tempr[arrange_array]=0x74;
-			  for (uint8_t i=0;i<3;i++)
- 688:	c9 13       	cpse	r28, r25
- 68a:	f9 cf       	rjmp	.-14     	; 0x67e <main+0x192>
- 68c:	87 e8       	ldi	r24, 0x87	; 135
- 68e:	93 e1       	ldi	r25, 0x13	; 19
- 690:	01 97       	sbiw	r24, 0x01	; 1
- 692:	f1 f7       	brne	.-4      	; 0x690 <main+0x1a4>
- 694:	00 c0       	rjmp	.+0      	; 0x696 <main+0x1aa>
- 696:	00 00       	nop
-				   arrange_array++;
->>>>>>> 63a3e18c91f59d4c51d174674e8d9884c8cd7694
-				   contain_both_humidity_tempr[arrange_array]=tempr_animal[i];
- 722:	91 e0       	ldi	r25, 0x01	; 1
- 724:	98 0f       	add	r25, r24
- 726:	d8 01       	movw	r26, r16
- 728:	a9 0f       	add	r26, r25
- 72a:	b1 1d       	adc	r27, r1
- 72c:	ee e8       	ldi	r30, 0x8E	; 142
- 72e:	f0 e0       	ldi	r31, 0x00	; 0
- 730:	90 81       	ld	r25, Z
- 732:	9c 93       	st	X, r25
- 734:	92 e0       	ldi	r25, 0x02	; 2
- 736:	98 0f       	add	r25, r24
- 738:	d8 01       	movw	r26, r16
- 73a:	a9 0f       	add	r26, r25
- 73c:	b1 1d       	adc	r27, r1
- 73e:	91 81       	ldd	r25, Z+1	; 0x01
- 740:	9c 93       	st	X, r25
- 742:	93 e0       	ldi	r25, 0x03	; 3
- 744:	98 0f       	add	r25, r24
- 746:	d8 01       	movw	r26, r16
- 748:	a9 0f       	add	r26, r25
- 74a:	b1 1d       	adc	r27, r1
- 74c:	92 81       	ldd	r25, Z+2	; 0x02
- 74e:	9c 93       	st	X, r25
- 750:	8c 5f       	subi	r24, 0xFC	; 252
- 752:	80 93 68 00 	sts	0x0068, r24	; 0x800068 <__data_end>
- 756:	87 e8       	ldi	r24, 0x87	; 135
- 758:	93 e1       	ldi	r25, 0x13	; 19
- 75a:	01 97       	sbiw	r24, 0x01	; 1
- 75c:	f1 f7       	brne	.-4      	; 0x75a <main+0x26e>
- 75e:	00 c0       	rjmp	.+0      	; 0x760 <main+0x274>
- 760:	00 00       	nop
+ 724:	91 e0       	ldi	r25, 0x01	; 1
+ 726:	98 0f       	add	r25, r24
+ 728:	d8 01       	movw	r26, r16
+ 72a:	a9 0f       	add	r26, r25
+ 72c:	b1 1d       	adc	r27, r1
+ 72e:	ee e8       	ldi	r30, 0x8E	; 142
+ 730:	f0 e0       	ldi	r31, 0x00	; 0
+ 732:	90 81       	ld	r25, Z
+ 734:	9c 93       	st	X, r25
+ 736:	92 e0       	ldi	r25, 0x02	; 2
+ 738:	98 0f       	add	r25, r24
+ 73a:	d8 01       	movw	r26, r16
+ 73c:	a9 0f       	add	r26, r25
+ 73e:	b1 1d       	adc	r27, r1
+ 740:	91 81       	ldd	r25, Z+1	; 0x01
+ 742:	9c 93       	st	X, r25
+ 744:	93 e0       	ldi	r25, 0x03	; 3
+ 746:	98 0f       	add	r25, r24
+ 748:	d8 01       	movw	r26, r16
+ 74a:	a9 0f       	add	r26, r25
+ 74c:	b1 1d       	adc	r27, r1
+ 74e:	92 81       	ldd	r25, Z+2	; 0x02
+ 750:	9c 93       	st	X, r25
+ 752:	8c 5f       	subi	r24, 0xFC	; 252
+ 754:	80 93 68 00 	sts	0x0068, r24	; 0x800068 <__data_end>
+ 758:	87 e8       	ldi	r24, 0x87	; 135
+ 75a:	93 e1       	ldi	r25, 0x13	; 19
+ 75c:	01 97       	sbiw	r24, 0x01	; 1
+ 75e:	f1 f7       	brne	.-4      	; 0x75c <main+0x270>
+ 760:	00 c0       	rjmp	.+0      	; 0x762 <main+0x276>
+ 762:	00 00       	nop
 				    arrange_array++; 
 			  }
-<<<<<<< HEAD
 			   _delay_ms(10);
 		        reset();
- 762:	0e 94 d8 00 	call	0x1b0	; 0x1b0 <reset>
- 766:	87 e8       	ldi	r24, 0x87	; 135
- 768:	93 e1       	ldi	r25, 0x13	; 19
- 76a:	01 97       	sbiw	r24, 0x01	; 1
- 76c:	f1 f7       	brne	.-4      	; 0x76a <main+0x27e>
- 76e:	00 c0       	rjmp	.+0      	; 0x770 <main+0x284>
- 770:	00 00       	nop
+ 764:	0e 94 d8 00 	call	0x1b0	; 0x1b0 <reset>
+ 768:	87 e8       	ldi	r24, 0x87	; 135
+ 76a:	93 e1       	ldi	r25, 0x13	; 19
+ 76c:	01 97       	sbiw	r24, 0x01	; 1
+ 76e:	f1 f7       	brne	.-4      	; 0x76c <main+0x280>
+ 770:	00 c0       	rjmp	.+0      	; 0x772 <main+0x286>
+ 772:	00 00       	nop
 		      _delay_ms(10);
 		      send_chunck_of_data(contain_both_humidity_tempr,arrange_array);
- 772:	60 91 68 00 	lds	r22, 0x0068	; 0x800068 <__data_end>
- 776:	8d 2d       	mov	r24, r13
- 778:	9e 2d       	mov	r25, r14
- 77a:	0e 94 77 00 	call	0xee	; 0xee <send_chunck_of_data>
- 77e:	87 ea       	ldi	r24, 0xA7	; 167
- 780:	91 e6       	ldi	r25, 0x61	; 97
- 782:	01 97       	sbiw	r24, 0x01	; 1
- 784:	f1 f7       	brne	.-4      	; 0x782 <main+0x296>
- 786:	00 c0       	rjmp	.+0      	; 0x788 <main+0x29c>
- 788:	00 00       	nop
+ 774:	60 91 68 00 	lds	r22, 0x0068	; 0x800068 <__data_end>
+ 778:	8d 2d       	mov	r24, r13
+ 77a:	9e 2d       	mov	r25, r14
+ 77c:	0e 94 77 00 	call	0xee	; 0xee <send_chunck_of_data>
+ 780:	87 ea       	ldi	r24, 0xA7	; 167
+ 782:	91 e6       	ldi	r25, 0x61	; 97
+ 784:	01 97       	sbiw	r24, 0x01	; 1
+ 786:	f1 f7       	brne	.-4      	; 0x784 <main+0x298>
+ 788:	00 c0       	rjmp	.+0      	; 0x78a <main+0x29e>
+ 78a:	00 00       	nop
 		      _delay_ms(50);
 			  flush_every();
- 78a:	0e 94 e2 01 	call	0x3c4	; 0x3c4 <flush_every>
- 78e:	87 e8       	ldi	r24, 0x87	; 135
- 790:	93 e1       	ldi	r25, 0x13	; 19
- 792:	01 97       	sbiw	r24, 0x01	; 1
- 794:	f1 f7       	brne	.-4      	; 0x792 <main+0x2a6>
- 796:	00 c0       	rjmp	.+0      	; 0x798 <main+0x2ac>
- 798:	00 00       	nop
+ 78c:	0e 94 e2 01 	call	0x3c4	; 0x3c4 <flush_every>
+ 790:	87 e8       	ldi	r24, 0x87	; 135
+ 792:	93 e1       	ldi	r25, 0x13	; 19
+ 794:	01 97       	sbiw	r24, 0x01	; 1
+ 796:	f1 f7       	brne	.-4      	; 0x794 <main+0x2a8>
+ 798:	00 c0       	rjmp	.+0      	; 0x79a <main+0x2ae>
+ 79a:	00 00       	nop
 			   _delay_ms(10);
 			   getlocation();
- 79a:	0e 94 03 02 	call	0x406	; 0x406 <getlocation>
- 79e:	87 e8       	ldi	r24, 0x87	; 135
- 7a0:	93 e1       	ldi	r25, 0x13	; 19
- 7a2:	01 97       	sbiw	r24, 0x01	; 1
- 7a4:	f1 f7       	brne	.-4      	; 0x7a2 <main+0x2b6>
- 7a6:	00 c0       	rjmp	.+0      	; 0x7a8 <main+0x2bc>
- 7a8:	00 00       	nop
+ 79c:	0e 94 03 02 	call	0x406	; 0x406 <getlocation>
+ 7a0:	87 e8       	ldi	r24, 0x87	; 135
+ 7a2:	93 e1       	ldi	r25, 0x13	; 19
+ 7a4:	01 97       	sbiw	r24, 0x01	; 1
+ 7a6:	f1 f7       	brne	.-4      	; 0x7a4 <main+0x2b8>
+ 7a8:	00 c0       	rjmp	.+0      	; 0x7aa <main+0x2be>
+ 7aa:	00 00       	nop
 			   _delay_ms(10);
 			   reset();
- 7aa:	0e 94 d8 00 	call	0x1b0	; 0x1b0 <reset>
- 7ae:	87 e8       	ldi	r24, 0x87	; 135
- 7b0:	93 e1       	ldi	r25, 0x13	; 19
- 7b2:	01 97       	sbiw	r24, 0x01	; 1
- 7b4:	f1 f7       	brne	.-4      	; 0x7b2 <main+0x2c6>
- 7b6:	00 c0       	rjmp	.+0      	; 0x7b8 <main+0x2cc>
- 7b8:	00 00       	nop
+ 7ac:	0e 94 d8 00 	call	0x1b0	; 0x1b0 <reset>
+ 7b0:	87 e8       	ldi	r24, 0x87	; 135
+ 7b2:	93 e1       	ldi	r25, 0x13	; 19
+ 7b4:	01 97       	sbiw	r24, 0x01	; 1
+ 7b6:	f1 f7       	brne	.-4      	; 0x7b4 <main+0x2c8>
+ 7b8:	00 c0       	rjmp	.+0      	; 0x7ba <main+0x2ce>
+ 7ba:	00 00       	nop
 			   _delay_ms(10);
 			   send_chunck_of_data(location,28);
- 7ba:	6c e1       	ldi	r22, 0x1C	; 28
- 7bc:	8f e6       	ldi	r24, 0x6F	; 111
- 7be:	90 e0       	ldi	r25, 0x00	; 0
- 7c0:	0e 94 77 00 	call	0xee	; 0xee <send_chunck_of_data>
- 7c4:	87 ea       	ldi	r24, 0xA7	; 167
- 7c6:	91 e6       	ldi	r25, 0x61	; 97
- 7c8:	01 97       	sbiw	r24, 0x01	; 1
- 7ca:	f1 f7       	brne	.-4      	; 0x7c8 <main+0x2dc>
- 7cc:	00 c0       	rjmp	.+0      	; 0x7ce <main+0x2e2>
- 7ce:	00 00       	nop
+ 7bc:	6c e1       	ldi	r22, 0x1C	; 28
+ 7be:	8f e6       	ldi	r24, 0x6F	; 111
+ 7c0:	90 e0       	ldi	r25, 0x00	; 0
+ 7c2:	0e 94 77 00 	call	0xee	; 0xee <send_chunck_of_data>
+ 7c6:	87 ea       	ldi	r24, 0xA7	; 167
+ 7c8:	91 e6       	ldi	r25, 0x61	; 97
+ 7ca:	01 97       	sbiw	r24, 0x01	; 1
+ 7cc:	f1 f7       	brne	.-4      	; 0x7ca <main+0x2de>
+ 7ce:	00 c0       	rjmp	.+0      	; 0x7d0 <main+0x2e4>
+ 7d0:	00 00       	nop
 			   _delay_ms(50);
 			   flush_every();
- 7d0:	0e 94 e2 01 	call	0x3c4	; 0x3c4 <flush_every>
- 7d4:	87 e8       	ldi	r24, 0x87	; 135
- 7d6:	93 e1       	ldi	r25, 0x13	; 19
- 7d8:	01 97       	sbiw	r24, 0x01	; 1
- 7da:	f1 f7       	brne	.-4      	; 0x7d8 <main+0x2ec>
- 7dc:	00 c0       	rjmp	.+0      	; 0x7de <main+0x2f2>
- 7de:	00 00       	nop
- 7e0:	c7 ce       	rjmp	.-626    	; 0x570 <main+0x84>
+ 7d2:	0e 94 e2 01 	call	0x3c4	; 0x3c4 <flush_every>
+ 7d6:	87 e8       	ldi	r24, 0x87	; 135
+ 7d8:	93 e1       	ldi	r25, 0x13	; 19
+ 7da:	01 97       	sbiw	r24, 0x01	; 1
+ 7dc:	f1 f7       	brne	.-4      	; 0x7da <main+0x2ee>
+ 7de:	00 c0       	rjmp	.+0      	; 0x7e0 <main+0x2f4>
+ 7e0:	00 00       	nop
+ 7e2:	c6 ce       	rjmp	.-628    	; 0x570 <main+0x84>
 
-000007e2 <__itoa_ncheck>:
- 7e2:	bb 27       	eor	r27, r27
- 7e4:	4a 30       	cpi	r20, 0x0A	; 10
- 7e6:	31 f4       	brne	.+12     	; 0x7f4 <__itoa_ncheck+0x12>
- 7e8:	99 23       	and	r25, r25
- 7ea:	22 f4       	brpl	.+8      	; 0x7f4 <__itoa_ncheck+0x12>
- 7ec:	bd e2       	ldi	r27, 0x2D	; 45
- 7ee:	90 95       	com	r25
- 7f0:	81 95       	neg	r24
- 7f2:	9f 4f       	sbci	r25, 0xFF	; 255
- 7f4:	0c 94 fd 03 	jmp	0x7fa	; 0x7fa <__utoa_common>
+000007e4 <__itoa_ncheck>:
+ 7e4:	bb 27       	eor	r27, r27
+ 7e6:	4a 30       	cpi	r20, 0x0A	; 10
+ 7e8:	31 f4       	brne	.+12     	; 0x7f6 <__itoa_ncheck+0x12>
+ 7ea:	99 23       	and	r25, r25
+ 7ec:	22 f4       	brpl	.+8      	; 0x7f6 <__itoa_ncheck+0x12>
+ 7ee:	bd e2       	ldi	r27, 0x2D	; 45
+ 7f0:	90 95       	com	r25
+ 7f2:	81 95       	neg	r24
+ 7f4:	9f 4f       	sbci	r25, 0xFF	; 255
+ 7f6:	0c 94 fe 03 	jmp	0x7fc	; 0x7fc <__utoa_common>
 
-000007f8 <__utoa_ncheck>:
- 7f8:	bb 27       	eor	r27, r27
+000007fa <__utoa_ncheck>:
+ 7fa:	bb 27       	eor	r27, r27
 
-000007fa <__utoa_common>:
- 7fa:	fb 01       	movw	r30, r22
- 7fc:	55 27       	eor	r21, r21
- 7fe:	aa 27       	eor	r26, r26
- 800:	88 0f       	add	r24, r24
- 802:	99 1f       	adc	r25, r25
- 804:	aa 1f       	adc	r26, r26
- 806:	a4 17       	cp	r26, r20
- 808:	10 f0       	brcs	.+4      	; 0x80e <__utoa_common+0x14>
- 80a:	a4 1b       	sub	r26, r20
- 80c:	83 95       	inc	r24
- 80e:	50 51       	subi	r21, 0x10	; 16
- 810:	b9 f7       	brne	.-18     	; 0x800 <__utoa_common+0x6>
- 812:	a0 5d       	subi	r26, 0xD0	; 208
- 814:	aa 33       	cpi	r26, 0x3A	; 58
- 816:	08 f0       	brcs	.+2      	; 0x81a <__utoa_common+0x20>
- 818:	a9 5d       	subi	r26, 0xD9	; 217
- 81a:	a1 93       	st	Z+, r26
- 81c:	00 97       	sbiw	r24, 0x00	; 0
- 81e:	79 f7       	brne	.-34     	; 0x7fe <__utoa_common+0x4>
- 820:	b1 11       	cpse	r27, r1
- 822:	b1 93       	st	Z+, r27
- 824:	11 92       	st	Z+, r1
- 826:	cb 01       	movw	r24, r22
- 828:	0c 94 16 04 	jmp	0x82c	; 0x82c <strrev>
+000007fc <__utoa_common>:
+ 7fc:	fb 01       	movw	r30, r22
+ 7fe:	55 27       	eor	r21, r21
+ 800:	aa 27       	eor	r26, r26
+ 802:	88 0f       	add	r24, r24
+ 804:	99 1f       	adc	r25, r25
+ 806:	aa 1f       	adc	r26, r26
+ 808:	a4 17       	cp	r26, r20
+ 80a:	10 f0       	brcs	.+4      	; 0x810 <__utoa_common+0x14>
+ 80c:	a4 1b       	sub	r26, r20
+ 80e:	83 95       	inc	r24
+ 810:	50 51       	subi	r21, 0x10	; 16
+ 812:	b9 f7       	brne	.-18     	; 0x802 <__utoa_common+0x6>
+ 814:	a0 5d       	subi	r26, 0xD0	; 208
+ 816:	aa 33       	cpi	r26, 0x3A	; 58
+ 818:	08 f0       	brcs	.+2      	; 0x81c <__utoa_common+0x20>
+ 81a:	a9 5d       	subi	r26, 0xD9	; 217
+ 81c:	a1 93       	st	Z+, r26
+ 81e:	00 97       	sbiw	r24, 0x00	; 0
+ 820:	79 f7       	brne	.-34     	; 0x800 <__utoa_common+0x4>
+ 822:	b1 11       	cpse	r27, r1
+ 824:	b1 93       	st	Z+, r27
+ 826:	11 92       	st	Z+, r1
+ 828:	cb 01       	movw	r24, r22
+ 82a:	0c 94 17 04 	jmp	0x82e	; 0x82e <strrev>
 
-0000082c <strrev>:
- 82c:	dc 01       	movw	r26, r24
- 82e:	fc 01       	movw	r30, r24
- 830:	67 2f       	mov	r22, r23
- 832:	71 91       	ld	r23, Z+
- 834:	77 23       	and	r23, r23
- 836:	e1 f7       	brne	.-8      	; 0x830 <strrev+0x4>
- 838:	32 97       	sbiw	r30, 0x02	; 2
- 83a:	04 c0       	rjmp	.+8      	; 0x844 <strrev+0x18>
- 83c:	7c 91       	ld	r23, X
- 83e:	6d 93       	st	X+, r22
- 840:	70 83       	st	Z, r23
- 842:	62 91       	ld	r22, -Z
- 844:	ae 17       	cp	r26, r30
- 846:	bf 07       	cpc	r27, r31
- 848:	c8 f3       	brcs	.-14     	; 0x83c <strrev+0x10>
- 84a:	08 95       	ret
+0000082e <strrev>:
+ 82e:	dc 01       	movw	r26, r24
+ 830:	fc 01       	movw	r30, r24
+ 832:	67 2f       	mov	r22, r23
+ 834:	71 91       	ld	r23, Z+
+ 836:	77 23       	and	r23, r23
+ 838:	e1 f7       	brne	.-8      	; 0x832 <strrev+0x4>
+ 83a:	32 97       	sbiw	r30, 0x02	; 2
+ 83c:	04 c0       	rjmp	.+8      	; 0x846 <strrev+0x18>
+ 83e:	7c 91       	ld	r23, X
+ 840:	6d 93       	st	X+, r22
+ 842:	70 83       	st	Z, r23
+ 844:	62 91       	ld	r22, -Z
+ 846:	ae 17       	cp	r26, r30
+ 848:	bf 07       	cpc	r27, r31
+ 84a:	c8 f3       	brcs	.-14     	; 0x83e <strrev+0x10>
+ 84c:	08 95       	ret
 
-0000084c <_exit>:
- 84c:	f8 94       	cli
+0000084e <_exit>:
+ 84e:	f8 94       	cli
 
-0000084e <__stop_program>:
- 84e:	ff cf       	rjmp	.-2      	; 0x84e <__stop_program>
-=======
-			    arrange_array++; 
-			   _delay_ms(10);
-		        reset();
- 698:	0e 94 d8 00 	call	0x1b0	; 0x1b0 <reset>
- 69c:	87 e8       	ldi	r24, 0x87	; 135
- 69e:	93 e1       	ldi	r25, 0x13	; 19
- 6a0:	01 97       	sbiw	r24, 0x01	; 1
- 6a2:	f1 f7       	brne	.-4      	; 0x6a0 <main+0x1b4>
- 6a4:	00 c0       	rjmp	.+0      	; 0x6a6 <main+0x1ba>
- 6a6:	00 00       	nop
-		      _delay_ms(10);
-		      send_chunck_of_data(contain_both_humidity_tempr,arrange_array);
- 6a8:	65 e0       	ldi	r22, 0x05	; 5
- 6aa:	6d 0f       	add	r22, r29
- 6ac:	80 e0       	ldi	r24, 0x00	; 0
- 6ae:	90 e0       	ldi	r25, 0x00	; 0
- 6b0:	0e 94 77 00 	call	0xee	; 0xee <send_chunck_of_data>
- 6b4:	8f e5       	ldi	r24, 0x5F	; 95
- 6b6:	9a ee       	ldi	r25, 0xEA	; 234
- 6b8:	01 97       	sbiw	r24, 0x01	; 1
- 6ba:	f1 f7       	brne	.-4      	; 0x6b8 <main+0x1cc>
- 6bc:	00 c0       	rjmp	.+0      	; 0x6be <main+0x1d2>
- 6be:	00 00       	nop
-		      _delay_ms(120);
-			  flush_every();
- 6c0:	0e 94 e2 01 	call	0x3c4	; 0x3c4 <flush_every>
- 6c4:	87 e8       	ldi	r24, 0x87	; 135
- 6c6:	93 e1       	ldi	r25, 0x13	; 19
- 6c8:	01 97       	sbiw	r24, 0x01	; 1
- 6ca:	f1 f7       	brne	.-4      	; 0x6c8 <main+0x1dc>
- 6cc:	00 c0       	rjmp	.+0      	; 0x6ce <main+0x1e2>
- 6ce:	00 00       	nop
-			   _delay_ms(10);
-			   getlocation();
- 6d0:	0e 94 03 02 	call	0x406	; 0x406 <getlocation>
- 6d4:	87 e8       	ldi	r24, 0x87	; 135
- 6d6:	93 e1       	ldi	r25, 0x13	; 19
- 6d8:	01 97       	sbiw	r24, 0x01	; 1
- 6da:	f1 f7       	brne	.-4      	; 0x6d8 <main+0x1ec>
- 6dc:	00 c0       	rjmp	.+0      	; 0x6de <main+0x1f2>
- 6de:	00 00       	nop
-			   _delay_ms(10);
-			   reset();
- 6e0:	0e 94 d8 00 	call	0x1b0	; 0x1b0 <reset>
- 6e4:	87 e8       	ldi	r24, 0x87	; 135
- 6e6:	93 e1       	ldi	r25, 0x13	; 19
- 6e8:	01 97       	sbiw	r24, 0x01	; 1
- 6ea:	f1 f7       	brne	.-4      	; 0x6e8 <main+0x1fc>
- 6ec:	00 c0       	rjmp	.+0      	; 0x6ee <main+0x202>
- 6ee:	00 00       	nop
-			   _delay_ms(10);
-			   send_chunck_of_data(location,28);
- 6f0:	6c e1       	ldi	r22, 0x1C	; 28
- 6f2:	81 e7       	ldi	r24, 0x71	; 113
- 6f4:	90 e0       	ldi	r25, 0x00	; 0
- 6f6:	0e 94 77 00 	call	0xee	; 0xee <send_chunck_of_data>
- 6fa:	8f e5       	ldi	r24, 0x5F	; 95
- 6fc:	9a ee       	ldi	r25, 0xEA	; 234
- 6fe:	01 97       	sbiw	r24, 0x01	; 1
- 700:	f1 f7       	brne	.-4      	; 0x6fe <main+0x212>
- 702:	00 c0       	rjmp	.+0      	; 0x704 <main+0x218>
- 704:	00 00       	nop
-			   _delay_ms(120);
-			   flush_every();
- 706:	0e 94 e2 01 	call	0x3c4	; 0x3c4 <flush_every>
- 70a:	87 e8       	ldi	r24, 0x87	; 135
- 70c:	93 e1       	ldi	r25, 0x13	; 19
- 70e:	01 97       	sbiw	r24, 0x01	; 1
- 710:	f1 f7       	brne	.-4      	; 0x70e <main+0x222>
- 712:	00 c0       	rjmp	.+0      	; 0x714 <main+0x228>
- 714:	00 00       	nop
-			   _delay_ms(10);
-			   arrange_array=0;
-    }
- 716:	13 cf       	rjmp	.-474    	; 0x53e <main+0x52>
-
-00000718 <__itoa_ncheck>:
- 718:	bb 27       	eor	r27, r27
- 71a:	4a 30       	cpi	r20, 0x0A	; 10
- 71c:	31 f4       	brne	.+12     	; 0x72a <__itoa_ncheck+0x12>
- 71e:	99 23       	and	r25, r25
- 720:	22 f4       	brpl	.+8      	; 0x72a <__itoa_ncheck+0x12>
- 722:	bd e2       	ldi	r27, 0x2D	; 45
- 724:	90 95       	com	r25
- 726:	81 95       	neg	r24
- 728:	9f 4f       	sbci	r25, 0xFF	; 255
- 72a:	0c 94 98 03 	jmp	0x730	; 0x730 <__utoa_common>
-
-0000072e <__utoa_ncheck>:
- 72e:	bb 27       	eor	r27, r27
-
-00000730 <__utoa_common>:
- 730:	fb 01       	movw	r30, r22
- 732:	55 27       	eor	r21, r21
- 734:	aa 27       	eor	r26, r26
- 736:	88 0f       	add	r24, r24
- 738:	99 1f       	adc	r25, r25
- 73a:	aa 1f       	adc	r26, r26
- 73c:	a4 17       	cp	r26, r20
- 73e:	10 f0       	brcs	.+4      	; 0x744 <__utoa_common+0x14>
- 740:	a4 1b       	sub	r26, r20
- 742:	83 95       	inc	r24
- 744:	50 51       	subi	r21, 0x10	; 16
- 746:	b9 f7       	brne	.-18     	; 0x736 <__utoa_common+0x6>
- 748:	a0 5d       	subi	r26, 0xD0	; 208
- 74a:	aa 33       	cpi	r26, 0x3A	; 58
- 74c:	08 f0       	brcs	.+2      	; 0x750 <__utoa_common+0x20>
- 74e:	a9 5d       	subi	r26, 0xD9	; 217
- 750:	a1 93       	st	Z+, r26
- 752:	00 97       	sbiw	r24, 0x00	; 0
- 754:	79 f7       	brne	.-34     	; 0x734 <__utoa_common+0x4>
- 756:	b1 11       	cpse	r27, r1
- 758:	b1 93       	st	Z+, r27
- 75a:	11 92       	st	Z+, r1
- 75c:	cb 01       	movw	r24, r22
- 75e:	0c 94 b1 03 	jmp	0x762	; 0x762 <strrev>
-
-00000762 <strrev>:
- 762:	dc 01       	movw	r26, r24
- 764:	fc 01       	movw	r30, r24
- 766:	67 2f       	mov	r22, r23
- 768:	71 91       	ld	r23, Z+
- 76a:	77 23       	and	r23, r23
- 76c:	e1 f7       	brne	.-8      	; 0x766 <strrev+0x4>
- 76e:	32 97       	sbiw	r30, 0x02	; 2
- 770:	04 c0       	rjmp	.+8      	; 0x77a <strrev+0x18>
- 772:	7c 91       	ld	r23, X
- 774:	6d 93       	st	X+, r22
- 776:	70 83       	st	Z, r23
- 778:	62 91       	ld	r22, -Z
- 77a:	ae 17       	cp	r26, r30
- 77c:	bf 07       	cpc	r27, r31
- 77e:	c8 f3       	brcs	.-14     	; 0x772 <strrev+0x10>
- 780:	08 95       	ret
-
-00000782 <_exit>:
- 782:	f8 94       	cli
-
-00000784 <__stop_program>:
- 784:	ff cf       	rjmp	.-2      	; 0x784 <__stop_program>
->>>>>>> 63a3e18c91f59d4c51d174674e8d9884c8cd7694
+00000850 <__stop_program>:
+ 850:	ff cf       	rjmp	.-2      	; 0x850 <__stop_program>
