@@ -15,11 +15,10 @@ char RWdata(char value_send);
 void initialize(void);
 uint8_t add_value[5];
 void flush_every(void);
-static char animalId[]="iCAT00001";
 static char tempr_animal[3];
 static char value_of_tempr[2];
  static char value_of_humidity[2];
- char location[26];
+ char location[28];
  void getlocation(void);
 void setnrf(uint8_t registers,uint8_t values_to_put);
 void transferstatusdata(uint8_t values);
@@ -29,7 +28,8 @@ void reset(void);
 unsigned char return_char(void);
 int main(void)
 {
-
+	static char animalId[]="iCAT00001";
+        uint8_t calculate_heartbeat=0;
 	    uint16_t temperature_in_voltage_format;
 	 	uint8_t thelow;
 	 	uint8_t tempr_of_animal;
@@ -42,7 +42,7 @@ int main(void)
 	 	uint8_t arrange_array=0;
 	 DDRA&=~(1<<1);
 	 ADCSRA |=(1<<ADPS2);//this bit is set when we want to divide CLK frequency by 8
-	 ADMUX |=(1<<REFS0)|(1<<ADLAR)|(1<<MUX0);//REFSO set ref voltage to VCC and ADLAR is use for left shifting values in ADCH and ADCL register
+	 ADMUX |=(1<<REFS0)|(1<<ADLAR);//REFSO set ref voltage to VCC and ADLAR is use for left shifting values in ADCH and ADCL register
 	 ADCSRA |=(1<<ADEN); //this is use for enabling ADC
 	  UBRRH=baud_prescale>>8;
 	  UBRRL=baud_prescale;
@@ -60,13 +60,12 @@ int main(void)
 	initialize();
     while (1) 
     {
-	         char *contain_both_humidity_tempr;
-			  arrange_array=0;
-			  _delay_ms(10);
+	        	
+	          char *contain_both_humidity_tempr;
 		      reset();
 		      _delay_ms(10);
 		      send_chunck_of_data(animalId,sizeof(animalId));
-		      _delay_ms(100);
+		      _delay_ms(50);
 		      flush_every();
 		      _delay_ms(10);
 		      DDRC|=(1<<PINC0);
@@ -101,14 +100,16 @@ int main(void)
 			      _delay_ms(10);
 				  arrange_array++;
 			      contain_both_humidity_tempr[arrange_array]=0x68;
-			      for(uint8_t i=0;i<3;i++)
+			      for(uint8_t i=0;i<2;i++)
 			      {
 					  arrange_array++;
 				      contain_both_humidity_tempr[arrange_array]=value_of_humidity[i];
 			      }
 		      }
-		      _delay_ms(1500);
+		      _delay_ms(1350);
 			  arrange_array++;
+			  ADMUX|=(1<<MUX0);
+			  _delay_ms(10);
 			  ADCSRA|=(1<<ADSC);
 			 _delay_ms(20);
 			 ADCSRA&=~(1<<ADSC);
@@ -123,23 +124,23 @@ int main(void)
 				   arrange_array++;
 				   contain_both_humidity_tempr[arrange_array]=tempr_animal[i];
 			  }
-			  arrange_array++;
+			    arrange_array++; 
 			   _delay_ms(10);
 		        reset();
 		      _delay_ms(10);
 		      send_chunck_of_data(contain_both_humidity_tempr,arrange_array);
-		      _delay_ms(100);
+		      _delay_ms(120);
 			  flush_every();
 			   _delay_ms(10);
-			  arrange_array =0;
-			  getlocation();
+			   getlocation();
 			   _delay_ms(10);
 			   reset();
 			   _delay_ms(10);
-			   send_chunck_of_data(location,26);
-			   _delay_ms(100);
+			   send_chunck_of_data(location,28);
+			   _delay_ms(120);
 			   flush_every();
 			   _delay_ms(10);
+			   arrange_array=0;
     }
 }
 void initialize()
@@ -287,7 +288,7 @@ void flush_every()
 void getlocation()
 {
 	char i=0;
-	char j=1;
+	char j=2;
 	location[0]=0x67;
 		char takeallvalue=0;
 		while(takeallvalue<=3)
@@ -344,7 +345,9 @@ void getlocation()
 				}
 			}
 		}
-		
+		location[j]=0x0D;
+		j++;
+		location[j]=0x0A;
 }
 unsigned char return_char()
 {
