@@ -14,11 +14,11 @@ void transfering(int);
 int main(void)
 {
 
-	uint8_t temperature=0;	
-	uint8_t temperature1=0;	
-	uint8_t humidity=0;	
+	uint8_t temperature=0;
+	uint8_t temperature1=0;
+	uint8_t humidity=0;
 	uint8_t humidity1=0;
-    uint8_t checksum=0;
+	uint8_t checksum=0;
 	uint8_t sum=0;
     UBRRH=BAUDRATE>>8;
 	UBRRL=BAUDRATE;

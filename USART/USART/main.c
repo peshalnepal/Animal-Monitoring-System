@@ -18,8 +18,8 @@ int main(void)
    UCSRC|=(1<<URSEL)|(3 << UCSZ0);//transmitting 8 bits of data
     while (1) 
     {
-		j=0;
-	i=return_char();
+	uint8_t	j=0;
+uint8_t	i=return_char();
 	if (i==0x24)//check if variable i is "$"
 	{
 		i=return_char();

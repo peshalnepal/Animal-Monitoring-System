@@ -3,57 +3,57 @@ receiver.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .text         00000124  00000000  00000000  00000074  2**1
+  0 .text         000001d8  00000000  00000000  00000094  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .data         00000000  00800060  00800060  00000198  2**0
+  1 .data         00000002  00800060  000001d8  0000026c  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  2 .bss          00000001  00800060  00800060  00000198  2**0
+  2 .bss          00000002  00800062  00800062  0000026e  2**0
                   ALLOC
-  3 .comment      00000030  00000000  00000000  00000198  2**0
+  3 .comment      00000030  00000000  00000000  0000026e  2**0
                   CONTENTS, READONLY
-  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  000001c8  2**2
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  000002a0  2**2
                   CONTENTS, READONLY
-  5 .debug_aranges 00000030  00000000  00000000  00000204  2**0
+  5 .debug_aranges 00000038  00000000  00000000  000002dc  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   000006a2  00000000  00000000  00000234  2**0
+  6 .debug_info   000007db  00000000  00000000  00000314  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 00000597  00000000  00000000  000008d6  2**0
+  7 .debug_abbrev 000005f9  00000000  00000000  00000aef  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   000002e4  00000000  00000000  00000e6d  2**0
+  8 .debug_line   0000036d  00000000  00000000  000010e8  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  00000044  00000000  00000000  00001154  2**2
+  9 .debug_frame  00000054  00000000  00000000  00001458  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    00000317  00000000  00000000  00001198  2**0
+ 10 .debug_str    00000346  00000000  00000000  000014ac  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    00000090  00000000  00000000  000014af  2**0
+ 11 .debug_loc    00000120  00000000  00000000  000017f2  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 00000020  00000000  00000000  0000153f  2**0
+ 12 .debug_ranges 00000028  00000000  00000000  00001912  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
 
 00000000 <__vectors>:
    0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
-   4:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
-   8:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
-   c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
-  10:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
-  14:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
-  18:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
-  1c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
-  20:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
-  24:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
-  28:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
-  2c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
-  30:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
-  34:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
-  38:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
-  3c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
-  40:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
-  44:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
-  48:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
-  4c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
-  50:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+   4:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   8:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  10:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  14:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  18:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  1c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  20:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  24:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  28:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  2c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  30:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  34:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  38:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  3c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  40:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  44:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  48:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  4c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  50:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
 
 00000054 <__ctors_end>:
   54:	11 24       	eor	r1, r1
@@ -63,162 +63,263 @@ Disassembly of section .text:
   5c:	de bf       	out	0x3e, r29	; 62
   5e:	cd bf       	out	0x3d, r28	; 61
 
-00000060 <__do_clear_bss>:
-  60:	20 e0       	ldi	r18, 0x00	; 0
+00000060 <__do_copy_data>:
+  60:	10 e0       	ldi	r17, 0x00	; 0
   62:	a0 e6       	ldi	r26, 0x60	; 96
   64:	b0 e0       	ldi	r27, 0x00	; 0
-  66:	01 c0       	rjmp	.+2      	; 0x6a <.do_clear_bss_start>
+  66:	e8 ed       	ldi	r30, 0xD8	; 216
+  68:	f1 e0       	ldi	r31, 0x01	; 1
+  6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
+  6c:	05 90       	lpm	r0, Z+
+  6e:	0d 92       	st	X+, r0
+  70:	a2 36       	cpi	r26, 0x62	; 98
+  72:	b1 07       	cpc	r27, r17
+  74:	d9 f7       	brne	.-10     	; 0x6c <__do_copy_data+0xc>
 
-00000068 <.do_clear_bss_loop>:
-  68:	1d 92       	st	X+, r1
+00000076 <__do_clear_bss>:
+  76:	20 e0       	ldi	r18, 0x00	; 0
+  78:	a2 e6       	ldi	r26, 0x62	; 98
+  7a:	b0 e0       	ldi	r27, 0x00	; 0
+  7c:	01 c0       	rjmp	.+2      	; 0x80 <.do_clear_bss_start>
 
-0000006a <.do_clear_bss_start>:
-  6a:	a1 36       	cpi	r26, 0x61	; 97
-  6c:	b2 07       	cpc	r27, r18
-  6e:	e1 f7       	brne	.-8      	; 0x68 <.do_clear_bss_loop>
-  70:	0e 94 61 00 	call	0xc2	; 0xc2 <main>
-  74:	0c 94 90 00 	jmp	0x120	; 0x120 <_exit>
+0000007e <.do_clear_bss_loop>:
+  7e:	1d 92       	st	X+, r1
 
-00000078 <__bad_interrupt>:
-  78:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+00000080 <.do_clear_bss_start>:
+  80:	a4 36       	cpi	r26, 0x64	; 100
+  82:	b2 07       	cpc	r27, r18
+  84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
+  86:	0e 94 77 00 	call	0xee	; 0xee <main>
+  8a:	0c 94 ea 00 	jmp	0x1d4	; 0x1d4 <_exit>
 
-0000007c <read>:
+0000008e <__bad_interrupt>:
+  8e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000092 <read>:
+	 datacheck=0x00;
 }
 
 void read()
 {
-  
-  if((PINC&(1<<PINC4)))
-  7c:	9c 9b       	sbis	0x13, 4	; 19
-  7e:	05 c0       	rjmp	.+10     	; 0x8a <read+0xe>
+  if((PINC&(1<<PINC0)))
+  92:	98 9b       	sbis	0x13, 0	; 19
+  94:	05 c0       	rjmp	.+10     	; 0xa0 <read+0xe>
   {
 	  
-	  dataget|=(1<<PINC4);
-  80:	80 91 60 00 	lds	r24, 0x0060	; 0x800060 <_edata>
-  84:	80 61       	ori	r24, 0x10	; 16
-  86:	80 93 60 00 	sts	0x0060, r24	; 0x800060 <_edata>
+	  datacheck|=(1<<4);
+  96:	80 91 63 00 	lds	r24, 0x0063	; 0x800063 <datacheck>
+  9a:	80 61       	ori	r24, 0x10	; 16
+  9c:	80 93 63 00 	sts	0x0063, r24	; 0x800063 <datacheck>
   }
-  
-  if((PINC&(1<<PINC5)))
-  8a:	9d 9b       	sbis	0x13, 5	; 19
-  8c:	05 c0       	rjmp	.+10     	; 0x98 <read+0x1c>
+  if((PINC&(1<<PINC1)))
+  a0:	99 9b       	sbis	0x13, 1	; 19
+  a2:	05 c0       	rjmp	.+10     	; 0xae <read+0x1c>
   {
 	  
-	  dataget|=(1<<PINC5);
-  8e:	80 91 60 00 	lds	r24, 0x0060	; 0x800060 <_edata>
-  92:	80 62       	ori	r24, 0x20	; 32
-  94:	80 93 60 00 	sts	0x0060, r24	; 0x800060 <_edata>
+	  datacheck|=(1<<5);
+  a4:	80 91 63 00 	lds	r24, 0x0063	; 0x800063 <datacheck>
+  a8:	80 62       	ori	r24, 0x20	; 32
+  aa:	80 93 63 00 	sts	0x0063, r24	; 0x800063 <datacheck>
   }
 
-  if((PINC&(1<<PINC6)))
-  98:	9e 9b       	sbis	0x13, 6	; 19
-  9a:	05 c0       	rjmp	.+10     	; 0xa6 <read+0x2a>
+  if((PINC&(1<<PINC2)))
+  ae:	9a 9b       	sbis	0x13, 2	; 19
+  b0:	05 c0       	rjmp	.+10     	; 0xbc <read+0x2a>
   {
 	  
-	  dataget|=(1<<PINC6);
-  9c:	80 91 60 00 	lds	r24, 0x0060	; 0x800060 <_edata>
-  a0:	80 64       	ori	r24, 0x40	; 64
-  a2:	80 93 60 00 	sts	0x0060, r24	; 0x800060 <_edata>
+	  datacheck|=(1<<6);
+  b2:	80 91 63 00 	lds	r24, 0x0063	; 0x800063 <datacheck>
+  b6:	80 64       	ori	r24, 0x40	; 64
+  b8:	80 93 63 00 	sts	0x0063, r24	; 0x800063 <datacheck>
   }
-  if((PINC&(1<<PINC7)))
-  a6:	9f 9b       	sbis	0x13, 7	; 19
-  a8:	05 c0       	rjmp	.+10     	; 0xb4 <read+0x38>
+  if((PINC&(1<<PINC3)))
+  bc:	9b 9b       	sbis	0x13, 3	; 19
+  be:	05 c0       	rjmp	.+10     	; 0xca <read+0x38>
   {
-	  
-	  dataget|=(1<<PINC7);
-  aa:	80 91 60 00 	lds	r24, 0x0060	; 0x800060 <_edata>
-  ae:	80 68       	ori	r24, 0x80	; 128
-  b0:	80 93 60 00 	sts	0x0060, r24	; 0x800060 <_edata>
-  b4:	08 95       	ret
+	  datacheck|=(1<<7);
+  c0:	80 91 63 00 	lds	r24, 0x0063	; 0x800063 <datacheck>
+  c4:	80 68       	ori	r24, 0x80	; 128
+  c6:	80 93 63 00 	sts	0x0063, r24	; 0x800063 <datacheck>
+  ca:	08 95       	ret
 
-000000b6 <transfer>:
+000000cc <transfer>:
   }
 }
 void transfer()
 {
 	while(!(UCSRA&(1<<UDRE)));
-  b6:	5d 9b       	sbis	0x0b, 5	; 11
-  b8:	fe cf       	rjmp	.-4      	; 0xb6 <transfer>
+  cc:	5d 9b       	sbis	0x0b, 5	; 11
+  ce:	fe cf       	rjmp	.-4      	; 0xcc <transfer>
 	UDR=dataget;
-  ba:	80 91 60 00 	lds	r24, 0x0060	; 0x800060 <_edata>
-  be:	8c b9       	out	0x0c, r24	; 12
-  c0:	08 95       	ret
+  d0:	80 91 62 00 	lds	r24, 0x0062	; 0x800062 <__data_end>
+  d4:	8c b9       	out	0x0c, r24	; 12
+  d6:	08 95       	ret
 
-000000c2 <main>:
-char datacheck,dataget=0;
+000000d8 <checksum>:
+}
+void   checksum()
+{
+	char value=dataget;
+  d8:	90 91 62 00 	lds	r25, 0x0062	; 0x800062 <__data_end>
+	char lb=(value&0x0F);
+	char ub=((value>>4)&0x0F);
+	checksum_of_value=lb+ub;
+	checksum_of_value=(checksum_of_value&0xF);
+	checksum_of_value=~checksum_of_value;
+  dc:	89 2f       	mov	r24, r25
+  de:	82 95       	swap	r24
+  e0:	8f 70       	andi	r24, 0x0F	; 15
+  e2:	89 0f       	add	r24, r25
+  e4:	8f 70       	andi	r24, 0x0F	; 15
+  e6:	80 95       	com	r24
+  e8:	80 93 60 00 	sts	0x0060, r24	; 0x800060 <__data_start>
+  ec:	08 95       	ret
+
+000000ee <main>:
+void checksum(void);
 void read(void);
 void transfer(void);
 int main(void)
 {  
 	UBRRH=baud_prescale>>8;
-  c2:	10 bc       	out	0x20, r1	; 32
+  ee:	10 bc       	out	0x20, r1	; 32
 	UBRRL=baud_prescale;
-  c4:	8c e0       	ldi	r24, 0x0C	; 12
-  c6:	89 b9       	out	0x09, r24	; 9
+  f0:	8c e0       	ldi	r24, 0x0C	; 12
+  f2:	89 b9       	out	0x09, r24	; 9
 	UCSRC |=(1<<URSEL)|(3<<UCSZ0);
-  c8:	80 b5       	in	r24, 0x20	; 32
-  ca:	86 68       	ori	r24, 0x86	; 134
-  cc:	80 bd       	out	0x20, r24	; 32
+  f4:	80 b5       	in	r24, 0x20	; 32
+  f6:	86 68       	ori	r24, 0x86	; 134
+  f8:	80 bd       	out	0x20, r24	; 32
 	UCSRB |=(1<<TXEN)|(1<<RXEN);
-  ce:	8a b1       	in	r24, 0x0a	; 10
-  d0:	88 61       	ori	r24, 0x18	; 24
-  d2:	8a b9       	out	0x0a, r24	; 10
+  fa:	8a b1       	in	r24, 0x0a	; 10
+  fc:	88 61       	ori	r24, 0x18	; 24
+  fe:	8a b9       	out	0x0a, r24	; 10
 	DDRC=0x00;	 
-  d4:	14 ba       	out	0x14, r1	; 20
+ 100:	14 ba       	out	0x14, r1	; 20
+	PORTC=0x00;
+ 102:	15 ba       	out	0x15, r1	; 21
+	uint16_t checkvalue=0x0000;
 	while (1) 
     {
-		   
-		  while (!(PINC&(1<<0)));//as when data is receive pinC0 will be high soo checking that 
-  d6:	98 9b       	sbis	0x13, 0	; 19
-  d8:	fe cf       	rjmp	.-4      	; 0xd6 <main+0x14>
-		     read();//this function is responsible of setting every bits of data 
-  da:	0e 94 3e 00 	call	0x7c	; 0x7c <read>
+		        while (!(PINC&(1<<4)));//as when data is receive pinC0 will be high soo checking that 
+ 104:	9c 9b       	sbis	0x13, 4	; 19
+ 106:	fe cf       	rjmp	.-4      	; 0x104 <main+0x16>
+		         read();//this function is responsible of setting every bits of data 
+ 108:	0e 94 49 00 	call	0x92	; 0x92 <read>
 	#else
 		//round up by default
 		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
 	#endif
 
 	__builtin_avr_delay_cycles(__ticks_dc);
-  de:	2f ed       	ldi	r18, 0xDF	; 223
-  e0:	82 e2       	ldi	r24, 0x22	; 34
-  e2:	92 e0       	ldi	r25, 0x02	; 2
-  e4:	21 50       	subi	r18, 0x01	; 1
-  e6:	80 40       	sbci	r24, 0x00	; 0
-  e8:	90 40       	sbci	r25, 0x00	; 0
-  ea:	e1 f7       	brne	.-8      	; 0xe4 <main+0x22>
-  ec:	00 c0       	rjmp	.+0      	; 0xee <main+0x2c>
-  ee:	00 00       	nop
-			  _delay_ms(350);//delay is more than 200 but less or near to 400 as after sending 1st low bits data there is delay of 250 ms and deactive is for about 250 ms 
-		    dataget=(dataget>>4);//shifting higher bits into lower bits
-  f0:	80 91 60 00 	lds	r24, 0x0060	; 0x800060 <_edata>
-  f4:	82 95       	swap	r24
-  f6:	8f 70       	andi	r24, 0x0F	; 15
-  f8:	80 93 60 00 	sts	0x0060, r24	; 0x800060 <_edata>
+ 10c:	2f eb       	ldi	r18, 0xBF	; 191
+ 10e:	84 ed       	ldi	r24, 0xD4	; 212
+ 110:	91 e0       	ldi	r25, 0x01	; 1
+ 112:	21 50       	subi	r18, 0x01	; 1
+ 114:	80 40       	sbci	r24, 0x00	; 0
+ 116:	90 40       	sbci	r25, 0x00	; 0
+ 118:	e1 f7       	brne	.-8      	; 0x112 <main+0x24>
+ 11a:	00 c0       	rjmp	.+0      	; 0x11c <main+0x2e>
+ 11c:	00 00       	nop
+			    _delay_ms(300);//delay is more than 200 but less or near to 400 as after sending 1st low bits data there is delay of 250 ms and deactive is for about 250 ms 
+                  if(datacheck==0xA0)
+ 11e:	80 91 63 00 	lds	r24, 0x0063	; 0x800063 <datacheck>
+ 122:	80 3a       	cpi	r24, 0xA0	; 160
+ 124:	09 f0       	breq	.+2      	; 0x128 <main+0x3a>
+ 126:	4c c0       	rjmp	.+152    	; 0x1c0 <main+0xd2>
+				  {
+			     datacheck=0x00;
+ 128:	10 92 63 00 	sts	0x0063, r1	; 0x800063 <datacheck>
+			     while (!(PINC&(1<<4)));//as when data is receive pinC0 will be high soo checking that 
+ 12c:	9c 9b       	sbis	0x13, 4	; 19
+ 12e:	fe cf       	rjmp	.-4      	; 0x12c <main+0x3e>
+		         read();//this function is responsible of setting every bits of data 
+ 130:	0e 94 49 00 	call	0x92	; 0x92 <read>
+ 134:	2f eb       	ldi	r18, 0xBF	; 191
+ 136:	84 ed       	ldi	r24, 0xD4	; 212
+ 138:	91 e0       	ldi	r25, 0x01	; 1
+ 13a:	21 50       	subi	r18, 0x01	; 1
+ 13c:	80 40       	sbci	r24, 0x00	; 0
+ 13e:	90 40       	sbci	r25, 0x00	; 0
+ 140:	e1 f7       	brne	.-8      	; 0x13a <main+0x4c>
+ 142:	00 c0       	rjmp	.+0      	; 0x144 <main+0x56>
+ 144:	00 00       	nop
+			    _delay_ms(300);//delay is more than 200 but less or near to 400 as after sending 1st low bits data there is delay of 250 ms and deactive is for about 250 ms 
+		        dataget|=(datacheck>>4);//shifting higher bits into lower bits
+ 146:	80 91 63 00 	lds	r24, 0x0063	; 0x800063 <datacheck>
+ 14a:	82 95       	swap	r24
+ 14c:	8f 70       	andi	r24, 0x0F	; 15
+ 14e:	90 91 62 00 	lds	r25, 0x0062	; 0x800062 <__data_end>
+ 152:	89 2b       	or	r24, r25
+ 154:	80 93 62 00 	sts	0x0062, r24	; 0x800062 <__data_end>
+				datacheck=0x00;
+ 158:	10 92 63 00 	sts	0x0063, r1	; 0x800063 <datacheck>
+			    while (!(PINC&(1<<4))); 
+ 15c:	9c 9b       	sbis	0x13, 4	; 19
+ 15e:	fe cf       	rjmp	.-4      	; 0x15c <main+0x6e>
+				  read(); 	
+ 160:	0e 94 49 00 	call	0x92	; 0x92 <read>
+ 164:	2f eb       	ldi	r18, 0xBF	; 191
+ 166:	84 ed       	ldi	r24, 0xD4	; 212
+ 168:	91 e0       	ldi	r25, 0x01	; 1
+ 16a:	21 50       	subi	r18, 0x01	; 1
+ 16c:	80 40       	sbci	r24, 0x00	; 0
+ 16e:	90 40       	sbci	r25, 0x00	; 0
+ 170:	e1 f7       	brne	.-8      	; 0x16a <main+0x7c>
+ 172:	00 c0       	rjmp	.+0      	; 0x174 <main+0x86>
+ 174:	00 00       	nop
+		    	 _delay_ms(300);
+				  dataget|=datacheck;
+ 176:	90 91 62 00 	lds	r25, 0x0062	; 0x800062 <__data_end>
+ 17a:	80 91 63 00 	lds	r24, 0x0063	; 0x800063 <datacheck>
+ 17e:	89 2b       	or	r24, r25
+ 180:	80 93 62 00 	sts	0x0062, r24	; 0x800062 <__data_end>
+				  datacheck=0x00; 
+ 184:	10 92 63 00 	sts	0x0063, r1	; 0x800063 <datacheck>
+				  while (!(PINC&(1<<4))); 
+ 188:	9c 9b       	sbis	0x13, 4	; 19
+ 18a:	fe cf       	rjmp	.-4      	; 0x188 <main+0x9a>
+				  read(); 	
+ 18c:	0e 94 49 00 	call	0x92	; 0x92 <read>
+ 190:	2f eb       	ldi	r18, 0xBF	; 191
+ 192:	84 ed       	ldi	r24, 0xD4	; 212
+ 194:	91 e0       	ldi	r25, 0x01	; 1
+ 196:	21 50       	subi	r18, 0x01	; 1
+ 198:	80 40       	sbci	r24, 0x00	; 0
+ 19a:	90 40       	sbci	r25, 0x00	; 0
+ 19c:	e1 f7       	brne	.-8      	; 0x196 <main+0xa8>
+ 19e:	00 c0       	rjmp	.+0      	; 0x1a0 <main+0xb2>
+ 1a0:	00 00       	nop
+		    	 _delay_ms(300);
+				 checksum();
+ 1a2:	0e 94 6c 00 	call	0xd8	; 0xd8 <checksum>
+				 if(((datacheck>>4)&checksum_of_value)==0)
+ 1a6:	80 91 63 00 	lds	r24, 0x0063	; 0x800063 <datacheck>
+ 1aa:	82 95       	swap	r24
+ 1ac:	8f 70       	andi	r24, 0x0F	; 15
+ 1ae:	90 91 60 00 	lds	r25, 0x0060	; 0x800060 <__data_start>
+ 1b2:	89 23       	and	r24, r25
+ 1b4:	11 f4       	brne	.+4      	; 0x1ba <main+0xcc>
+				 {
+					 transfer();
+ 1b6:	0e 94 66 00 	call	0xcc	; 0xcc <transfer>
+				 }  
+				  dataget=0x00; 
+ 1ba:	10 92 62 00 	sts	0x0062, r1	; 0x800062 <__data_end>
+ 1be:	a2 cf       	rjmp	.-188    	; 0x104 <main+0x16>
+ 1c0:	2f e3       	ldi	r18, 0x3F	; 63
+ 1c2:	8d e0       	ldi	r24, 0x0D	; 13
+ 1c4:	93 e0       	ldi	r25, 0x03	; 3
+ 1c6:	21 50       	subi	r18, 0x01	; 1
+ 1c8:	80 40       	sbci	r24, 0x00	; 0
+ 1ca:	90 40       	sbci	r25, 0x00	; 0
+ 1cc:	e1 f7       	brne	.-8      	; 0x1c6 <main+0xd8>
+ 1ce:	00 c0       	rjmp	.+0      	; 0x1d0 <main+0xe2>
+ 1d0:	00 00       	nop
+ 1d2:	98 cf       	rjmp	.-208    	; 0x104 <main+0x16>
 
-			 while (!(PINC&(1<<0)));
-  fc:	98 9b       	sbis	0x13, 0	; 19
-  fe:	fe cf       	rjmp	.-4      	; 0xfc <main+0x3a>
-				read();
- 100:	0e 94 3e 00 	call	0x7c	; 0x7c <read>
-			   transfer();//sending data at tx pin
- 104:	0e 94 5b 00 	call	0xb6	; 0xb6 <transfer>
- 108:	2f ed       	ldi	r18, 0xDF	; 223
- 10a:	82 e2       	ldi	r24, 0x22	; 34
- 10c:	92 e0       	ldi	r25, 0x02	; 2
- 10e:	21 50       	subi	r18, 0x01	; 1
- 110:	80 40       	sbci	r24, 0x00	; 0
- 112:	90 40       	sbci	r25, 0x00	; 0
- 114:	e1 f7       	brne	.-8      	; 0x10e <main+0x4c>
- 116:	00 c0       	rjmp	.+0      	; 0x118 <main+0x56>
- 118:	00 00       	nop
-			 _delay_ms(350);   
-		     dataget=0x00;
- 11a:	10 92 60 00 	sts	0x0060, r1	; 0x800060 <_edata>
-    }
- 11e:	db cf       	rjmp	.-74     	; 0xd6 <main+0x14>
+000001d4 <_exit>:
+ 1d4:	f8 94       	cli
 
-00000120 <_exit>:
- 120:	f8 94       	cli
-
-00000122 <__stop_program>:
- 122:	ff cf       	rjmp	.-2      	; 0x122 <__stop_program>
+000001d6 <__stop_program>:
+ 1d6:	ff cf       	rjmp	.-2      	; 0x1d6 <__stop_program>
