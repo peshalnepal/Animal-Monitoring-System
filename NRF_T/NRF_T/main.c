@@ -16,11 +16,14 @@ void initialize(void);
 uint8_t add_value[5];
 void flush_every(void);
  char tempr_animal[3];
+ char pulse_animal[3];
  char value_of_tempr[2];
  char value_of_humidity[3];
  char location[28];
- uint8_t calculate_heartbeat=0;
+        uint8_t calculate_heartbeat=0;
+		int pulse_rate=0;
 	    uint16_t temperature_in_voltage_format;
+		uint16_t heartbeat_in_voltage_format;
 	 	uint8_t thelow;
 	 	uint8_t tempr_of_animal;
 	 	uint8_t temperature=0;
@@ -30,6 +33,9 @@ void flush_every(void);
 	 	uint8_t checksum=0;
 	 	uint8_t sum=0;
 	 	uint8_t arrange_array=0;
+		 uint8_t ther=0;
+		 uint8_t max_peak=0;
+void sendtranfer_using_usart(uint16_t heart);
  void getlocation(void);
 void setnrf(uint8_t registers,uint8_t values_to_put);
 void transferstatusdata(uint8_t values);
@@ -39,7 +45,7 @@ void reset(void);
 unsigned char return_char(void);
 int main(void)
 {
-     char animalId[]="iCAT001";
+     char animalId[]="iHUM001";
 	char contain_both_humidity_tempr[32];
 	 DDRA&=~(1<<1);
 	 ADCSRA |=(1<<ADPS2);//this bit is set when we want to divide CLK frequency by 8
@@ -63,6 +69,7 @@ int main(void)
     {
 		
 			  arrange_array=0;
+			  pulse_rate=0;
 		      DDRC|=(1<<PINC0);
 		      PORTC|=(1<<PINC0);
 		      start_conversion(); 
@@ -128,6 +135,41 @@ int main(void)
 				   contain_both_humidity_tempr[arrange_array]=tempr_animal[i];
 				    arrange_array++; 
 			  }
+			    ADMUX&=~(1<<MUX0);
+			    ADMUX|=(1<<MUX1);
+			    _delay_ms(10);
+				 TCNT1H=0x1B;
+				 TCNT1L=0x1D;
+				 TCCR1A|=0x00;
+				 TCCR1B|=(1<<CS12)|(1<<CS10);
+				  ADCSRA|=(1<<ADSC);
+				 _delay_ms(20);
+				while((TIFR&(1<<TOV1))==0)
+				{
+					 thelow=ADCL;// done so that lag doesn't occur while running as we need to access ADCH and ADCL at same time
+					 heartbeat_in_voltage_format= (ADCH<<2)|(thelow>>6);//this is use to get 10 bit data from ADC
+					 sendtranfer_using_usart(heartbeat_in_voltage_format);
+							  if (heartbeat_in_voltage_format>=227)
+							  {
+								  pulse_rate++;
+								  _delay_ms(200);
+							  }
+					
+					 ADCSRA|=(1<<ADSC);
+					 _delay_ms(10);
+				}
+				TIFR|=(1<<TOV1);
+				ADCSRA&=~(1<<ADSC);
+				pulse_rate=pulse_rate*2;
+				 itoa(pulse_rate,pulse_animal,10);
+				 _delay_ms(10);
+			         contain_both_humidity_tempr[arrange_array]=0x70;
+					 arrange_array++;
+					 for (uint8_t i=0;i<3;i++)
+					 {
+						 contain_both_humidity_tempr[arrange_array]=pulse_animal[i];
+						 arrange_array++;
+					 }
 			   _delay_ms(10);
 		        reset();
 		      _delay_ms(10);
@@ -356,4 +398,18 @@ unsigned char return_char()
 {
 	while (!(UCSRA&(1<<RXC)));//wait until UDR register contain data received from other device
 	return UDR;// return value obtained from other device through Rx pin
+}
+void sendtranfer_using_usart(uint16_t heart)
+{
+	char datas[4];
+	itoa(heart,datas,10);
+     for (uint8_t i=0;i<4;i++)
+     {
+		 while(!(UCSRA&(1<<UDRE)));
+		 UDR=datas[i];
+     }
+	 while(!(UCSRA&(1<<UDRE)));
+		 UDR=0x0D;
+		 while(!(UCSRA&(1<<UDRE)));
+		 UDR=0x0A;
 }
