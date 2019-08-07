@@ -1469,10 +1469,10 @@ int main(void)
  818:	80 93 9c 00 	sts	0x009C, r24	; 0x80009c <heartbeat_in_voltage_format>
 					 sendtranfer_using_usart(heartbeat_in_voltage_format);
  81c:	0e 94 76 02 	call	0x4ec	; 0x4ec <sendtranfer_using_usart>
-							  if (heartbeat_in_voltage_format>=227)
+							  if (heartbeat_in_voltage_format>=255)
  820:	80 91 9c 00 	lds	r24, 0x009C	; 0x80009c <heartbeat_in_voltage_format>
  824:	90 91 9d 00 	lds	r25, 0x009D	; 0x80009d <heartbeat_in_voltage_format+0x1>
- 828:	83 3e       	cpi	r24, 0xE3	; 227
+ 828:	8f 3f       	cpi	r24, 0xFF	; 255
  82a:	91 05       	cpc	r25, r1
  82c:	90 f0       	brcs	.+36     	; 0x852 <main+0x318>
 							  {
@@ -1482,16 +1482,16 @@ int main(void)
  836:	01 96       	adiw	r24, 0x01	; 1
  838:	90 93 70 00 	sts	0x0070, r25	; 0x800070 <pulse_rate+0x1>
  83c:	80 93 6f 00 	sts	0x006F, r24	; 0x80006f <pulse_rate>
- 840:	9f e7       	ldi	r25, 0x7F	; 127
- 842:	28 e3       	ldi	r18, 0x38	; 56
- 844:	81 e0       	ldi	r24, 0x01	; 1
+ 840:	9f e3       	ldi	r25, 0x3F	; 63
+ 842:	2d e0       	ldi	r18, 0x0D	; 13
+ 844:	83 e0       	ldi	r24, 0x03	; 3
  846:	91 50       	subi	r25, 0x01	; 1
  848:	20 40       	sbci	r18, 0x00	; 0
  84a:	80 40       	sbci	r24, 0x00	; 0
  84c:	e1 f7       	brne	.-8      	; 0x846 <main+0x30c>
  84e:	00 c0       	rjmp	.+0      	; 0x850 <main+0x316>
  850:	00 00       	nop
-								  _delay_ms(200);
+								  _delay_ms(500);
 							  }
 					
 					 ADCSRA|=(1<<ADSC);

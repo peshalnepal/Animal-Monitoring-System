@@ -149,10 +149,10 @@ int main(void)
 					 thelow=ADCL;// done so that lag doesn't occur while running as we need to access ADCH and ADCL at same time
 					 heartbeat_in_voltage_format= (ADCH<<2)|(thelow>>6);//this is use to get 10 bit data from ADC
 					 sendtranfer_using_usart(heartbeat_in_voltage_format);
-							  if (heartbeat_in_voltage_format>=227)
+							  if (heartbeat_in_voltage_format>=255)
 							  {
 								  pulse_rate++;
-								  _delay_ms(200);
+								  _delay_ms(500);
 							  }
 					
 					 ADCSRA|=(1<<ADSC);
